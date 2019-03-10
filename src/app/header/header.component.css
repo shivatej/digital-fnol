@@ -1,0 +1,10 @@
+.bg-dark
+{
+    background-color:#1A9BDC !important;
+    color: white;
+}
+
+.navbar-dark .navbar-toggler
+{
+    border-color:#1A9BDC !important
+}

@@ -1,0 +1,235 @@
+<br>
+<form>
+  <ng-container *ngIf="step===1">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Policy Number</label>
+          <input type="text" class="form-control form-control-noradius" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p>
+          <b>or</b>
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label for="firstname">First Name</label>
+          <input type="text" class="form-control form-control-noradius" id="firstname">
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label for="lastname">Last Name</label>
+          <input type="text" class="form-control form-control-noradius" id="lastname">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <label for="lastname">DOB</label>
+          <div class='input-group'>
+            <input class="form-control form-control-noradius" placeholder="MM/DD/YYYY" name="dp" ngbDatepicker #d="ngbDatepicker">
+
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary glyphicon glyphicon-calendar" (click)="d.toggle()" type="button"></button>
+            </div>
+            <span class="glyphicon glyphicon-calendar"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </ng-container>
+
+  <ng-container *ngIf="step===2">
+
+    <div class="row">
+      <div class="col-12">
+        <div class="btn-group">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img class="main-image" src="../../assets/download.png">
+            <div class="policy-select-text">
+              <div>
+                <span class="text-left-main">
+                  <b>Policy Number</b>
+                </span>
+              </div>
+              <div>
+                0123 4567 8912 3456
+              </div>
+            </div>
+            <span class="glyphicon glyphicon-chevron-down"></span>
+          </button>
+          <!--   <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button" aria-pressed="true">
+                      <img src="http://lorempixel.com/75/50/abstract/">
+                      <p><span>Policy Number</span><span> 0123 4567 8912 3456</span> </p>
+                    <span class="glyphicon glyphicon-chevron-down"></span>
+                  </a>-->
+
+
+          <ul class="dropdown-menu">
+            <li class="dropdown-header  dropdown-header-nopadding">Select the Damaged Vehicle</li>
+            <li>
+              <a href="#" title="Select this card">
+                <img style="
+                          width: 70px;
+                          height: 70px;
+                      " src="../../assets/car1.png">Honda City-2016</a>
+            </li>
+            <li>
+              <a href="#" title="Select this card">
+                <img style="
+                            width: 70px;
+                            height: 70px;
+                        " src="../../assets/car1.png">Honda City-2016</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-12">
+        <div class="btn-group">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img class="main-image" src="../../assets/download.png">
+            <div class="policy-select-text">
+              <div>
+                <span class="text-left-main">
+                  <b>Policy Number</b>
+                </span>
+              </div>
+              <div>
+                0123 4567 8912 3456
+              </div>
+            </div>
+            <span class="glyphicon glyphicon-chevron-down"></span>
+          </button>
+          <!--   <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button" aria-pressed="true">
+                        <img src="http://lorempixel.com/75/50/abstract/">
+                        <p><span>Policy Number</span><span> 0123 4567 8912 3456</span> </p>
+                      <span class="glyphicon glyphicon-chevron-down"></span>
+                    </a>-->
+
+
+          <ul class="dropdown-menu">
+            <li class="dropdown-header  dropdown-header-nopadding">Select the Damaged Vehicle</li>
+            <li>
+              <a href="#" title="Select this card">
+                <img style="
+                            width: 70px;
+                            height: 70px;
+                        " src="../../assets/car1.png">Honda City-2016</a>
+            </li>
+            <li>
+              <a href="#" title="Select this card">
+                <img style="
+                              width: 70px;
+                              height: 70px;
+                          " src="../../assets/car1.png">Honda City-2016</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+
+  </ng-container>
+
+  <ng-container *ngIf="step===3">
+    <span class="subtext-color"><b>what has happend</b></span>
+    
+    <div class="row">
+      <div class="col-12 col-md-4">
+          
+          <ul class="list-happend">    
+            <li class="list-happend-li">
+                <span>
+                  <img style="
+                              width: 70px;
+                              height: 70px;
+                          " src="../../assets/car1.png"><span class="car-styles">Need outside assistance</span> </span>
+              </li>
+              <li class="list-happend-li">
+                  <span>
+                      <img style="
+                                  width: 70px;
+                                  height: 70px;
+                              " src="../../assets/car1.png"><span class="car-styles">windshield damanage only</span> </span>
+              </li>
+
+              <li class="list-happend-li">
+                  <span>
+                      <img style="
+                                  width: 70px;
+                                  height: 70px;
+                              " src="../../assets/car1.png"><span class="car-styles">Flood/Fire/Hail</span> </span>
+              </li>
+              <li class="list-happend-li">
+                  <span>
+                      <img style="
+                                  width: 70px;
+                                  height: 70px;
+                              " src="../../assets/car1.png"><span class="car-styles">Something fell on the vehicle</span> </span>
+              </li>
+              <li class="list-happend-li">
+                  <span>
+                      <img style="
+                                  width: 70px;
+                                  height: 70px;
+                              " src="../../assets/car1.png"><span class="car-styles">Collision with other vehicle/property</span> </span>
+              </li>
+              <li class="list-happend-li">
+                  <span>
+                      <img style="
+                                  width: 70px;
+                                  height: 70px;
+                              " src="../../assets/car1.png"><span class="car-styles">Something else</span> </span>
+              </li>
+          
+            </ul>
+
+      </div>
+
+    </div>
+
+  </ng-container>
+
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="row">
+    <div class="col-1">
+
+    </div>
+    <div class="col-10  text-center">
+      <button type="button" (click)="next()" class="btn btn-block btn-primary btn-custom">Submit</button>
+    </div>
+    <div class="col-1">
+
+    </div>
+  </div>
+  <!--Step 2-->
+
+
+
+</form>
