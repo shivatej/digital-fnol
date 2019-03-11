@@ -4,6 +4,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="form-group">
+          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
           <label for="exampleInputEmail1">Policy Number</label>
           <input type="text" class="form-control form-control-noradius" id="exampleInputEmail1" aria-describedby="emailHelp">
         </div>
@@ -39,9 +40,9 @@
             <input class="form-control form-control-noradius" placeholder="MM/DD/YYYY" name="dp" ngbDatepicker #d="ngbDatepicker">
 
             <div class="input-group-append">
-              <button class="btn btn-outline-secondary glyphicon glyphicon-calendar" (click)="d.toggle()" type="button"></button>
+              <button class='fas fa-calendar-alt' (click)="d.toggle()" type="button"></button>
             </div>
-            <span class="glyphicon glyphicon-calendar"></span>
+
           </div>
         </div>
       </div>
@@ -150,74 +151,239 @@
   </ng-container>
 
   <ng-container *ngIf="step===3">
-    <span class="subtext-color"><b>what has happend</b></span>
-    
+    <span class="subtext-color">
+      <b>what has happend</b>
+    </span>
+
     <div class="row">
       <div class="col-12 col-md-4">
-          
-          <ul class="list-happend">    
-            <li class="list-happend-li">
-                <span>
-                  <img style="
+
+        <ul class="list-happend step-tree">
+          <li class="list-happend-li">
+            <span>
+              <img style="
                               width: 70px;
                               height: 70px;
-                          " src="../../assets/car1.png"><span class="car-styles">Need outside assistance</span> </span>
-              </li>
-              <li class="list-happend-li">
-                  <span>
-                      <img style="
+                          " src="../../assets/car1.png">
+              <span class="car-styles">Need outside assistance</span>
+            </span>
+          </li>
+          <li class="list-happend-li">
+            <span>
+              <img style="
                                   width: 70px;
                                   height: 70px;
-                              " src="../../assets/car1.png"><span class="car-styles">windshield damanage only</span> </span>
-              </li>
+                              " src="../../assets/car1.png">
+              <span class="car-styles">windshield damanage only</span>
+            </span>
+          </li>
 
-              <li class="list-happend-li">
-                  <span>
-                      <img style="
+          <li class="list-happend-li">
+            <span>
+              <img style="
                                   width: 70px;
                                   height: 70px;
-                              " src="../../assets/car1.png"><span class="car-styles">Flood/Fire/Hail</span> </span>
-              </li>
-              <li class="list-happend-li">
-                  <span>
-                      <img style="
+                              " src="../../assets/car1.png">
+              <span class="car-styles">Flood/Fire/Hail</span>
+            </span>
+          </li>
+          <li class="list-happend-li">
+            <span>
+              <img style="
                                   width: 70px;
                                   height: 70px;
-                              " src="../../assets/car1.png"><span class="car-styles">Something fell on the vehicle</span> </span>
-              </li>
-              <li class="list-happend-li">
-                  <span>
-                      <img style="
+                              " src="../../assets/car1.png">
+              <span class="car-styles">Something fell on the vehicle</span>
+            </span>
+          </li>
+          <li class="list-happend-li">
+            <span>
+              <img style="
                                   width: 70px;
                                   height: 70px;
-                              " src="../../assets/car1.png"><span class="car-styles">Collision with other vehicle/property</span> </span>
-              </li>
-              <li class="list-happend-li">
-                  <span>
-                      <img style="
+                              " src="../../assets/car1.png">
+              <span class="car-styles">Collision with other vehicle/property</span>
+            </span>
+          </li>
+          <li class="list-happend-li">
+            <span>
+              <img style="
                                   width: 70px;
                                   height: 70px;
-                              " src="../../assets/car1.png"><span class="car-styles">Something else</span> </span>
-              </li>
-          
-            </ul>
+                              " src="../../assets/car1.png">
+              <span class="car-styles">Something else</span>
+            </span>
+          </li>
+
+        </ul>
 
       </div>
-
     </div>
 
   </ng-container>
 
+  <ng-container *ngIf="step===4">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Is anybody injured?</label>
+          <label class="switch">
+            <input type="checkbox" checked>
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label for="firstname">When?</label>
+          <div class='input-group'>
+            <input type="text" placeholder="00:00" class="form-control form-control-noradius" id="when">
+            <div class="input-group-append">
+              <button class='far fa-clock' type="button"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label for="lastname">DOB</label>
+          <div class='input-group'>
+            <input type="text" placeholder="MM/DD/YYYY" name="dp" ngbDatepicker #d="ngbDatepicker" class="form-control form-control-noradius"
+              id="dob">
+            <div class="input-group-append">
+              <button class='fas fa-calendar-alt' (click)="d.toggle()" type="button"></button>
+            </div>
+          </div>
 
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <div class="row">
+
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-11">
+        <div class="form-group">
+          <label for="firstname">Where?</label>
+
+          <div class='input-group'>
+            <input type="text" placeholder="Accident Location" class="form-control form-control-noradius" id="when">
+            <div class="input-group-append">
+              <button type="button">
+                <i class="material-icons">location_on</i>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      <div class="col-1">
+        <i (click)="open(content)" class="material-icons icon-help">&#xe8fd;</i>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <label for="firstname">Vehicle current location?</label>
+          <br>
+          <div class="form-check-inline">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="optradio">Home
+            </label>
+          </div>
+          <div class="form-check-inline">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="optradio">Accident Site
+            </label>
+          </div>
+          <div class="form-check-inline disabled">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="optradio" disabled>Garage
+            </label>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <label for="firstname">Description of incident</label>
+          <textarea class="form-control" rows="3" id="comment"></textarea>
+        </div>
+      </div>
+    </div>
+    <span>Where can we contact you in case of further questions?</span>
+
+
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <label for="firstname">Phone Number</label>
+          <input type="text" class="form-control form-control-noradius" id="when">
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <label for="firstname">Email Id</label>
+          <input type="text" class="form-control form-control-noradius" id="when">
+
+        </div>
+      </div>
+    </div>
+
+
+  </ng-container>
+
+  <ng-container *ngIf="step===5">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <div class="row">
+            <div class="col-8">
+              <label for="exampleInputEmail1">Do you have 3rd party details to share?</label>
+
+            </div>
+            <div class="col-4">
+              <label class="switch">
+                <input type="checkbox" checked>
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <div class="row">
+            <div class="col-8">
+              <label for="exampleInputEmail1">Images of 3rd party insurance card?</label>
+
+            </div>
+            <div class="col-4">
+              <img class="main-image" width="100%" src="../../assets/crop.png">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </ng-container>
+
+  <div class="row fixed-div">
     <div class="col-1">
 
     </div>
@@ -228,7 +394,27 @@
 
     </div>
   </div>
-  <!--Step 2-->
+
+  <ng-template #content let-modal>
+    <div class="modal-body">
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <br>
+
+      <div class="text-center">
+        <p class="p-no-maring-bottom">Please click on location icon to select the icon from the map where incident happended
+        </p>
+        <span class="text-center">
+          Or
+        </span>
+        <p class="p-no-maring-bottom">
+          Type the location in the input box.
+        </p>
+        <button type="button" class="btn save-btn" (click)="modal.close('Save click')">Ok</button>
+      </div>
+    </div>
+  </ng-template>
 
 
 
