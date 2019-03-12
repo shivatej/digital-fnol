@@ -1,12 +1,12 @@
 <br>
-<form>
+
   <ng-container *ngIf="step===1">
     <div class="row">
       <div class="col-md-12">
         <div class="form-group">
           <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
           <label for="exampleInputEmail1">Policy Number</label>
-          <input type="text" class="form-control form-control-noradius" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <input [(ngModel)]="policyNumber" type="text" class="form-control form-control-noradius" aria-describedby="emailHelp">
         </div>
       </div>
     </div>
@@ -47,7 +47,23 @@
         </div>
       </div>
     </div>
-
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-1">
+      </div>
+      <div class="col-10  text-center">
+        <button type="button"  [ngClass]="{'disable-class':policyNumber===''}"  (click)="next()" class="btn btn-block btn-primary btn-custom">Find My Policy</button>
+      </div>
+      <div class="col-1">
+  
+      </div>
+    </div>
 
   </ng-container>
 
@@ -147,6 +163,28 @@
       </div>
 
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-1">
+      </div>
+      <div class="col-10  text-center">
+        <button type="button"  [ngClass]="{'disable-class':policyNumber===''}"  (click)="next()" class="btn btn-block btn-primary btn-custom">Next</button>
+      </div>
+      <div class="col-1">
+  
+      </div>
+    </div>
+
 
   </ng-container>
 
@@ -158,59 +196,43 @@
     <div class="row">
       <div class="col-12 col-md-4">
 
-        <ul class="list-happend step-tree">
-          <li class="list-happend-li">
+        <ul (click)="nextStep=false;"  class="list-happend step-tree">
+          <li (click)="assit=true;" class="list-happend-li">
             <span>
-              <img style="
-                              width: 70px;
-                              height: 70px;
-                          " src="../../assets/car1.png">
+              <img class="image-happend" [ngClass]="{'image-happend-select':assit}" src="../../assets/roadside-assistance-.png">
               <span class="car-styles">Need outside assistance</span>
             </span>
           </li>
-          <li class="list-happend-li">
+          <li (click)="assit=false;windshield=true;" class="list-happend-li">
             <span>
-              <img style="
-                                  width: 70px;
-                                  height: 70px;
-                              " src="../../assets/car1.png">
+              <img class="image-happend"  [ngClass]="{'image-happend-select':windshield}"  src="../../assets/Windshield-damage.png">
               <span class="car-styles">windshield damanage only</span>
             </span>
           </li>
 
           <li class="list-happend-li">
             <span>
-              <img style="
-                                  width: 70px;
-                                  height: 70px;
-                              " src="../../assets/car1.png">
+              <img class="image-happend"  src="../../assets/FloodFireHail.png">
               <span class="car-styles">Flood/Fire/Hail</span>
             </span>
           </li>
           <li class="list-happend-li">
             <span>
-              <img style="
-                                  width: 70px;
-                                  height: 70px;
-                              " src="../../assets/car1.png">
+            
+              <img class="image-happend" src="../../assets/Something-fell-on-the-vehicle.png">
               <span class="car-styles">Something fell on the vehicle</span>
             </span>
           </li>
           <li class="list-happend-li">
             <span>
-              <img style="
-                                  width: 70px;
-                                  height: 70px;
-                              " src="../../assets/car1.png">
-              <span class="car-styles">Collision with other vehicle/property</span>
+              
+              <img class="image-happend" src="../../assets/Collision.png">
+              <span class="car-styles">Collision with other vehicle</span>
             </span>
           </li>
           <li class="list-happend-li">
             <span>
-              <img style="
-                                  width: 70px;
-                                  height: 70px;
-                              " src="../../assets/car1.png">
+                <img class="image-happend"  src="../../assets/something-else.png">
               <span class="car-styles">Something else</span>
             </span>
           </li>
@@ -220,6 +242,21 @@
       </div>
     </div>
 
+    <br>
+    <br>
+   
+    <div class="row">
+      <div class="col-1">
+      </div>
+      <div class="col-10  text-center">
+        <button type="button"  [ngClass]="{'disable-class':nextStep}"  (click)="next()" class="btn btn-block btn-primary btn-custom">Next</button>
+      </div>
+      <div class="col-1">
+  
+      </div>
+    </div>
+
+
   </ng-container>
 
   <ng-container *ngIf="step===4">
@@ -228,7 +265,7 @@
         <div class="form-group">
           <label for="exampleInputEmail1">Is anybody injured?</label>
           <label class="switch">
-            <input type="checkbox" checked>
+            <input type="checkbox" [(ngModel)]="injured">
             <span class="slider round"></span>
           </label>
         </div>
@@ -341,6 +378,19 @@
       </div>
     </div>
 
+    <br>
+    <br>
+   
+    <div class="row">
+      <div class="col-1">
+      </div>
+      <div class="col-10  text-center">
+        <button type="button"   (click)="next()" class="btn btn-block btn-primary btn-custom">Next</button>
+      </div>
+      <div class="col-1">
+  
+      </div>
+    </div>
 
   </ng-container>
 
@@ -355,7 +405,7 @@
             </div>
             <div class="col-4">
               <label class="switch">
-                <input type="checkbox" checked>
+                <input type="checkbox" [(ngModel)]="thirdparty">
                 <span class="slider round"></span>
               </label>
             </div>
@@ -370,10 +420,9 @@
           <div class="row">
             <div class="col-8">
               <label for="exampleInputEmail1">Images of 3rd party insurance card?</label>
-
             </div>
             <div class="col-4">
-              <img class="main-image" width="100%" src="../../assets/crop.png">
+              <img class="main-image" (click)="open(contentupload)" [ngClass]="{'image-opacity':!thirdparty}" width="100%" src="../../assets/crop.png">
             </div>
           </div>
 
@@ -381,19 +430,101 @@
       </div>
     </div>
 
+    
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>   <br>
+    <br>
+    <br>
+   
+    <div class="row">
+      <div class="col-1">
+      </div>
+      <div class="col-10  text-center">
+        <button type="button"   (click)="next()" class="btn btn-block btn-primary btn-custom">Next</button>
+      </div>
+      <div class="col-1">
+  
+      </div>
+    </div>
+
   </ng-container>
 
-  <div class="row fixed-div">
-    <div class="col-1">
 
-    </div>
-    <div class="col-10  text-center">
-      <button type="button" (click)="next()" class="btn btn-block btn-primary btn-custom">Submit</button>
-    </div>
-    <div class="col-1">
-
-    </div>
-  </div>
+  <ng-container *ngIf="step===6">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-8">
+                <label for="exampleInputEmail1">Do you file police report?</label>
+  
+              </div>
+              <div class="col-4">
+                <label class="switch">
+                  <input type="checkbox" [(ngModel)]="policyreport">
+                  <span class="slider round"></span>
+                </label>
+              </div>
+            </div>
+  
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-8">
+                <label for="exampleInputEmail1">Images of 3rd party insurance card?</label>
+              </div>
+              <div class="col-4">
+                <img class="main-image" (click)="open(contentupload)" [ngClass]="{'image-opacity':!policyreport}" width="100%" src="../../assets/crop.png">
+              </div>
+            </div>
+  
+          </div>
+        </div>
+      </div>
+      <br>
+      <p class="note" *ngIf="!policyreport">
+        Note:Sharing of images of your car will help in reducing the claim settlement time
+      </p>
+  
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>   <br>
+      <br>
+      <br>
+     
+      <div class="row">
+        <div class="col-1">
+        </div>
+        <div class="col-10  text-center">
+          <button type="button"   (click)="next()" class="btn btn-block btn-primary btn-custom">Next</button>
+        </div>
+        <div class="col-1">
+    
+        </div>
+      </div>
+  
+    </ng-container>
 
   <ng-template #content let-modal>
     <div class="modal-body">
@@ -416,6 +547,30 @@
     </div>
   </ng-template>
 
+  <ng-template #contentupload let-modal>
+    <div class="modal-header">
+        <i class='fas fa-camera' style='font-size:24px'></i>    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
 
-
-</form>
+    <div class="modal-body">
+  
+      <img class="main-image" style="width: 300px;height: 200px;" src="../../assets/ins.png">
+      <br>
+      <div class="row">
+          <div class="col-6 text-left">
+              <i class="material-icons" style="font-size:36px">attachment</i>
+          </div>
+          <div class="col-6 text-right">
+              <i class="fa fa-upload" style="font-size:24px"></i>
+          </div>
+      </div>
+     
+      <div class="text-center">
+        
+        <button type="button" class="btn save-btn" (click)="modal.close('Save click')">Submit</button>
+      </div>
+    </div>
+    
+  </ng-template>
