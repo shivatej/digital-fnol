@@ -1,0 +1,21 @@
+.coursel{
+    height: 40%;
+    width: 100%;
+    background-color: blue;
+    border: 1px solid red;
+    color: white;
+}
+.modal-body{
+    background-color: #004167;
+    color: white;
+}
+.display-block-btn {
+    display: inline-block;
+    background-color: #009DDD; 
+    padding-bottom:5px; 
+    width: 100%;
+}
+
+.btn-group{
+    width: 100%
+}
