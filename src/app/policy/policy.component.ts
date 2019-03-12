@@ -10,7 +10,13 @@ export class PolicyComponent implements OnInit {
 
   step=1;
   closeResult: string;
-  
+  policyNumber:any='';
+  nextStep=true;
+  injured:any;
+  thirdparty:false;
+  policyreport:false;
+  assit:false;
+  windshield:false;
   constructor(private modalService: NgbModal) {}
 
   ngOnInit() {
