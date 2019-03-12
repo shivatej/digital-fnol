@@ -1,9 +1,9 @@
 .coursel{
-    height: 40%;
     width: 100%;
-    background-color: blue;
+    background-color: #004167;
     border: 1px solid red;
     color: white;
+    padding: 0 px; 
 }
 .modal-body{
     background-color: #004167;
@@ -16,6 +16,40 @@
     width: 100%;
 }
 
-.btn-group{
-    width: 100%
+.save-btn
+{
+    background-color: #FEA519;
+    color: white;
+    border-radius: 20px;
+    width: 80%;
+}
+.sec-btn{
+    background-color: white;
+    color: #00ABD5;
+    border-radius: 20px;
+    width: 60%;
+}
+.prm-btn{
+    background-color: #00ABD5;
+    color: white;
+    width: 80%;
+    margin-bottom: 10px;
+}
+.next-btn{
+    background-color: #757575;
+    color: white;
+    width: 60%;
+    border-radius: 20px;
+}
+.prm-btn-sel{
+    background-color: white;
+    color: #00ABD5;
+    width: 80%;
+    margin-bottom: 10px;
+}
+.next-btn_enable{
+    background-color: #FEA519;
+    color: white;
+    width: 60%;
+    border-radius: 20px;
 }

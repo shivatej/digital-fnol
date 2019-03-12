@@ -8,7 +8,13 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 })
 export class HomeComponent implements OnInit {
 
+  isPolicyButton:boolean = false;
+  isDriverButton:boolean = false;
+  isPassengerButton:boolean = false;
+  nextEnable:boolean = false;
+
   constructor(private modalService: NgbModal) { }
+  
 
   ngOnInit() {
   }
@@ -18,6 +24,10 @@ export class HomeComponent implements OnInit {
     }, (reason) => {
       
     });
+  }
+
+  buttonStatus(){
+
   }
 
 }
