@@ -69,7 +69,7 @@
     </div>
     <br>
     <div class="text-center">
-      <button type="button" class="btn save-btn" (click)="openpolicy(policyIdent)">
+      <button type="button" class="btn save-btn-home" (click)="openpolicy(policyIdent)">
         <img src="../../assets/inicial_claim.png" alt="Third slide"> &nbsp; Initiate Claim
       </button>
     </div>
@@ -738,7 +738,7 @@
   <ng-template #content let-modal>
     <div class="modal-body">
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
+          <img height='30px' width='30px' src="../../assets/close-01.png">
       </button>
       <br>
 
@@ -751,6 +751,7 @@
         <p class="p-no-maring-bottom">
           Type the location in the input box.
         </p>
+        <br>
         <button type="button" class="btn save-btn" (click)="modal.close('Save click')">Ok</button>
       </div>
     </div>
@@ -804,6 +805,9 @@
             </div>
         </div>
        
+        <br>
+        <br>
+        <br>
         <div class="text-center">
           
           <button type="button" class="btn save-btn" (click)="modal.close('Save click')">Submit</button>
@@ -812,7 +816,7 @@
       
     </ng-template>
     <ng-template #policyIdent let-modal>
-        <div class="modal-body">
+        <div class="modal-body-policy">
           <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <img src="../../assets/close.png">
           </button>
@@ -848,6 +852,7 @@
                 Next
               </button>
             </div>
+            <br>
           </div>
         </div>
       </ng-template>

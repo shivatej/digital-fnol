@@ -222,7 +222,7 @@ background-color: #189EDB !important;
     color: white;
     padding: 0 px; 
 }
-.modal-body{
+.modal-body-policy{
     background-color: #004167;
     color: white;
 }
@@ -233,7 +233,7 @@ background-color: #189EDB !important;
     width: 100%;
 }
 
-.save-btn
+.save-btn-home
 {
     background-color: #FEA519;
     color: white;
