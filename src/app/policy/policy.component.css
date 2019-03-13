@@ -38,8 +38,15 @@
 }
 .main-image
 {
-    margin-top: -10px;
-    height: 65px;
+    width: 75px;
+    background-color: #1A7496;
+    height: 80px;
+}
+.main-image-second
+{
+    width: 75px;
+    background-color: #115EA2;
+    height: 80px;
 }
 .text-left-main
 {
@@ -191,4 +198,20 @@ background-color: #189EDB !important;
     background-blend-mode: screen;
     height: 70px;
     width: 85px;
+}
+
+.complete-checkbox
+{
+    width: 20%;
+}
+
+.claim-link
+{
+    text-decoration: underline;
+}
+
+.home-btn
+{
+    width: 70%;
+    margin-left: 50px;
 }
