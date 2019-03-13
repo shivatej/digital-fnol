@@ -4,13 +4,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { PolicyComponent } from './policy/policy.component';
+import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    PolicyComponent
+    PolicyComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule ,
