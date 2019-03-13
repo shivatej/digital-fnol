@@ -8,7 +8,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 })
 export class PolicyComponent implements OnInit {
 
-  step=1;
+  step=0;
   closeResult: string;
   policyNumber:any='';
   nextStep=true;
@@ -17,6 +17,10 @@ export class PolicyComponent implements OnInit {
   policyreport:false;
   assit:false;
   windshield:false;
+  isPolicyButton:boolean = false;
+  isDriverButton:boolean = false;
+  isPassengerButton:boolean = false;
+  nextEnable:boolean = false;
   constructor(private modalService: NgbModal) {}
 
   ngOnInit() {
@@ -45,4 +49,12 @@ export class PolicyComponent implements OnInit {
       return  `with: ${reason}`;
     }
   }
+
+  openpolicy(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title',centered: true}).result.then((result) => {
+    }, (reason) => {
+      
+    });
+  }
+
 }
