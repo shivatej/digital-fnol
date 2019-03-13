@@ -73,7 +73,7 @@
       <div class="col-12">
         <div class="btn-group">
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img class="main-image" src="../../assets/download.png">
+            <img class="main-image" src="../../assets/auto.png">
             <div class="policy-select-text">
               <div>
                 <span class="text-left-main">
@@ -86,12 +86,6 @@
             </div>
             <span class="glyphicon glyphicon-chevron-down"></span>
           </button>
-          <!--   <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button" aria-pressed="true">
-                      <img src="http://lorempixel.com/75/50/abstract/">
-                      <p><span>Policy Number</span><span> 0123 4567 8912 3456</span> </p>
-                    <span class="glyphicon glyphicon-chevron-down"></span>
-                  </a>-->
-
 
           <ul class="dropdown-menu">
             <li class="dropdown-header  dropdown-header-nopadding">Select the Damaged Vehicle</li>
@@ -121,7 +115,7 @@
       <div class="col-12">
         <div class="btn-group">
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img class="main-image" src="../../assets/download.png">
+            <img class="main-image-second" src="../../assets/property.png">
             <div class="policy-select-text">
               <div>
                 <span class="text-left-main">
@@ -134,13 +128,6 @@
             </div>
             <span class="glyphicon glyphicon-chevron-down"></span>
           </button>
-          <!--   <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button" aria-pressed="true">
-                        <img src="http://lorempixel.com/75/50/abstract/">
-                        <p><span>Policy Number</span><span> 0123 4567 8912 3456</span> </p>
-                      <span class="glyphicon glyphicon-chevron-down"></span>
-                    </a>-->
-
-
           <ul class="dropdown-menu">
             <li class="dropdown-header  dropdown-header-nopadding">Select the Damaged Vehicle</li>
             <li>
@@ -485,10 +472,10 @@
           <div class="form-group">
             <div class="row">
               <div class="col-8">
-                <label for="exampleInputEmail1">Images of 3rd party insurance card?</label>
+                <label for="exampleInputEmail1">Images of police report?</label>
               </div>
               <div class="col-4">
-                <img class="main-image" (click)="open(contentupload)" [ngClass]="{'image-opacity':!policyreport}" width="100%" src="../../assets/crop.png">
+                <img class="main-image" (click)="open(contentpolice)" [ngClass]="{'image-opacity':!policyreport}" width="100%" src="../../assets/crop.png">
               </div>
             </div>
   
@@ -526,6 +513,97 @@
   
     </ng-container>
 
+    <ng-container *ngIf="step===7">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <div class="row">
+                <div class="col-8">
+                  <label for="exampleInputEmail1">Do you have images of your car to share?</label>
+    
+                </div>
+                <div class="col-4">
+                  <label class="switch">
+                    <input type="checkbox" [(ngModel)]="policyreport">
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+              </div>
+    
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <div class="row">
+                <div class="col-8">
+                  <label for="exampleInputEmail1">Images of your car?</label>
+                </div>
+                <div class="col-4">
+                  <img class="main-image" (click)="open(contentpolice)" [ngClass]="{'image-opacity':!policyreport}" width="100%" src="../../assets/crop.png">
+                </div>
+              </div>
+    
+            </div>
+          </div>
+        </div>
+        <br>
+        <p class="note" *ngIf="!policyreport">
+          Note:Sharing of images of your car will help in reducing the claim settlement time
+        </p>
+    
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>   <br>
+        <br>
+        <br>
+       
+        <div class="row">
+          <div class="col-1">
+          </div>
+          <div class="col-10  text-center">
+            <button type="button"   (click)="next()" class="btn btn-block btn-primary btn-custom">Next</button>
+          </div>
+          <div class="col-1">
+              
+                
+          </div>
+        </div>
+    
+      </ng-container>
+  
+      <ng-container *ngIf="step===8">
+        <br>
+        <br>
+        <br>
+          <div class="row">
+            <div class="col-md-12 text-center">
+                <img class="complete-checkbox"  src="../../assets/registration_success.png">
+              
+                <p style="margin-top: 50px;">
+                  Registration No. for collision claim is 
+                </p>
+                <p>
+                    <b>123 456 789</b>
+                </p>
+                <a class="claim-link" href="#"> Click here to track your clamin</a>
+
+                <br>
+                <br>
+                <button type="button"   class="btn btn-block btn-primary btn-custom home-btn">Home</button>
+       
+            </div>
+          </div>
+      
+        </ng-container>
   <ng-template #content let-modal>
     <div class="modal-body">
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -574,3 +652,31 @@
     </div>
     
   </ng-template>
+
+  <ng-template #contentpolice let-modal>
+      <div class="modal-header">
+          <i class='fas fa-camera' style='font-size:24px'></i>    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+  
+      <div class="modal-body">
+    
+        <img class="main-image" style="width: 300px;height: 200px;" src="../../assets/pdf-image.jpg">
+        <br>
+        <div class="row">
+            <div class="col-6 text-left">
+                <i class="material-icons" style="font-size:36px">attachment</i>
+            </div>
+            <div class="col-6 text-right">
+                <i class="fa fa-upload" style="font-size:24px"></i>
+            </div>
+        </div>
+       
+        <div class="text-center">
+          
+          <button type="button" class="btn save-btn" (click)="modal.close('Save click')">Submit</button>
+        </div>
+      </div>
+      
+    </ng-template>
