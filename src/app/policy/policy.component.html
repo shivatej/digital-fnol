@@ -9,7 +9,7 @@
   
         </div>
       </div>
-      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+      <div id="carouselExampleControls" data-interval="false" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
             <div class="row">
@@ -74,7 +74,7 @@
       </button>
     </div>
     <br>
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <div id="myCarousel" class="carousel slide" data-interval="false" data-ride="carousel">
       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -127,7 +127,7 @@
   <ng-container *ngIf="step===1">
     <div class="pad_lef_rig"> 
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-12 col-md-4">
         <div class="form-group">
           <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
           <label for="exampleInputEmail1">Policy Number</label>
@@ -136,20 +136,20 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12 text-center">
+      <div class="col-12 col-md-4 text-center">
         <p>
           <b>or</b>
         </p>
       </div>
     </div>
     <div class="row">
-      <div class="col-6">
+      <div class="col-6 col-md-2">
         <div class="form-group">
           <label for="firstname">First Name</label>
           <input type="text" class="form-control form-control-noradius" id="firstname">
         </div>
       </div>
-      <div class="col-6">
+      <div class="col-6 col-md-2">
         <div class="form-group">
           <label for="lastname">Last Name</label>
           <input type="text" class="form-control form-control-noradius" id="lastname">
@@ -158,7 +158,7 @@
     </div>
 
     <div class="row">
-      <div class="col-12">
+      <div class="col-12 col-md-4">
         <div class="form-group">
           <label for="lastname">DOB</label>
           <div class='input-group'>
@@ -180,12 +180,12 @@
     <br>
     <br>
     <div class="row">
-      <div class="col-1">
+      <div class="col-1 col-md-12">
       </div>
-      <div class="col-10  text-center">
+      <div class="col-10 text-center col-md-4">
         <button type="button"  [ngClass]="{'disable-class':policyNumber===''}"  (click)="next()" class="btn btn-block btn-primary btn-custom">Find My Policy</button>
       </div>
-      <div class="col-1">
+      <div class="col-1 col-md-12">
   
       </div>
     </div>
@@ -195,7 +195,7 @@
   <ng-container *ngIf="step===2">
 <div class="pad_lef_rig">
     <div class="row">
-      <div class="col-12">
+      <div class="col-12 col-md-4">
         <div class="btn-group">
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <img class="main-image" src="../../assets/auto.png">
@@ -213,31 +213,27 @@
           </button>
 
           <ul class="dropdown-menu">
-            <li class="dropdown-header  dropdown-header-nopadding">Select the Damaged Vehicle</li>
-            <li>
-              <a href="#" title="Select this card">
-                <img style="
-                          width: 70px;
-                          height: 70px;
-                      " src="../../assets/car1.png">Honda City-2016</a>
-            </li>
-            <li>
-              <a href="#" title="Select this card">
-                <img style="
-                            width: 70px;
-                            height: 70px;
-                        " src="../../assets/car1.png">Honda City-2016</a>
-            </li>
+              <li class="dropdown-header  dropdown-header-nopadding">Select the Damaged Vehicle</li>
+              <li class="list-styles" [ngClass]="{'li-selected-car':f1}" (click)="f1=true;f2=false;f3=false">
+                <a href="#"  title="Select this card">
+                  <img src="../../assets/car_01.png">Honda City-2016 <span *ngIf="f1==true" style="margin-left: 70px;"><img src="../../assets/select.png"></span> </a>
+              </li>
+              <li class="list-styles" [ngClass]="{'li-selected-car':f2}"  (click)="f1=false;f2=true;f3=false;">
+                <a href="#" title="Select this card">
+                  <img  src="../../assets/jeep.png">Honda City-2016  <span *ngIf="f2==true" style="margin-left: 70px;"><img src="../../assets/select.png"></span></a>
+              </li>
+              <li class="list-styles" [ngClass]="{'li-selected-car':f3}"  (click)="f3=true;f1=false;f2=false;">
+                  <a href="#"  title="Select this card">
+                    <img src="../../assets/car_01.png">Honda City-2016  <span *ngIf="f3==true" style="margin-left: 70px;"><img src="../../assets/select.png"></span> </a>
+                </li>
           </ul>
         </div>
-
       </div>
-
     </div>
     <br>
     <br>
     <div class="row">
-      <div class="col-12">
+      <div class="col-12 col-md-4">
         <div class="btn-group">
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <img class="main-image-second" src="../../assets/property.png">
@@ -255,19 +251,13 @@
           </button>
           <ul class="dropdown-menu">
             <li class="dropdown-header  dropdown-header-nopadding">Select the Damaged Vehicle</li>
-            <li>
-              <a href="#" title="Select this card">
-                <img style="
-                            width: 70px;
-                            height: 70px;
-                        " src="../../assets/car1.png">Honda City-2016</a>
+            <li class="list-styles" (click)="l2=false;l1=true;">
+              <a href="#"  title="Select this card">
+                <img src="../../assets/jeep.png">Honda City-2016  <span *ngIf="l1==true;" style="margin-left: 70px;"><img src="../../assets/select.png"></span> </a>
             </li>
-            <li>
+            <li class="list-styles" (click)="l1=false;l2=true;">
               <a href="#" title="Select this card">
-                <img style="
-                              width: 70px;
-                              height: 70px;
-                          " src="../../assets/car1.png">Honda City-2016</a>
+                <img  src="../../assets/jeep.png">Honda City-2016  <span *ngIf="l2==true;" style="margin-left: 70px;"><img src="../../assets/select.png"></span></a>
             </li>
           </ul>
         </div>
@@ -287,12 +277,12 @@
     <br>
     <br>
     <div class="row">
-      <div class="col-1">
+      <div class="col-1 col-md-12 ">
       </div>
-      <div class="col-10  text-center">
+      <div class="col-10  text-center col-md-4">
         <button type="button"  [ngClass]="{'disable-class':policyNumber===''}"  (click)="next()" class="btn btn-block btn-primary btn-custom">Next</button>
       </div>
-      <div class="col-1">
+      <div class="col-1 col-md-12">
   
       </div>
     </div>
@@ -359,12 +349,12 @@
     <br>
    
     <div class="row">
-      <div class="col-1">
+      <div class="col-1 col-md-12">
       </div>
-      <div class="col-10  text-center">
+      <div class="col-10 col-md-4  text-center">
         <button type="button"  [ngClass]="{'disable-class':nextStep}"  (click)="next()" class="btn btn-block btn-primary btn-custom">Next</button>
       </div>
-      <div class="col-1">
+      <div class="col-1 col-md-12">
   
       </div>
     </div>
@@ -375,7 +365,7 @@
   <ng-container *ngIf="step===4">
       <div class="pad_lef_rig">
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-12 col-md-4">
         <div class="form-group">
           <label for="exampleInputEmail1">Is anybody injured?</label>
           <label class="switch">
@@ -386,7 +376,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-6">
+      <div class="col-6 col-md-2">
         <div class="form-group">
           <label for="firstname">When?</label>
           <div class='input-group'>
@@ -397,7 +387,7 @@
           </div>
         </div>
       </div>
-      <div class="col-6">
+      <div class="col-6 col-md-2">
         <div class="form-group">
           <label for="lastname">DOB</label>
           <div class='input-group'>
@@ -414,7 +404,7 @@
     </div>
 
     <div class="row">
-      <div class="col-11">
+      <div class="col-11 col-md-3">
         <div class="form-group">
           <label for="firstname">Where?</label>
 
@@ -430,13 +420,13 @@
 
         </div>
       </div>
-      <div class="col-1">
+      <div class="col-1 col-md-1">
         <i (click)="open(content)" class="material-icons icon-help">&#xe8fd;</i>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-12">
+      <div class="col-12 col-md-4">
         <div class="form-group">
           <label for="firstname">Vehicle current location?</label>
           <br>
@@ -461,7 +451,7 @@
     </div>
 
     <div class="row">
-      <div class="col-12">
+      <div class="col-12 col-md-4">
         <div class="form-group">
           <label for="firstname">Description of incident</label>
           <textarea class="form-control" rows="3" id="comment"></textarea>
@@ -472,7 +462,7 @@
 
 
     <div class="row">
-      <div class="col-12">
+      <div class="col-12 col-md-4">
         <div class="form-group">
           <label for="firstname">Phone Number</label>
           <input type="text" class="form-control form-control-noradius" id="when">
@@ -483,7 +473,7 @@
 
 
     <div class="row">
-      <div class="col-12">
+      <div class="col-12 col-md-4">
         <div class="form-group">
           <label for="firstname">Email Id</label>
           <input type="text" class="form-control form-control-noradius" id="when">
@@ -496,12 +486,12 @@
     <br>
    
     <div class="row">
-      <div class="col-1">
+      <div class="col-1 col-md-12">
       </div>
-      <div class="col-10  text-center">
+      <div class="col-10 col-md-4 text-center">
         <button type="button"   (click)="next()" class="btn btn-block btn-primary btn-custom">Next</button>
       </div>
-      <div class="col-1">
+      <div class="col-1 col-md-12">
   
       </div>
     </div>
@@ -511,7 +501,7 @@
   <ng-container *ngIf="step===5">
       <div class="pad_lef_rig">
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-12 col-md-4">
         <div class="form-group">
           <div class="row">
             <div class="col-8">
@@ -530,7 +520,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-12 col-md-4">
         <div class="form-group">
           <div class="row">
             <div class="col-8">
@@ -557,17 +547,15 @@
     <br>
     <br>
     <br>
-    <br>   <br>
-    <br>
     <br>
    
     <div class="row">
-      <div class="col-1">
+      <div class="col-1 col-md-12">
       </div>
-      <div class="col-10  text-center">
+      <div class="col-10 col-md-4  text-center">
         <button type="button"   (click)="next()" class="btn btn-block btn-primary btn-custom">Next</button>
       </div>
-      <div class="col-1">
+      <div class="col-1 col-md-12">
   
       </div>
     </div>
@@ -578,7 +566,7 @@
   <ng-container *ngIf="step===6">
       <div class="pad_lef_rig">
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-12 col-md-4">
           <div class="form-group">
             <div class="row">
               <div class="col-8">
@@ -597,7 +585,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-12 col-md-4">
           <div class="form-group">
             <div class="row">
               <div class="col-8">
@@ -626,16 +614,15 @@
       <br>
       <br>
       <br>   <br>
-      <br>
-      <br>
+   
      
       <div class="row">
-        <div class="col-1">
+        <div class="col-1 col-md-12">
         </div>
-        <div class="col-10  text-center">
+        <div class="col-10 col-md-4 text-center">
           <button type="button"   (click)="next()" class="btn btn-block btn-primary btn-custom">Next</button>
         </div>
-        <div class="col-1">
+        <div class="col-1 col-md-12">
     
         </div>
       </div>
@@ -645,7 +632,7 @@
     <ng-container *ngIf="step===7">
         <div class="pad_lef_rig">
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-12 col-md-4">
             <div class="form-group">
               <div class="row">
                 <div class="col-8">
@@ -664,7 +651,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-12 col-md-4">
             <div class="form-group">
               <div class="row">
                 <div class="col-8">
@@ -693,16 +680,15 @@
         <br>
         <br>
         <br>   <br>
-        <br>
-        <br>
+    
        
         <div class="row">
-          <div class="col-1">
+          <div class="col-1 col-md-12">
           </div>
-          <div class="col-10  text-center">
+          <div class="col-10 col-md-4  text-center">
             <button type="button"   (click)="next()" class="btn btn-block btn-primary btn-custom">Next</button>
           </div>
-          <div class="col-1">
+          <div class="col-1 col-md-12">
               
                 
           </div>
@@ -716,7 +702,7 @@
         <br>
         <br>
           <div class="row">
-            <div class="col-md-12 text-center">
+            <div class="col-12 col-md-4 text-center">
                 <img class="complete-checkbox"  src="../../assets/registration_success.png">
               
                 <p style="margin-top: 50px;">
@@ -725,11 +711,11 @@
                 <p>
                     <b>123 456 789</b>
                 </p>
-                <a class="claim-link" href="#"> Click here to track your clamin</a>
+                <a class="claim-link" href="#"> Click here to track your claim</a>
 
                 <br>
                 <br>
-                <button type="button"   class="btn btn-block btn-primary btn-custom home-btn">Home</button>
+                <button type="button" (click)="step=0;"  class="btn btn-block btn-primary btn-custom home-btn">Home</button>
        
             </div>
           </div>

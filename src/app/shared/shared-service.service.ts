@@ -10,8 +10,8 @@ export class SharedServiceService {
   
   constructor() { }
 
-  sendHeading(message: string) {
-    this.subject.next({ text: message });
+  sendHeading(step: number) {
+    this.subject.next(step);
   }
 
   clearMessage() {

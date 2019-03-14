@@ -252,6 +252,7 @@ background-color: #189EDB !important;
     color: white;
     width: 80%;
     margin-bottom: 10px;
+    text-align: left;
 }
 .next-btn{
     background-color: #757575;
@@ -265,6 +266,7 @@ background-color: #189EDB !important;
     color: #00ABD5;
     width: 80%;
     margin-bottom: 10px;
+    text-align: left;
 }
 .next-btn_enable{
     background-color: #FEA519;
@@ -316,3 +318,17 @@ background-color: #189EDB !important;
     text-align: center!important; 
     padding-top:10px
 }
+
+.list-styles
+{
+    height: 60px;
+}
+
+.li-selected-car
+{
+    background-color:#EDF5FF; 
+}
+
+
+
+

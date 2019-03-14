@@ -34,6 +34,7 @@
     color: white;
     width: 80%;
     margin-bottom: 10px;
+    text-align: left;
 }
 .next-btn{
     background-color: #757575;
@@ -46,6 +47,7 @@
     color: #00ABD5;
     width: 80%;
     margin-bottom: 10px;
+    text-align: left;
 }
 .next-btn_enable{
     background-color: #FEA519;

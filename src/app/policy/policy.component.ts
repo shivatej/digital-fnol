@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { SharedServiceService } from '../shared/shared-service.service';
 
 @Component({
   selector: 'app-policy',
@@ -21,15 +22,20 @@ export class PolicyComponent implements OnInit {
   isDriverButton:boolean = false;
   isPassengerButton:boolean = false;
   nextEnable:boolean = false;
-  constructor(private modalService: NgbModal) {}
+  l1=false;l2=false;
+  f1 =false; f2  =false; f3=false;
+  constructor(private modalService: NgbModal,private sharedServiceService:SharedServiceService) {}
 
   ngOnInit() {
+    this.sharedServiceService.sendHeading(0);
   }
 
   next()
   {
     this.step++;
+    this.sharedServiceService.sendHeading(this.step);
   }
+
 
 
   open(content) {

@@ -90,12 +90,12 @@
                 <img *ngIf="isPolicyButton" src="../../assets/policy_holder_selected.png"> &nbsp; 
                 POLICY HOLDER
             </button>
-            <button type="button" [ngClass]="{ 'btn prm-btn': !isDriverButton, 'btn prm-btn-sel': isDriverButton  }" (click)="isDriverButton = !isDriverButton; isPolicyButton = false; isPassengerButton = false; nextEnable = true">
+            <button type="button"  [ngClass]="{ 'btn prm-btn': !isDriverButton, 'btn prm-btn-sel': isDriverButton  }" (click)="isDriverButton = !isDriverButton; isPolicyButton = false; isPassengerButton = false; nextEnable = true">
                 <img *ngIf="!isDriverButton"  src="../../assets/drriver.png"> &nbsp;
                  <img *ngIf="isDriverButton" src="../../assets/driver_selected.png"> &nbsp;
                   DRIVER
             </button>
-            <button type="button" [ngClass]="{ 'btn prm-btn': !isPassengerButton, 'btn prm-btn-sel': isPassengerButton  }" (click)="isPassengerButton = !isPassengerButton; isDriverButton = false; isPolicyButton = false; nextEnable = true">
+            <button type="button"  [ngClass]="{ 'btn prm-btn': !isPassengerButton, 'btn prm-btn-sel': isPassengerButton  }" (click)="isPassengerButton = !isPassengerButton; isDriverButton = false; isPolicyButton = false; nextEnable = true">
                 <img *ngIf="!isPassengerButton" src="../../assets/passanger.png"> &nbsp;
                  <img *ngIf="isPassengerButton" src="../../assets/passanger_selected.png"> &nbsp;
                   PASSENGER

@@ -8,13 +8,16 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  message: any;
+  step: any;
   subscription: Subscription;
 
   constructor(private sharedServiceService:SharedServiceService) { }
 
   ngOnInit() {
-    this.subscription = this.sharedServiceService.getHeading().subscribe(message => { this.message = message; });
+    this.subscription = this.sharedServiceService.getHeading().subscribe(step => { 
+      this.step = step; 
+      console.log(this.step);
+    });
   }
 
   ngOnDestroy() {

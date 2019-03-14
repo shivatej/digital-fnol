@@ -4,9 +4,13 @@
       aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="#">Digital FNOL</a>
-   
-    <span class="glyphicon glyphicon-name"></span>
+    <a class="navbar-brand nav-brand-margin" *ngIf="step==0" href="#">Digital FNOL</a>
+    <a class="navbar-brand" *ngIf="step==1||step==2" href="#">Your Policies</a>
+    <a class="navbar-brand" *ngIf="step==3" href="#">Loss Type</a>
+    <a class="navbar-brand" *ngIf="step==4||step==6||step==7" href="#">Incident Details</a>
+    <a class="navbar-brand" *ngIf="step==5" href="#">3rd Party Details</a>
+    <a class="navbar-brand" *ngIf="step==8" href="#">Registration</a>
+    <i class="fa fa-search"></i>
      
   </nav>
 </div>
