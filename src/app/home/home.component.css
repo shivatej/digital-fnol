@@ -1,57 +1,199 @@
-.coursel{
-    width: 100%;
-    background-color: #004167;
-    border: 1px solid red;
-    color: white;
-    padding: 0 px; 
+.main-body{
+    margin: 0;
+    padding : 0;
+    border: none;
 }
-.modal-body{
-    background-color: #004167;
-    color: white;
-}
-.display-block-btn {
-    display: inline-block;
-    background-color: #009DDD; 
-    padding-bottom:5px; 
-    width: 100%;
+.container-body{
+    margin: 0 auto;
+    max-width: 650px;
 }
 
-.save-btn
+.container-pg{
+    padding: 1% 5% 1% 5%; 
+}
+
+.clear_both{
+    clear: both;
+}
+.box-sha{
+    border: 1px solid white;
+    padding: 10px;
+    box-shadow: 5px 5px 5px 5px #F1EDED;
+}
+
+.bg-hover :hover{
+    background-color: blue;
+    cursor: pointer;
+    color:white;
+}
+.btn-primary{
+    border-radius: 20px;
+}
+.round-default{
+    border-radius: 20px;
+    border: 1px solid blue;
+    color: black;
+}
+
+.dropdown_button{
+    height:10%;
+}
+.dropdown_list_element{
+    border-bottom: 1px solid #F1EDED;
+    height: 50px;
+    width:100%;
+}
+.dropdown_list_element_no_bottom{
+    height: 50px;
+    width:100%;
+}
+.dropdown_list{
+    border-left: 1px solid #F1EDED;
+    border-right: 1px solid #F1EDED;
+    border-bottom: 1px solid #F1EDED;
+}
+.m_10{
+    margin: 10px;
+}
+.list_Option{
+    width: 100%;
+    height:70px;
+    border-bottom: 1px solid #F1EDED;
+}
+
+/* .list_Option :hover{
+    background-color: blue;
+    color:white;
+    cursor: pointer;
+    box-shadow: 5px 5px 5px 5px blue;
+} */
+
+.list_Option_no_border{
+    width: 100%;
+    height: 60px;
+    padding: 10px;
+}
+.flo_rgt{
+    float: right;
+}
+.dis_inl{
+    display:inline;
+    overflow: hidden;
+}
+
+.pg-header{
+    font-size:150%;
+    font-weight:bold;
+}
+.home_pg_header{
+    font-size:150%;
+    font-weight:bold;  
+}
+
+
+.submission-header{
+    margin-top:40%;
+    font-size: 160%;
+}
+
+.sub-num{
+    font-size: 40px;
+    color: blue;
+}
+.reg-text{
+    font-size: 20px;
+}
+.pg-head-last{
+    font-size: 25px;
+}
+.modal-body{
+    padding: 5%;
+    border: 2px solid blue;
+}
+
+.img_plac{
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    float: left;
+}
+.flo_lft{
+    float: left;
+}
+.div_clr{
+    clear:both;
+}
+
+.optional_text { 
+    width:100%; 
+    text-align:center; 
+    border-bottom: 2px solid #6e7684; 
+    line-height:0.1em; 
+    margin:10px 0 20px; 
+}
+
+.optional_text span { 
+    background:#fff; 
+    padding:0 10px; 
+}
+.image_height_upload
 {
-    background-color: #FEA519;
-    color: white;
-    border-radius: 20px;
-    width: 80%;
+    height: 20em;
 }
-.sec-btn{
-    background-color: white;
-    color: #00ABD5;
-    border-radius: 20px;
-    width: 60%;
+
+.image_height_upload_extra
+{
+    height: 15em;
 }
-.prm-btn{
-    background-color: #00ABD5;
-    color: white;
-    width: 80%;
-    margin-bottom: 10px;
-    text-align: left;
+.image_div{
+    position: relative;
+    border: 2px dashed black;
 }
-.next-btn{
-    background-color: #757575;
-    color: white;
-    width: 60%;
-    border-radius: 20px;
+
+.image_div span{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
 }
-.prm-btn-sel{
-    background-color: white;
-    color: #00ABD5;
-    width: 80%;
-    margin-bottom: 10px;
-    text-align: left;
+
+.image_div :hover{
+    cursor: pointer;
 }
-.next-btn_enable{
-    background-color: #FEA519;
-    color: white;
-    width: 60%;
-    border-radius: 20px;
+
+.image_div i{
+    margin: 0;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+#input_container {
+    position:relative;
+    margin:0 20px;
+    direction: ltr;
+    width: 70%;
+}
+#input {
+    height:100%;
+    margin:0;
+    padding-right: 30px;
+    width: 100%;
+    border: 1px solid #CCD4DA;
+    border-radius: 3px;
+}
+#input_img {
+    position:absolute;
+    bottom:2px;
+    right:5px;
+    width:24px;
+    height:24px;
+}
+
+.pd_bt_0{
+    padding-bottom: 0px !important;
 }
