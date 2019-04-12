@@ -94,6 +94,8 @@
             <input class="form-control" [(ngModel)]="policyNumber" name="policyNumber" placeholder="Policy Number" id="inputdefault" type="text" (keyup)="pg2PolicyClick = true">
           </div>
           <br>
+          <div class="optional_text"><span>or</span></div>
+          <br>
           <div class="form-group row">
             <div class="col-6">
               <input class="form-control" placeholder="First Name" [(ngModel)]="firstName"  (ngModelChange)="checkUserDetails()" name="firstName" id="inputdefault" type="text">
@@ -306,10 +308,9 @@
                 </div>
               </div>
             </form>
-            <div class="form-group">
-                <ngb-timepicker [(ngModel)]="time" (ngModelChange)="checkAccDetails()"></ngb-timepicker>
-              &nbsp;
-              <span>An estimate is ok</span>
+            <div class="form-group row">
+               <div> <ngb-timepicker [(ngModel)]="time" (ngModelChange)="checkAccDetails()"></ngb-timepicker></div>
+              <div class="help_text">An estimate is ok</div>
             </div>
             <div class="form-group">
               <label for="comment"><b>Description of the incident</b></label>
@@ -423,7 +424,7 @@
         <br>
         <br>
         <br>
-        <span>Note: We encourage you to provide as much details as possible for a quicker settlement time</span>
+        <span class="help_text">Note: We encourage you to provide as much details as possible for a quicker settlement time</span>
         <br>
         <br>
         <br>
@@ -445,7 +446,7 @@
             <span>Upload Image</span>
           </div>
           <br>
-          <span>Note: We encourage you to provide as much details as possible for a quicker settlement time</span>
+          <span class="help_text">Note: We encourage you to provide as much details as possible for a quicker settlement time</span>
         </div>
     </ng-container>
     <ng-container *ngIf="step===10">
@@ -473,7 +474,7 @@
           <label for="comment"><b>Provide a short description of the damages</b></label>
           <textarea class="form-control" placeholder="Type here" rows="3"></textarea>
         </div>
-        <span>Note: We encourage you to provide as much details as possible for a quicker settlement time</span>
+        <span class="help_text">Note: We encourage you to provide as much details as possible for a quicker settlement time</span>
         <br>
         <br>
         <button type="button" *ngIf="userSelectReport == '3rd party' " class="btn btn-primary btn-block" (click)="revertPage()">Done with the 3rd party Info</button>
