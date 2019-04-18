@@ -37,6 +37,12 @@ export class HomeComponent implements OnInit {
   zipCode:string;
   phoneNumber:string;
   email:string;
+  fullName:string;
+  phoneNum:string;
+  Email:string;
+  cardesc:string;
+  carImageDesc:string;
+
 
   constructor(private modalService: NgbModal) { }
   
@@ -70,7 +76,6 @@ export class HomeComponent implements OnInit {
   }
 
   checkUserDetails(){
-    console.log(this.modelDOB,"324");
     if( this.firstName && this.lastName && this.modelDOB){
       this.pg2PolicyClick = true;
     }
@@ -88,7 +93,10 @@ export class HomeComponent implements OnInit {
   }
 
   checkdate(){
-    console.log('eer',this.model);
+  }
+
+  gotoPageAccDetail(){
+    this.step = 8;
   }
 
 }

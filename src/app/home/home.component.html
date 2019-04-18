@@ -432,22 +432,48 @@
       </div>
     </ng-container>
     <ng-container *ngIf="step===9">
-        <div class="container-pg">
-          <div class="pg-header">
-            <span *ngIf="userSelectReport=='3rd party'">Details of the other party</span>
-            <span *ngIf="userSelectReport=='police report'">Police Report</span>
-            <span *ngIf="userSelectReport=='car Image'">Images of Your Car</span>
-          </div>
-          <br>
-          <div class="image_div image_height_upload" (click)="nextPage()">
-            <i class="material-icons">
-               add
-            </i>
-            <span>Upload Image</span>
-          </div>
-          <br>
-          <span class="help_text">Note: We encourage you to provide as much details as possible for a quicker settlement time</span>
+      <div class="container-pg">
+        <div class="pg-header">
+          <span *ngIf="userSelectReport=='3rd party'">Details of the other party</span>
+          <span *ngIf="userSelectReport=='police report'">Police Report</span>
+          <span *ngIf="userSelectReport=='car Image'">Images of Your Car</span>
         </div>
+        <br>
+        <div *ngIf="userSelectReport=='3rd party'">
+          <div class="form-group col-12">
+            <label for="comment"><b>Provide a short description of the damages of the other party*</b></label>
+            <textarea class="form-control" placeholder="Type here" rows="3" [(ngModel)]="cardesc" name="cardesc"></textarea>
+          </div>
+          <div class="optional_text"></div>
+          <div class="form-group">
+            <div class="col-12">
+              <input class="form-control" placeholder="Full Name"  [(ngModel)]="fullName" name="fullName" id="inputdefault" type="text">
+            </div>
+            <br>
+            <div class="col-12">
+              <input class="form-control" placeholder="Phone Number" [(ngModel)]="phoneNum" name="PhoneNumber" id="inputdefault" type="text">
+            </div>
+            <br>
+            <div class="col-12">
+              <input class="form-control" placeholder="E-mail" [(ngModel)]="Email" name="Email" id="inputdefault" type="text">
+            </div>
+            <br>
+          </div>
+          <div class="optional_text"><span>or</span></div>
+        </div>
+        <br>
+        <div class="image_div image_height_upload" (click)="nextPage()">
+          <i class="material-icons">
+            add
+          </i>
+          <span>Upload Image</span>
+        </div>
+        <br>
+        <span class="help_text">Note: We encourage you to provide as much details as possible for a quicker settlement
+          time</span>
+          <br>
+        <button type="button" class="btn btn-primary btn-block" (click)="gotoPageAccDetail()">Continue</button>
+      </div>
     </ng-container>
     <ng-container *ngIf="step===10">
       <div class="container-pg">
@@ -470,11 +496,11 @@
             <span>Upload Image</span>
           </div>
         </div>
-        <div class="form-group">
+        <div  *ngIf="userSelectReport == 'car Image'" class="form-group">
           <label for="comment"><b>Provide a short description of the damages</b></label>
-          <textarea class="form-control" placeholder="Type here" rows="3"></textarea>
+          <textarea class="form-control" placeholder="Type here" rows="3" [(ngModel)]="carImageDesc" name="carImageDesc"></textarea>
         </div>
-        <span class="help_text">Note: We encourage you to provide as much details as possible for a quicker settlement time</span>
+        <span *ngIf="userSelectReport == 'car Image'" class="help_text">Note: We encourage you to provide as much details as possible for a quicker settlement time</span>
         <br>
         <br>
         <button type="button" *ngIf="userSelectReport == '3rd party' " class="btn btn-primary btn-block" (click)="revertPage()">Done with the 3rd party Info</button>
