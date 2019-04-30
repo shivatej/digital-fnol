@@ -10,6 +10,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 export class HomeComponent implements OnInit {
 
   isPolicyButton:boolean = false;
+  radio:boolean = false;
   isDriverButton:boolean = false;
   isPassengerButton:boolean = false;
   nextEnable:boolean = false;
@@ -42,9 +43,10 @@ export class HomeComponent implements OnInit {
   Email:string;
   cardesc:string;
   carImageDesc:string;
+  minDate = {year: 1950, month: 1, day: 1};
 
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal) {}
   
 
   ngOnInit() {

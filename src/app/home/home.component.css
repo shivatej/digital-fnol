@@ -7,7 +7,9 @@
     margin: 0 auto;
     max-width: 650px;
 }
-
+.arr_back_margin{
+    margin-left: 20px;
+}
 .container-pg{
     padding: 1% 5% 1% 5%; 
 }
@@ -21,11 +23,6 @@
     box-shadow: 5px 5px 5px 5px #F1EDED;
 }
 
-.bg-hover :hover{
-    background-color: blue;
-    cursor: pointer;
-    color:white;
-}
 .btn-primary{
     border-radius: 20px;
 }
@@ -70,15 +67,19 @@
 
 .list_Option_no_border{
     width: 100%;
-    height: 60px;
-    padding: 10px;
+    height: 70px;
 }
 .flo_rgt{
     float: right;
 }
 .dis_inl{
-    display:inline;
+    display:inline-block;
     overflow: hidden;
+    width: 70%;
+}
+
+.mrg_top_10px{
+    margin-top: 10px;
 }
 
 .pg-header{
@@ -174,7 +175,7 @@
 
 #input_container {
     position:relative;
-    margin:0 20px;
+    margin:0 15px;
     direction: ltr;
     width: 70%;
 }

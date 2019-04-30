@@ -1,6 +1,6 @@
 <div class="main-body">
   <br>
-  <span *ngIf="(step != 1  &&  step != 11  && step != 12)">
+  <span class="arr_back_margin" *ngIf="(step != 1  &&  step != 11  && step != 12)">
     <i  class="material-icons" (click)= "prevPage()">
         arrow_back
       </i>
@@ -109,7 +109,7 @@
           <form class="form-inline">
             <div class="form-group">
               <div class="input-group">
-                <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="modelDOB" (ngModelChange)="checkUserDetails()" ngbDatepicker
+                <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [minDate]="minDate" [(ngModel)]="modelDOB" (ngModelChange)="checkUserDetails()" ngbDatepicker
                   #d="ngbDatepicker">
                 <div class="input-group-append">
                   <button class="btn btn-outline-secondary calendar pd_bt_0" (click)="d.toggle();" type="button">
@@ -160,9 +160,9 @@
               </div>
             </div>
           </div>
-          <div class="dropdown_list_element">
+          <div class="dropdown_list_element" (click)="pg3Continue= true; radio= true">
             <div class="row m_10">
-              <div><input type="radio" name="radio" (click)="pg3Continue= true"> </div>&nbsp; &nbsp;
+              <div><input type="radio" name="radio" [checked]="radio"> </div>&nbsp; &nbsp;
               <div>
                 <p>Jeep Wrangler 2016-782WER</p>
               </div>
@@ -208,8 +208,8 @@
         <div class="box-sha">
           <div class="list_Option">
               <img class="img_plac" src="../../assets/Icons_Roadside Assistance.png" alt="roadside">
-              <div class="dis_inl">Need roadside assistance</div>
-              <span class="flo_rgt">
+              <div class="dis_inl mrg_top_10px">Need roadside assistance</div>
+              <span class="flo_rgt mrg_top_10px">
                 <i class="material-icons">
                    chevron_right
                 </i>
@@ -218,8 +218,8 @@
           </div>
           <div class="list_Option">
             <img class="img_plac" src="../../assets/Icons_Winshield Damage.png" alt="roadside">
-            <div class="dis_inl">Windshield damage</div>
-            <span class="flo_rgt">
+            <div class="dis_inl mrg_top_10px">Windshield damage</div>
+            <span class="flo_rgt mrg_top_10px">
               <i class="material-icons">
                  chevron_right
               </i>
@@ -228,8 +228,8 @@
           </div>
           <div class="list_Option">
             <img class="img_plac" src="../../assets/Icons_Flood.png" alt="roadside">
-            <div class="dis_inl">Flood/Fire/Hail</div>
-            <span class="flo_rgt">
+            <div class="dis_inl mrg_top_10px">Flood/Fire/Hail</div>
+            <span class="flo_rgt mrg_top_10px">
               <i class="material-icons">
                 chevron_right
                </i>
@@ -238,9 +238,9 @@
           </div>
           <div class="list_Option">
             <img class="img_plac" src="../../assets/Icons_Something Fell.png " alt="roadside">
-            <div class="dis_inl">Fell on vehicle/property
+            <div class="dis_inl mrg_top_10px">Fell on vehicle/property
             </div>
-            <span class="flo_rgt">
+            <span class="flo_rgt mrg_top_10px">
               <i class="material-icons">
                 chevron_right
               </i>
@@ -249,8 +249,8 @@
           </div>
           <div class="list_Option" (click)="nextPage()">
             <img class="img_plac" src="../../assets/Icons_Collision.png" alt="roadside">
-            <div class="dis_inl">Collision with another vehicle/property</div>
-            <span class="flo_rgt">
+            <div class="dis_inl mrg_top_10px">Collision with another vehicle/property</div>
+            <span class="flo_rgt mrg_top_10px">
               <i class="material-icons">
                 chevron_right
               </i>
@@ -259,8 +259,8 @@
           </div>
           <div class="list_Option_no_border">
             <img class="img_plac" src="../../assets/Icons_Something else.png" alt="roadside">
-            <div class="dis_inl">Something else</div>
-            <span class="flo_rgt">
+            <div class="dis_inl mrg_top_10px">Something else</div>
+            <span class="flo_rgt mrg_top_10px">
               <i class="material-icons">
                 chevron_right
               </i>
@@ -308,9 +308,8 @@
                 </div>
               </div>
             </form>
-            <div class="form-group row">
+            <div>
                <div> <ngb-timepicker [(ngModel)]="time" (ngModelChange)="checkAccDetails()"></ngb-timepicker></div>
-              <div class="help_text">An estimate is ok</div>
             </div>
             <div class="form-group">
               <label for="comment"><b>Description of the incident</b></label>
@@ -344,7 +343,7 @@
         </div>
         <br>
         <div>
-          <div style="margin-left: 5px;">
+          <div>
            <b> Where did the accident occur?</b>
           </div>
           <div class="row">
@@ -410,7 +409,7 @@
         <br>
         <div class="dropdown_button box-sha" (click)="userSelectReport='car Image'; nextPage(); uploadedcar = true">
           <div style="height:35px">
-            <span>Images of the car</span>
+            <span>Images of the vehicle</span>
             <span style="float:right">
               <i *ngIf="!uploadedcar" class="material-icons">
                 add
@@ -436,7 +435,7 @@
         <div class="pg-header">
           <span *ngIf="userSelectReport=='3rd party'">Details of the other party</span>
           <span *ngIf="userSelectReport=='police report'">Police Report</span>
-          <span *ngIf="userSelectReport=='car Image'">Images of Your Car</span>
+          <span *ngIf="userSelectReport=='car Image'">Images of Your vehicle</span>
         </div>
         <br>
         <div *ngIf="userSelectReport=='3rd party'">
@@ -469,9 +468,10 @@
           <span>Upload Image</span>
         </div>
         <br>
-        <span class="help_text">Note: We encourage you to provide as much details as possible for a quicker settlement
-          time</span>
-          <br>
+        <span class="help_text" *ngIf="userSelectReport=='police report'">Note: Please upload police report, if available</span>
+        <span class="help_text" *ngIf="userSelectReport=='3rd party'">Note: Please upload images of damages to the other party</span>
+        <span class="help_text" *ngIf="userSelectReport=='car Image'">Note: Please upload images showing damages to your vehicle</span> 
+        <br>
         <button type="button" class="btn btn-primary btn-block" (click)="gotoPageAccDetail()">Continue</button>
       </div>
     </ng-container>
@@ -500,7 +500,9 @@
           <label for="comment"><b>Provide a short description of the damages</b></label>
           <textarea class="form-control" placeholder="Type here" rows="3" [(ngModel)]="carImageDesc" name="carImageDesc"></textarea>
         </div>
-        <span *ngIf="userSelectReport == 'car Image'" class="help_text">Note: We encourage you to provide as much details as possible for a quicker settlement time</span>
+        <span class="help_text" *ngIf="userSelectReport=='police report'">Note: Please upload police report, if available</span>
+        <span class="help_text" *ngIf="userSelectReport=='3rd party'">Note: Please upload images of damages to the other party</span>
+        <span class="help_text" *ngIf="userSelectReport=='car Image'">Note: Please upload images showing damages to your vehicle</span> 
         <br>
         <br>
         <button type="button" *ngIf="userSelectReport == '3rd party' " class="btn btn-primary btn-block" (click)="revertPage()">Done with the 3rd party Info</button>
