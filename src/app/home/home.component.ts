@@ -43,6 +43,7 @@ export class HomeComponent implements OnInit {
   Email:string;
   cardesc:string;
   carImageDesc:string;
+  url:object = {};
   minDate = {year: 1950, month: 1, day: 1};
 
 
@@ -61,18 +62,10 @@ export class HomeComponent implements OnInit {
   nextPage(){
     this.step++;
   }
-  homePage(){
-    this.step =1;
-  }
   toggleMenu(){
     this.listMenu = !this.listMenu;
   }
-  revertPage(){
-    this.step = 8;
-  }
-  preSubmissionPage(){
-    this.step = 11;
-  }
+
   prevPage(){
     this.step--;
   }
@@ -94,11 +87,31 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  checkdate(){
-  }
-
   gotoPageAccDetail(){
     this.step = 8;
+  }
+
+  onSelectFile(event) { // called each time file input changes
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        switch(this.userSelectReport) {
+          case "3rd party":
+            this.url['3rdParty'] = event.target;
+            break;
+          case "police report":
+            this.url['policeReport'] = event.target;
+            break;
+          case "car Image":
+            this.url['carImage'] = event.target;
+            break;
+        }
+        this.nextPage();
+      }
+    }
   }
 
 }

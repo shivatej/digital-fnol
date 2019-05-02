@@ -427,7 +427,7 @@
         <br>
         <br>
         <br>
-        <button type="button" class="btn btn-primary btn-block" (click)="preSubmissionPage()">No other details</button>
+        <button type="button" class="btn btn-primary btn-block" (click)="step = 11">No other details</button>
       </div>
     </ng-container>
     <ng-container *ngIf="step===9">
@@ -461,18 +461,19 @@
           <div class="optional_text"><span>or</span></div>
         </div>
         <br>
-        <div class="image_div image_height_upload" (click)="nextPage()">
-          <i class="material-icons">
+        <div class="image_div image_height_upload">
+          <i class="material-icons" (click)="fileToUpload.click()">
             add
           </i>
           <span>Upload Image</span>
         </div>
+        <input #fileToUpload type="file" style="display:none;" (change)="onSelectFile($event)">
         <br>
         <span class="help_text" *ngIf="userSelectReport=='police report'">Note: Please upload police report, if available</span>
         <span class="help_text" *ngIf="userSelectReport=='3rd party'">Note: Please upload images of damages to the other party</span>
         <span class="help_text" *ngIf="userSelectReport=='car Image'">Note: Please upload images showing damages to your vehicle</span> 
         <br>
-        <button type="button" class="btn btn-primary btn-block" (click)="gotoPageAccDetail()">Continue</button>
+        <button type="button" class="btn btn-primary btn-block" (click)="nextPage()">Continue</button>
       </div>
     </ng-container>
     <ng-container *ngIf="step===10">
@@ -485,9 +486,9 @@
         <br>
         <div class="row">
           <div class="col-6">
-            <img *ngIf="userSelectReport=='3rd party'" src="../../assets/3party.jpg" height="100%" width="100%">
-            <img *ngIf="userSelectReport=='police report'" src="../../assets/Police_report.jpg" height="100%" width="100%">
-            <img *ngIf="userSelectReport=='car Image'"src="../../assets/car_crash.jpg" height="100%" width="100%">
+            <img *ngIf="userSelectReport=='3rd party'" [src]="(url['3rdParty'] && url['3rdParty']['result']) ? (url['3rdParty']['result'] ) : '../../assets/not_available.jpg'" height="100%" width="100%">
+            <img *ngIf="userSelectReport=='police report'"[src]="(url['policeReport'] && url['policeReport']['result']) ? url['policeReport']['result'] : '../../assets/not_available.jpg'" height="100%" width="100%">
+            <img *ngIf="userSelectReport=='car Image'"[src]="(url['carImage'] && url['carImage']['result']) ? url['carImage']['result'] : '../../assets/not_available.jpg'" height="100%" width="100%">
           </div>
           <div class="col-6 image_div image_height_upload_extra">
             <i class="material-icons">
@@ -505,9 +506,9 @@
         <span class="help_text" *ngIf="userSelectReport=='car Image'">Note: Please upload images showing damages to your vehicle</span> 
         <br>
         <br>
-        <button type="button" *ngIf="userSelectReport == '3rd party' " class="btn btn-primary btn-block" (click)="revertPage()">Done with the 3rd party Info</button>
-        <button type="button" *ngIf="userSelectReport == 'police report'" class="btn btn-primary btn-block" (click)="revertPage()">Done with the police report</button>
-        <button type="button" *ngIf="userSelectReport == 'car Image'" class="btn btn-primary btn-block" (click)="revertPage()">Done with the car Images</button>
+        <button type="button" *ngIf="userSelectReport == '3rd party' " class="btn btn-primary btn-block" (click)="step = 8">Done with the 3rd party Info</button>
+        <button type="button" *ngIf="userSelectReport == 'police report'" class="btn btn-primary btn-block" (click)="step = 8">Done with the police report</button>
+        <button type="button" *ngIf="userSelectReport == 'car Image'" class="btn btn-primary btn-block" (click)="step = 8">Done with the car Images</button>
       </div>
     </ng-container>
     <ng-container *ngIf="step===11">
@@ -552,7 +553,7 @@
           </div>
           </div>
           <br>
-          <button type="button" class="btn btn-primary btn-block" (click)="homePage()">Home</button>
+          <button type="button" class="btn btn-primary btn-block" (click)="step = 1;">Home</button>
         </div>
       </ng-container>
   </div>
