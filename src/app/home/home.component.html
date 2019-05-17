@@ -142,7 +142,7 @@
             <img height="13%" width="13%" src="../../assets/Icons_Auto.png" alt="First slide"> &nbsp; &nbsp;
             <div>
               <span><b>Policy Number</b></span>
-              <p>12345-4567-6789</p>
+              <p>{{policyNumber}}</p>
               <!-- <span class="flo_rgt">
                 <i class="material-icons">
                   expand_more
@@ -470,10 +470,10 @@
         <input #fileToUpload type="file" style="display:none;" (change)="onSelectFile($event)">
         <br>
         <span class="help_text" *ngIf="userSelectReport=='police report'">Note: Please upload police report, if available</span>
-        <span class="help_text" *ngIf="userSelectReport=='3rd party'">Note: Please upload images of damages to the other party</span>
+        <span class="help_text" *ngIf="userSelectReport=='3rd party'">Note: Please give details about the other party – name, phone number/email id OR upload an image of the other party’s insurance card</span>
         <span class="help_text" *ngIf="userSelectReport=='car Image'">Note: Please upload images showing damages to your vehicle</span> 
         <br>
-        <button type="button" class="btn btn-primary btn-block" (click)="nextPage()">Continue</button>
+        <button type="button" class="btn btn-primary btn-block mg_15" (click)="nextPage()">Continue</button>
       </div>
     </ng-container>
     <ng-container *ngIf="step===10">
