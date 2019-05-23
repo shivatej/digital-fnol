@@ -1,0 +1,10 @@
+{
+  "hostUrl": "",  
+  "docsUrl": "",
+  "signOutUrl": "",
+  "loginUrl": "",
+  "apiEndPoints": {
+    "generateToken": "",
+    "logoutToken": ""
+  }
+}

@@ -12,7 +12,7 @@
 </div> -->
 
 
-<div class="container">
+<div class="container" *ngIf="isLoggedIn">
   <div class="row">
     <div class="container_header">
       <app-header></app-header>
@@ -21,6 +21,14 @@
   <div class="row">
     <div class="col-md-12 container-nopadding">
         <app-home></app-home>
+    </div>
+  </div>
+</div> 
+<div class="spinner-border"></div>
+<div class="container" *ngIf="!isLoggedIn">  
+  <div class="row">
+    <div class="col-md-12 container-nopadding">
+        <h2>Login Failed...</h2>
     </div>
   </div>
 </div> 

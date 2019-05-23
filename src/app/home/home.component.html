@@ -467,7 +467,7 @@
           </i>
           <span>Upload Image</span>
         </div>
-        <input #fileToUpload type="file" style="display:none;" (change)="onSelectFile($event)">
+        <input #fileToUpload type="file" style="display:none;" accept="image/*" (change)="handleInputChange($event)">
         <br>
         <span class="help_text" *ngIf="userSelectReport=='police report'">Note: Please upload police report, if available</span>
         <span class="help_text" *ngIf="userSelectReport=='3rd party'">Note: Please give details about the other party – name, phone number/email id OR upload an image of the other party’s insurance card</span>
@@ -506,7 +506,7 @@
         <span class="help_text" *ngIf="userSelectReport=='car Image'">Note: Please upload images showing damages to your vehicle</span> 
         <br>
         <br>
-        <button type="button" *ngIf="userSelectReport == '3rd party' " class="btn btn-primary btn-block" (click)="step = 8">Done with the 3rd party Info</button>
+        <button type="button" *ngIf="userSelectReport == '3rd party' " class="btn btn-primary btn-block" (click)="uploadDoc();">Done with the 3rd party Info</button>
         <button type="button" *ngIf="userSelectReport == 'police report'" class="btn btn-primary btn-block" (click)="step = 8">Done with the police report</button>
         <button type="button" *ngIf="userSelectReport == 'car Image'" class="btn btn-primary btn-block" (click)="step = 8">Done with the car Images</button>
       </div>
