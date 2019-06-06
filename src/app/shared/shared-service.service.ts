@@ -75,7 +75,7 @@ export class SharedServiceService {
     });
   }
 
-  uploadDocument(uploadDocbody) {
+  uploadDocument(uploadDocbody, imageChkSum) {
     // const authorizedHeaders: HttpHeaders = this.createAuthorizationHeaders();
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     // return this.http.post(`url`, uploadDocbody);
@@ -95,7 +95,7 @@ export class SharedServiceService {
       "images": [{
         "img_name": "image1.jpg",
         "img_data": {
-          "img_checksum": 102938,
+          "img_checksum": imageChkSum,
           "base64ByteStream": uploadDocbody
         }
       }]

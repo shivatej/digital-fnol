@@ -144,7 +144,10 @@ export class HomeComponent implements OnInit {
     this.nextPage();
     let reader = e.target;
     this.imageSrc = reader.result.split('data:image/png;base64,')[1];
-    this.imageChkSum = crc.crc32(this.imageSrc).toString(16);
+    // this.imageSrc = reader.result;
+    var crcVal = btoa(reader.result);
+    this.imageChkSum = crc.crc32(crcVal).toString(16);
+    // this.imageChkSum = lpad((this.imageChkSum >>> 0).toString(16), 8, '0');
     console.log("imageChkSum = ", this.imageChkSum)
     console.log(this.imageSrc)
   }
@@ -168,7 +171,7 @@ convertBTOA(reader) {
 }
 
 uploadDoc() {
-  this.sharedServiceService.uploadDocument(this.imageSrc).then((data: any) => {
+  this.sharedServiceService.uploadDocument(this.imageSrc, this.imageChkSum).then((data: any) => {
     console.log("success..");
     this.step = 8;
   }, (err) => {  });
