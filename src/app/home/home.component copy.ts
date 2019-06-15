@@ -3,7 +3,7 @@ import { NgModel } from '@angular/forms';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
 import { SharedServiceService } from '../shared/shared-service.service';
-import CRC32 from 'crc-32/crc32';
+import crc from 'crc';
 
 @Component({
   selector: 'app-home',
@@ -118,40 +118,18 @@ export class HomeComponent implements OnInit {
   }
 
   handleInputChange(e) {
-    //const file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
-    const file = e.target.files[0];
-    const reader = new FileReader();
-    let pattern = /image-*/;
+    var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
+    var pattern = /image-*/;
+    var reader = new FileReader();
     if (!file.type.match(pattern)) {
       alert('invalid format');
       return;
     }
-    reader.addEventListener('load', (event: any) => {
-      this._handleReaderLoaded(event);
-    });
-    reader.readAsBinaryString(file);
-    //reader.onload = this._handleReaderLoaded.bind(this);
-    //reader.readAsDataURL(file);
+    reader.onload = this._handleReaderLoaded.bind(this);
+    reader.readAsDataURL(file);
   }
 
-  getCheckSumValue(data){
-    const crcVal = CRC32.bstr(data);
-    const hexVal = this.lpad((crcVal >>> 0).toString(16), 8, "0");
-    return hexVal;
-  }
-
-  lpad(s, len, chr) {
-    const L = len - s.length;
-    const C = chr || " ";
-    if (L <= 0) {
-    return s;
-    }
-    return new Array(L + 1).join(C)+ s;
-  };
-
-
-
-  _handleReaderLoaded(event) {
+  _handleReaderLoaded(e) {
     switch(this.userSelectReport) {
       case "3rd party":
         this.url['3rdParty'] = event.target;
@@ -164,17 +142,14 @@ export class HomeComponent implements OnInit {
         break;
     }
     this.nextPage();
-    // let reader = e.target;
-    // this.imageSrc = reader.result.split('data:image/png;base64,')[1];
-    // // this.imageSrc = reader.result;
-    // var crcVal = btoa(reader.result);
-    // this.imageChkSum = crc.crc32(crcVal).toString(16);
-    // // this.imageChkSum = lpad((this.imageChkSum >>> 0).toString(16), 8, '0');
-    // console.log("imageChkSum = ", this.imageChkSum)
-    // console.log(this.imageSrc)
-    const data = event.target.result;
-    this.imageSrc = btoa(data);
-    this.imageChkSum = this.getCheckSumValue(data);
+    let reader = e.target;
+    this.imageSrc = reader.result.split('data:image/png;base64,')[1];
+    // this.imageSrc = reader.result;
+    var crcVal = btoa(reader.result);
+    this.imageChkSum = crc.crc32(crcVal).toString(16);
+    // this.imageChkSum = lpad((this.imageChkSum >>> 0).toString(16), 8, '0');
+    console.log("imageChkSum = ", this.imageChkSum)
+    console.log(this.imageSrc)
   }
 
 //   let reader = new FileReader();
