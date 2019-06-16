@@ -127,10 +127,31 @@
         <br>
         <br>
         <button type="button" class=" btn btn-default btn-block round-default" *ngIf="!pg2PolicyClick">Find My Policy</button>
-        <button type="button" class="btn btn-primary btn-block" *ngIf="pg2PolicyClick" (click)="nextPage()">Find My Policy</button>
+        <button type="button" class="btn btn-primary btn-block" *ngIf="pg2PolicyClick" (click)="checkForPolicyNum()">Find My Policy</button>
       </div>
     </ng-container>
     <ng-container *ngIf="step===4">
+      <div class="container-pg">
+        <div class="pg-header"><span>Few Saftey checks before filing a claim</span></div>
+        <br>
+        <br>
+          <ul>
+            <li>Move your car to a safe location </li>
+            <li>Determine if there are any injuries resulting in the incident</li>
+            <li>Call 911 and follow instruction from the police</li>
+            <li>Get names and information from the other involved in the incident </li>
+            <li>Determine if there are any injuries resulting in the incident</li>
+            <li>Take pictures of license plate of vehicle involved, damages and objects at the scene of the accident</li>
+            <li>Keep receipts of all the repairs, parking fees and any related expenses that are incurred </li>
+          </ul>
+        <br>
+        <br>
+        <br>
+        <br>
+        <button type="button" class="btn btn-primary btn-block" (click)="nextPage()">Continue with filing the claim</button>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="step===5">
       <div class="container-pg">
         <div class="pg-header">
           <span>Choose the correct Policy</span>
@@ -198,7 +219,7 @@
         <button type="button" class="btn btn-primary btn-block" *ngIf="pg3Continue" (click)="nextPage()">Continue</button>
       </div>
     </ng-container>
-    <ng-container *ngIf="step===5">
+    <ng-container *ngIf="step===6">
       <div class="container-pg">
         <div class="pg-header">
           <span>Tell us what happened</span>
@@ -271,7 +292,7 @@
         <br>
       </div>
     </ng-container>
-    <ng-container *ngIf="step===6">
+    <ng-container *ngIf="step===7">
       <div class="container-pg">
         <div class="pg-header">
           <span>Tell us what happened</span>
@@ -323,7 +344,7 @@
         <br>
       </div>
     </ng-container>
-    <ng-container *ngIf="step===7">
+    <ng-container *ngIf="step===8">
       <div class="container-pg">
         <div class="pg-header">
           <span>Tell us what happened</span>
@@ -375,7 +396,7 @@
         <br>
       </div>
     </ng-container>
-    <ng-container *ngIf="step===8">
+    <ng-container *ngIf="step===9">
       <div class="container-pg">
         <div class="pg-header"><span>Do you have any other details to add?</span></div>
         <br>
@@ -430,7 +451,7 @@
         <button type="button" class="btn btn-primary btn-block" (click)="step = 11">No other details</button>
       </div>
     </ng-container>
-    <ng-container *ngIf="step===9">
+    <ng-container *ngIf="step===10">
       <div class="container-pg">
         <div class="pg-header">
           <span *ngIf="userSelectReport=='3rd party'">Details of the other party</span>
@@ -476,7 +497,7 @@
         <button type="button" class="btn btn-primary btn-block mg_15" (click)="nextPage()">Continue</button>
       </div>
     </ng-container>
-    <ng-container *ngIf="step===10">
+    <ng-container *ngIf="step===11">
       <div class="container-pg">
         <div class="pg-header">
           <span *ngIf="userSelectReport=='3rd party'">Details of the other party</span>
@@ -511,7 +532,7 @@
         <button type="button" *ngIf="userSelectReport == 'car Image'" class="btn btn-primary btn-block" (click)="step = 8">Done with the car Images</button>
       </div>
     </ng-container>
-    <ng-container *ngIf="step===11">
+    <ng-container *ngIf="step===12">
       <div class="container-pg">
         <div class="submission-header"><span><b>Are you ready to submit this claim?</b></span></div>
         <br>
@@ -520,7 +541,7 @@
         <button type="button" class="btn btn-primary btn-block" (click)="nextPage()">Submit</button>
       </div>
     </ng-container>
-    <ng-container *ngIf="step===12">
+    <ng-container *ngIf="step===13">
         <div class="container-pg">
           <div class="text-center">
             <span class="pg-head-last">
