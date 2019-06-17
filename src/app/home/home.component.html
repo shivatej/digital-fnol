@@ -1,6 +1,6 @@
 <div class="main-body">
   <br>
-  <span class="arr_back_margin" *ngIf="(step != 1  &&  step != 11  && step != 12)">
+  <span class="arr_back_margin" *ngIf="(step != 1  &&  step != 12  && step != 13)">
     <i  class="material-icons" (click)= "prevPage()">
         arrow_back
       </i>
@@ -448,7 +448,7 @@
         <br>
         <br>
         <br>
-        <button type="button" class="btn btn-primary btn-block" (click)="step = 11">No other details</button>
+        <button type="button" class="btn btn-primary btn-block" (click)="step = 12">No other details</button>
       </div>
     </ng-container>
     <ng-container *ngIf="step===10">
@@ -527,9 +527,9 @@
         <span class="help_text" *ngIf="userSelectReport=='car Image'">Note: Please upload images showing damages to your vehicle</span> 
         <br>
         <br>
-        <button type="button" *ngIf="userSelectReport == '3rd party' " class="btn btn-primary btn-block" (click)="step = 8">Done with the 3rd party Info</button>
-        <button type="button" *ngIf="userSelectReport == 'police report'" class="btn btn-primary btn-block" (click)="step = 8">Done with the police report</button>
-        <button type="button" *ngIf="userSelectReport == 'car Image'" class="btn btn-primary btn-block" (click)="step = 8">Done with the car Images</button>
+        <button type="button" *ngIf="userSelectReport == '3rd party' " class="btn btn-primary btn-block" (click)="step = 9">Done with the 3rd party Info</button>
+        <button type="button" *ngIf="userSelectReport == 'police report'" class="btn btn-primary btn-block" (click)="step = 9">Done with the police report</button>
+        <button type="button" *ngIf="userSelectReport == 'car Image'" class="btn btn-primary btn-block" (click)="step = 9">Done with the car Images</button>
       </div>
     </ng-container>
     <ng-container *ngIf="step===12">
@@ -537,7 +537,7 @@
         <div class="submission-header"><span><b>Are you ready to submit this claim?</b></span></div>
         <br>
         <br>
-        <button type="button" class="btn btn-default btn-block round-default" (click)="step=6">Go back and review</button>
+        <button type="button" class="btn btn-default btn-block round-default" (click)="step=7">Go back and review</button>
         <button type="button" class="btn btn-primary btn-block" (click)="nextPage()">Submit</button>
       </div>
     </ng-container>

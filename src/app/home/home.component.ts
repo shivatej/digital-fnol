@@ -89,7 +89,7 @@ export class HomeComponent implements OnInit {
   }
 
   gotoPageAccDetail(){
-    this.step = 8;
+    this.step = 9;
   }
 
   onSelectFile(event) { // called each time file input changes
