@@ -13,7 +13,11 @@
 .container-pg{
     padding: 1% 5% 1% 5%; 
 }
-
+.center {
+  padding: 70px 0;
+  border: 3px solid green;
+  text-align: center;
+}
 .clear_both{
     clear: both;
 }
