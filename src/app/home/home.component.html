@@ -309,26 +309,25 @@
             </b>
             <br>
           </div>
-          <div class="container">
-    <div class="col-sm-6" style="height:130px;">
-        <div class="form-group">
-            <div class='input-group date' id='datetimepicker9'>
-                <input type='text' class="form-control" />
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar">
-                    </span>
-                </span>
+         <div>
+            <form class="form-inline">
+              <div class="form-group">
+                <div class="input-group">
+                  <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker
+                    #d="ngbDatepicker">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary calendar pd_bt_0" (click)="d.toggle()" (ngModelChange)="checkAccDetails()" type="button">
+                        <i class="material-icons">
+                            calendar_today
+                        </i>             
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <div>
+               <div> <ngb-timepicker [(ngModel)]="time" (ngModelChange)="checkAccDetails()"></ngb-timepicker></div>
             </div>
-        </div>
-    </div>
-    <script type="text/javascript">
-        $(function () {
-            $('#datetimepicker9').datetimepicker({
-                viewMode: 'years'
-            });
-        });
-    </script>
-</div>
             <div class="form-group">
               <label for="comment"><b>Description of the incident</b></label>
               <br>
