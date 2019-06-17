@@ -12,5 +12,6 @@ a {
   position: absolute;
     left: 50%;
     transform: translatex(-50%);
+  font-size:2rem;
 }
 
