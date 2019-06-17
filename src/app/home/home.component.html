@@ -79,7 +79,7 @@
               <img height="80%" width="80%" src="../../assets/Icons_Passenger.png" alt="First slide">
             </div>
             <br>
-            <span>Anyone else involved in the accident </span>
+            <span>Others filing a claim</span>
           </div>
         </div>
       </div>
@@ -154,7 +154,7 @@
     <ng-container *ngIf="step===5">
       <div class="container-pg">
         <div class="pg-header">
-          <span>Choose the correct Policy</span>
+          <span>Choose the policy to file a claim</span>
         </div>
         <br>
         <div class="dropdown_button box-sha">
@@ -301,8 +301,7 @@
         <br>
         <div>
           <span><b>Is anybody injured?</b></span> &nbsp;
-          <button type="button" class="btn btn-default round-default">Yes</button>
-          &nbsp;
+          <button type="button" class="btn btn-default round-default">Yes</button>&nbsp;
           <button type="button" class="btn btn-default round-default" *ngIf="!pg6no" (click)="pg6no = true">No</button>
           <button type="button" class="btn btn-primary " *ngIf="pg6no">No</button>
         </div>
@@ -312,6 +311,7 @@
             <b>
             When did this happen?
             </b>
+            <br>
           </div>
           <div>
             <form class="form-inline">
@@ -334,6 +334,7 @@
             </div>
             <div class="form-group">
               <label for="comment"><b>Description of the incident</b></label>
+              <br>
               <textarea class="form-control" [(ngModel)]="incidentDesc" (ngModelChange)="checkAccDetails()" placeholder="Type your description here" rows="5" id="comment"></textarea>
             </div>
           </div>
@@ -353,6 +354,7 @@
         <br>
         <div>
           <div><b>Where is the vechile currently located?</b></div>
+          <br>
           <div>
             <button type="button" class="btn btn-default round-default" *ngIf="!homeAccbtn" (click) = "homeAccbtn = true">Home</button> 
             <button type="button" class="btn btn-primary" *ngIf="homeAccbtn" >Home</button> &nbsp;
@@ -365,8 +367,9 @@
         <br>
         <div>
           <div>
-           <b> Where did the accident occur?</b>
+           <b> Where did the incident happen?</b>
           </div>
+          <br>
           <div class="row">
             <div id="input_container">
               <input type="text" [(ngModel)]="zipCode" id="input" value>
@@ -384,8 +387,8 @@
           <br>
           <div class="form-group">
             <label> <b>Where can we contact you in case of further questions?</b></label>
-            <input class="form-control" placeholder="Phone Number" id="inputdefault" type="text" [(ngModel)]="phoneNumber" (ngModelChange)="checkAccidentDetails()">
             <br>
+            <input class="form-control" placeholder="Phone Number" id="inputdefault" type="text" [(ngModel)]="phoneNumber" (ngModelChange)="checkAccidentDetails()">            
             <input class="form-control" placeholder="Email" id="inputdefault" type="text" [(ngModel)]="email" (ngModelChange)="checkAccidentDetails()">
           </div>
           <br>
