@@ -484,7 +484,7 @@
           </i>
           <span>Upload/Take Image</span>
         </div>
-        <input #fileToUpload type="file" style="display:none;" (change)="onSelectFile($event)"> 
+        <input #fileToUpload type="file" style="display:none;" accept="image/*" (change)="handleInputChange($event)"> 
         <br>
         <button type="button" class="btn btn-primary btn-block mg_15" (click)="nextPage()">Continue</button>
       </div>
@@ -519,7 +519,7 @@
           <textarea class="form-control" placeholder="Type here" rows="3" [(ngModel)]="carImageDesc" name="carImageDesc"></textarea>
         </div>
                <br>
-        <button type="button" *ngIf="userSelectReport == 'car Image'" class="btn btn-primary btn-block" (click)="step = 9">Next</button>
+        <button type="button" *ngIf="userSelectReport == 'car Image'" class="btn btn-primary btn-block" (click)="uploadDoc();">Next</button>
         <button type="button" *ngIf="userSelectReport == '3rd party' " class="btn btn-primary btn-block" (click)="step = 9">Next</button>
         <button type="button" *ngIf="userSelectReport == 'police report'" class="btn btn-primary btn-block" (click)="step = 9">Next</button>
       </div>
