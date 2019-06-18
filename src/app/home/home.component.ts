@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModel } from '@angular/forms';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { Observable } from 'rxjs';
+import { SharedServiceService } from '../shared/shared-service.servi
 
 @Component({
   selector: 'app-home',
@@ -9,6 +11,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 })
 export class HomeComponent implements OnInit {
 
+  private imageSrc: string = '';
   isPolicyButton:boolean = false;
   radio:boolean = false;
   isDriverButton:boolean = false;
@@ -48,11 +51,67 @@ export class HomeComponent implements OnInit {
   accInfo: boolean = false;
 
 
-  constructor(private modalService: NgbModal) {}
-  
+  constructor(private sharedServiceService:SharedServiceService,private modalService: NgbModal) {}
 
   ngOnInit() {
   }
+  
+  handleInputChange(e) {
+    var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
+    var pattern = /image-*/;
+    var reader = new FileReader();
+    if (!file.type.match(pattern)) {
+      alert('invalid format');
+      return;
+    }
+    reader.onload = this._handleReaderLoaded.bind(this);
+    reader.readAsDataURL(file);
+  }
+
+   _handleReaderLoaded(e) {
+    switch(this.userSelectReport) {
+      case "3rd party":
+        this.url['3rdParty'] = event.target;
+        break;
+      case "police report":
+        this.url['policeReport'] = event.target;
+        break;
+      case "car Image":
+        this.url['carImage'] = event.target;
+        break;
+    }
+    this.nextPage();
+    let reader = e.target;
+    this.imageSrc = reader.result;
+    console.log(this.imageSrc)
+  }
+
+ //   let reader = new FileReader();
+// reader.readAsDataURL(fileEvnt.file);
+// this.convertBTOA(reader).subscribe(fileBase64 => {const findIndex = this.uploadList.findIndex(doc => doc.file.name == fileEvnt.file.name);
+// if (findIndex > -1 && !this.uploadList[findIndex]['DocumentId'])
+// {
+// 	this.uploadRequest(fileSize, fileBase64, fileEvnt.file.name, fileEvnt.file.type);
+// }
+// });
+convertBTOA(reader) {
+	return Observable.create((observer:any) => {reader.onload = function () {
+			let base64String = (reader.result as string).split(';base64,')[1];
+			observer.next(base64String);
+			observer.complete();
+
+ 		};
+	});
+}
+
+ uploadDoc() {
+  this.sharedServiceService.uploadDocument(this.imageSrc).subscribe((data: any) => {
+    console.log("success..");
+    this.step = 9;
+  }, (err) => {  });
+
+ }
+
 
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title',centered: true}).result.then((result) => {
