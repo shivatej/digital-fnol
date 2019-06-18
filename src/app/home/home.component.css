@@ -13,7 +13,11 @@
 .container-pg{
     padding: 1% 5% 1% 5%; 
 }
-
+.center {
+  padding: 70px 0;
+  border: 3px solid green;
+  text-align: center;
+}
 .clear_both{
     clear: both;
 }
@@ -64,7 +68,6 @@
     cursor: pointer;
     box-shadow: 5px 5px 5px 5px blue;
 } */
-
 .list_Option_no_border{
     width: 100%;
     height: 70px;
@@ -196,10 +199,8 @@
 }
 
 .help_text {
-    padding-left: 15px;
     padding-top: 50px;
-    font-size: 14px;
-    font-style: italic;
+    font-size: 15px;
 }
 
 .pd_bt_0{

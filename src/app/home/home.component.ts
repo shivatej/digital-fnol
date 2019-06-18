@@ -45,6 +45,7 @@ export class HomeComponent implements OnInit {
   carImageDesc:string;
   url:object = {};
   minDate = {year: 1950, month: 1, day: 1};
+  accInfo: boolean = false;
 
 
   constructor(private modalService: NgbModal) {}
@@ -112,6 +113,14 @@ export class HomeComponent implements OnInit {
         this.nextPage();
       }
     }
+  }
+
+
+  checkForPolicyNum() {
+    if(this.policyNumber.length == 0){
+      this .policyNumber ='1234-567-8912';
+    }
+    this.nextPage();
   }
 
 }
