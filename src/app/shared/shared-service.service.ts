@@ -43,7 +43,7 @@ export class SharedServiceService {
     let options = { headers: headers };
 
     // let url = ConfigConstants.clientUrl + 'oshot/oauth/post';
-    let url = 'http://localhost:3001/upload?url=oshot/oauth/post';
+    let url = 'https://fnol-project-app.herokuapp.com/upload?url=oshot/oauth/post';
     let reqData = {
       "vehicles": {
         "insurer_id": 2,
@@ -80,7 +80,7 @@ export class SharedServiceService {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     // return this.http.post(`url`, uploadDocbody);
 
-    let url = 'http://localhost:3001/upload?url=oshot/post';
+    let url = 'https://fnol-project-app.herokuapp.com/upload?url=oshot/post';
     let reqData = {
       "vehicles": {
         "veh_make": "Jeep Wrangler",
