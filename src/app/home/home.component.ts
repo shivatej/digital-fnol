@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgModel } from '@angular/forms';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
-import { SharedServiceService } from '../shared/shared-service.servi
+import { SharedServiceService } from '../shared/shared-service.service';
+import CRC32 from 'crc-32/crc-32';
 
 @Component({
   selector: 'app-home',
@@ -32,9 +33,12 @@ export class HomeComponent implements OnInit {
   pg7Continue:boolean = false;
   policyNumber:string ="";
   userSelectReport: string;
-  model:string;
+  model:any;
+  responseData : any;
+  imageData:any;
+  createdDate : any;
   modelDOB:string;
-  time:string;
+  time:any;
   lastName:string;
   firstName:string;
   incidentDesc:string;
@@ -56,19 +60,41 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
   
-  handleInputChange(e) {
-    var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
-    var pattern = /image-*/;
-    var reader = new FileReader();
+ handleInputChange(e) {
+    //const file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    let pattern = /image-*/;
     if (!file.type.match(pattern)) {
       alert('invalid format');
       return;
     }
-    reader.onload = this._handleReaderLoaded.bind(this);
-    reader.readAsDataURL(file);
+    reader.addEventListener('load', (event: any) => {
+      this._handleReaderLoaded(event);
+    });
+    reader.readAsBinaryString(file);
+    //reader.onload = this._handleReaderLoaded.bind(this);
+    //reader.readAsDataURL(file);
   }
 
-   _handleReaderLoaded(e) {
+  getCheckSumValue(data){
+    const crcVal = CRC32.bstr(data);
+    const hexVal = this.lpad((crcVal >>> 0).toString(16), 8, "0");
+    return hexVal;
+  }
+
+  lpad(s, len, chr) {
+    const L = len - s.length;
+    const C = chr || " ";
+    if (L <= 0) {
+    return s;
+    }
+    return new Array(L + 1).join(C)+ s;
+  };
+
+
+
+  _handleReaderLoaded(event) {
     switch(this.userSelectReport) {
       case "3rd party":
         this.url['3rdParty'] = event.target;
@@ -81,9 +107,10 @@ export class HomeComponent implements OnInit {
         break;
     }
     this.nextPage();
-    let reader = e.target;
-    this.imageSrc = reader.result;
-    console.log(this.imageSrc)
+    const data = event.target.result;
+    this.imageSrc = btoa(data);
+    this.imageData = 'data:image/png;base64,' + this.imageSrc;
+    this.imageChkSum = this.getCheckSumValue(data);
   }
 
  //   let reader = new FileReader();
@@ -105,11 +132,12 @@ convertBTOA(reader) {
 }
 
  uploadDoc() {
-  this.sharedServiceService.uploadDocument(this.imageSrc).subscribe((data: any) => {
-    console.log("success..");
-    this.step = 9;
+  this.sharedServiceService.uploadDocument(this.imageSrc, this.imageChkSum).then((data: any) => {
+    this.responseData = data;
+    console.log("success..", this.responseData.scores[0].sco_minCost);
+    window.open("https://www.google.com", "_blank");
+    this.step = 8;
   }, (err) => {  });
-
  }
 
 
@@ -137,6 +165,7 @@ convertBTOA(reader) {
   }
   checkAccDetails(){
     if( this.time && this.model && this.incidentDesc){
+       this.createdDate = this.model.year + "-"+this.model.month +"-"+ this.model.day+"T"+this.time.hour +":"+this.time.minute+":"+this.time.second;
       this.pg6Continue = true;
     }
   }
