@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
   listMenu:boolean = false;
   pg3Continue:boolean = false;
   pg6Continue: boolean = false;
+  imageChkSum : any;
   uploaded3rdparty: boolean = false;
   uploadedpolice:boolean = false;
   uploadedcar:boolean = false;
