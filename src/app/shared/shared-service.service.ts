@@ -83,9 +83,9 @@ export class SharedServiceService {
     let url = 'http://localhost:3001/upload?url=oshot/post';
     let reqData = {
       "vehicles": {
-        "veh_make": "toyota",
-        "veh_model": "corolla zre152",
-        "veh_year": "2018"
+        "veh_make": "Jeep Wrangler",
+        "veh_model": "782WER",
+        "veh_year": "2016"
       },
       "incidents": {
         "idt_country": "US",

@@ -33,9 +33,12 @@ export class HomeComponent implements OnInit {
   pg7Continue:boolean = false;
   policyNumber:string ="";
   userSelectReport: string;
-  model:string;
+  model:any;
+  responseData:any;
+  imageData:any;
+  createdDate:any;
   modelDOB:string;
-  time:string;
+  time:any;
   lastName:string;
   firstName:string;
   incidentDesc:string;
@@ -81,6 +84,8 @@ export class HomeComponent implements OnInit {
   }
   checkAccDetails(){
     if( this.time && this.model && this.incidentDesc){
+      console.log(this.model.year + "-"+this.model.month +"-"+ this.model.day+"T"+this.time.hour +":"+this.time.minute+":"+this.time.second);
+      this.createdDate = this.model.year + "-"+this.model.month +"-"+ this.model.day+"T"+this.time.hour +":"+this.time.minute+":"+this.time.second;
       this.pg6Continue = true;
     }
   }
@@ -164,27 +169,12 @@ export class HomeComponent implements OnInit {
         break;
     }
     this.nextPage();
-    // let reader = e.target;
-    // this.imageSrc = reader.result.split('data:image/png;base64,')[1];
-    // // this.imageSrc = reader.result;
-    // var crcVal = btoa(reader.result);
-    // this.imageChkSum = crc.crc32(crcVal).toString(16);
-    // // this.imageChkSum = lpad((this.imageChkSum >>> 0).toString(16), 8, '0');
-    // console.log("imageChkSum = ", this.imageChkSum)
-    // console.log(this.imageSrc)
     const data = event.target.result;
     this.imageSrc = btoa(data);
+    this.imageData = 'data:image/png;base64,' + this.imageSrc;
     this.imageChkSum = this.getCheckSumValue(data);
   }
 
-//   let reader = new FileReader();
-// reader.readAsDataURL(fileEvnt.file);
-// this.convertBTOA(reader).subscribe(fileBase64 => {const findIndex = this.uploadList.findIndex(doc => doc.file.name == fileEvnt.file.name);
-// if (findIndex > -1 && !this.uploadList[findIndex]['DocumentId'])
-// {
-// 	this.uploadRequest(fileSize, fileBase64, fileEvnt.file.name, fileEvnt.file.type);
-// }
-// });
 convertBTOA(reader) {
 	return Observable.create((observer:any) => {reader.onload = function () {
 			let base64String = (reader.result as string).split(';base64,')[1];
@@ -197,7 +187,9 @@ convertBTOA(reader) {
 
 uploadDoc() {
   this.sharedServiceService.uploadDocument(this.imageSrc, this.imageChkSum).then((data: any) => {
-    console.log("success..");
+    this.responseData = data;
+    console.log("success..", this.responseData.scores[0].sco_minCost);
+    window.open("https://www.google.com", "_blank");
     this.step = 8;
   }, (err) => {  });
 

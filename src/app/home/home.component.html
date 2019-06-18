@@ -152,7 +152,7 @@
           </div>
         </div>
         <div class="dropdown_list box-sha" *ngIf="listMenu">
-          <div class="dropdown_list_element">
+          <div class="dropdown_list_element" (click)="pg3Continue= false; radio= true">
             <div class="row m_10">
               <div><input type="radio" name="radio"> </div>&nbsp; &nbsp;
               <div>
@@ -168,7 +168,7 @@
               </div>
             </div>
           </div>
-          <div class="dropdown_list_element_no_bottom">
+          <div class="dropdown_list_element_no_bottom" (click)="pg3Continue= false; radio= true">
             <div class="row m_10">
               <div><input type="radio" name="radio"> </div>&nbsp; &nbsp;
               <div>
@@ -488,7 +488,7 @@
           <div class="col-6">
             <img *ngIf="userSelectReport=='3rd party'" [src]="(url['3rdParty'] && url['3rdParty']['result']) ? (url['3rdParty']['result'] ) : '../../assets/not_available.jpg'" height="100%" width="100%">
             <img *ngIf="userSelectReport=='police report'"[src]="(url['policeReport'] && url['policeReport']['result']) ? url['policeReport']['result'] : '../../assets/not_available.jpg'" height="100%" width="100%">
-            <img *ngIf="userSelectReport=='car Image'"[src]="(url['carImage'] && url['carImage']['result']) ? url['carImage']['result'] : '../../assets/not_available.jpg'" height="100%" width="100%">
+            <img *ngIf="userSelectReport=='car Image'"[src]="(url['carImage'] && url['carImage']['result']) ? imageData : '../../assets/not_available.jpg'" height="100%" width="100%">
           </div>
           <div class="col-6 image_div image_height_upload_extra">
             <i class="material-icons">
@@ -506,9 +506,9 @@
         <span class="help_text" *ngIf="userSelectReport=='car Image'">Note: Please upload images showing damages to your vehicle</span> 
         <br>
         <br>
-        <button type="button" *ngIf="userSelectReport == '3rd party' " class="btn btn-primary btn-block" (click)="uploadDoc();">Done with the 3rd party Info</button>
+        <button type="button" *ngIf="userSelectReport == '3rd party' " class="btn btn-primary btn-block" (click)="step = 8">Done with the 3rd party Info</button>
         <button type="button" *ngIf="userSelectReport == 'police report'" class="btn btn-primary btn-block" (click)="step = 8">Done with the police report</button>
-        <button type="button" *ngIf="userSelectReport == 'car Image'" class="btn btn-primary btn-block" (click)="step = 8">Done with the car Images</button>
+        <button type="button" *ngIf="userSelectReport == 'car Image'" class="btn btn-primary btn-block" (click)="uploadDoc();">Done with the car Images</button>
       </div>
     </ng-container>
     <ng-container *ngIf="step===11">
