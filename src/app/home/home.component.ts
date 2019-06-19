@@ -207,7 +207,7 @@ convertBTOA(reader) {
 
   checkForPolicyNum() {
     if(this.policyNumber.length == 0){
-      this .policyNumber ='1234-567-8912';
+      this .policyNumber ='877643001';
     }
     this.nextPage();
   }
