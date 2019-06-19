@@ -31,6 +31,10 @@
     "express": "^4.16.4",
     "path": "^0.12.7",
     "rxjs": "~6.2.0",
+    "body-parser": "^1.17.1",
+    "file-type": "^4.3.0",
+    "morgan": "^1.8.1",
+    "request": "^2.81.0",
     "typescript": "^2.9.2",
     "zone.js": "~0.8.26"
   },
