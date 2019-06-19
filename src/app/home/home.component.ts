@@ -137,7 +137,7 @@ convertBTOA(reader) {
     this.responseData = data;
     console.log("success..", this.responseData.scores[0].sco_minCost);
     window.open("https://www.google.com", "_blank");
-    this.step = 8;
+    this.step = 9;
   }, (err) => {  });
  }
 
