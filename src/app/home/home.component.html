@@ -597,54 +597,36 @@
             <table class="table table-bordered vertical_table" *ngFor="let score of scores">
               <tbody *ngIf ="score.sco_scoreType === 'claim'">
                 <tr>
-                  <div align="center">
+                  
                   <th> Costs </th>
                   <td><th> Amount </th></tr>
-              </div>
+              
                 <tr>
-                  <div align = "left">
                   <th>Denting (A)</th>
-                    </div>
-                    <div align = "right">
                     <td >
                       {{score.sco_costDenting}}
                     </td>
-                      </div>
                 </tr>
                 <tr>
-                  <div align = "left">
                     <th>Painting (B)</th></div>
-                    <div align = "right">
                     <td>{{score.sco_costPainting}}</td>
-                </div>
                       </tr>
                 <tr>
-                  <div align = "left">
                     <th>Other (C)</th>
-                    </div>
-                    <div align = "right">
                     <td>{{score.sco_costOther}}</td>
-                </div>
                       </tr>
                 <tr>
-                  <div align = "left">
                     <th>Total Labour (D=A+B+C)</th>
-                    </div>
-                    <div align = "right">
                     <td ><b>
                      {{score.sco_costLabor}}
                       </b></td></div>
                 </tr>
                 <tr >
-                  <div align = "left">
                     <th>Parts (E)</th></div>
-                    <div align = "right">
                     <td>{{score.sco_costParts}}</td></div>
                       </tr>
                 <tr>
-                  <div align = "left">
                     <th>Total (D+E)</th></div>
-                    <div align = "right">
                     <td ><b>
                       {{score.sco_assessCost}}
                       </b></td></div>
