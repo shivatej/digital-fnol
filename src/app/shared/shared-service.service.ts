@@ -79,7 +79,7 @@ export class SharedServiceService {
     // const authorizedHeaders: HttpHeaders = this.createAuthorizationHeaders();
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     // return this.http.post(`url`, uploadDocbody);
-
+      const proxyurl = "https://cors-anywhere.herokuapp.com/"; 
     let url = 'https://fnol-project-app.herokuapp.com/upload?url=oshot/post';
     let reqData = {
       "vehicles": {
@@ -103,6 +103,7 @@ export class SharedServiceService {
 
     return new Promise((resolve, reject) => {
       this.http.post(url, reqData).subscribe((response: any) => {
+      //this.http.post(proxyurl+url, reqData).subscribe((response: any) => {
         console.log("Test....", response);
 
         resolve(response);

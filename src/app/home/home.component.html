@@ -482,7 +482,7 @@
           <i class="material-icons" (click)="fileToUpload.click()">
             add
           </i>
-          <span>Upload/Take Image</span>
+          <span>Upload/Capture Image</span>
         </div>
         <input #fileToUpload type="file" style="display:none;" accept="image/*" (change)="handleInputChange($event)"> 
         <br>
@@ -497,9 +497,9 @@
           <span *ngIf="userSelectReport=='police report'">Police Report</span>
         </div>
         <br>
-        <span class="help_text" *ngIf="userSelectReport=='car Image'">Please upload/take images showing damages to your vehicle</span> 
+        <span class="help_text" *ngIf="userSelectReport=='car Image'">Please upload/capture images showing damages to your vehicle</span> 
         <span class="help_text" *ngIf="userSelectReport=='police report'">Please upload police report, if available</span>
-        <span class="help_text" *ngIf="userSelectReport=='3rd party'">Please upload/take images of damages to the other party</span>
+        <span class="help_text" *ngIf="userSelectReport=='3rd party'">Please upload/capture images of damages to the other party</span>
         <br>
         <div class="row">
           <div class="col-6">
@@ -511,7 +511,7 @@
             <i class="material-icons">
               add
             </i>
-            <span>Upload/Take Image</span>
+            <span>Upload/Capture Image</span>
           </div>
         </div>
         <div  *ngIf="userSelectReport == 'car Image'" class="form-group">
@@ -560,6 +560,8 @@
               <span><b>Email and SMS have been sent to you for future reference</b></span>
             </div>
           </div>
+          <br>
+          <button type="button" class="btn btn-primary btn-block" (click)="step = 1;">Ok</button>
           <!---<button type="button" class="btn btn-default btn-block round-default">Track Your Claim</button>
           <br>
           <div class="row">
@@ -574,7 +576,58 @@
           <button type="button" class="btn btn-primary btn-block" (click)="step = 1;">Home</button>---->
         </div>
       </ng-container>
+      <div *ngIf="step===14">
+        <div class="container-pg">
+           <div class="pg-header">
+          <span>Estimation Report</span>
+        </div>
+        <br />
+        <br />
+        <div *ngIf="isLoading;else estimation_content">
+            <div class="d-flex justify-content-center">
+              <div class="spinner-border text-primary" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+        </div>
+        <ng-template #estimation_content>
+          <div class="box-sha">
+            <table class="table table-bordered vertical_table" *ngFor="let score of scores">
+              <tbody *ngIf ="score.sco_scoreType === 'claim'">
+                <tr>
+                    <th>Denting Cost</th>
+                    <td >
+                      {{score.sco_costDenting}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Labour Cost</th>
+                    <td >
+                     {{score.sco_costLabor}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Painting Cost</th>
+                    <td>{{score.sco_costPainting}}</td>
+                </tr>
+                <tr >
+                    <th>Other Parts Cost</th>
+                    <td>{{score.sco_costParts}}</td>
+                </tr>
+                <tr>
+                    <th>Total Cost</th>
+                    <td >
+                      {{score.sco_assessCost}}
+                    </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <br />
+          <button type="button" class="btn btn-primary btn-block" (click)="step = 9">Next</button>
+      </ng-template>
 </div>
+    </div>
     
 
       <ng-template #content let-modal>

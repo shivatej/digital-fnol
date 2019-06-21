@@ -210,3 +210,7 @@
 .mg_15{
     margin-top:15px;
 }
+
+.vertical_table {
+    table-layout: fixed;
+}

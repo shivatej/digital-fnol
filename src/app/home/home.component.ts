@@ -54,8 +54,8 @@ export class HomeComponent implements OnInit {
   url:object = {};
   minDate = {year: 1950, month: 1, day: 1};
   accInfo: boolean = false;
-
-
+  scores:any;
+  isLoading:boolean = false;
   constructor(private sharedServiceService:SharedServiceService,private modalService: NgbModal) {}
 
   ngOnInit() {
@@ -133,11 +133,14 @@ convertBTOA(reader) {
 }
 
  uploadDoc() {
+  this.isLoading = true;
+  this.step = 14;
   this.sharedServiceService.uploadDocument(this.imageSrc, this.imageChkSum).then((data: any) => {
     this.responseData = data;
+    this.scores = this.responseData.scores;
     console.log("success..", this.responseData.scores[0].sco_minCost);
-    window.open("https://www.google.com", "_blank");
-    this.step = 9;
+    this.isLoading = false;
+    //window.open("https://www.google.com", "_blank");
   }, (err) => {  });
  }
 
@@ -156,7 +159,11 @@ convertBTOA(reader) {
   }
 
   prevPage(){
-    this.step--;
+    if(this.step !== 14) {
+     this.step--;
+    } else {
+        this.step = 11;
+    } 
   }
 
   checkUserDetails(){
