@@ -596,21 +596,23 @@
           <div class="box-sha">
             <table class="table table-bordered vertical_table" *ngFor="let score of scores">
               <tbody *ngIf ="score.sco_scoreType === 'claim'">
+                 <div>
+                   <span>Estimates</span> </div>
                 <tr>       
-                  <th text-align:center> Costs </th>
-                  <td><th> Amount </th></tr>              
+                  <th> Costs </th>
+                  <td><th> Amount </th></td></tr>              
                 <tr>
-                  <th>Denting (A)</th>
+                  <td>Denting (A)</td>
                     <td >
                       {{score.sco_costDenting}}
                     </td>
                 </tr>
                 <tr>
-                    <th>Painting (B)</th>
+                    <td>Painting (B)</td>
                     <td>{{score.sco_costPainting}}</td>
                       </tr>
                 <tr>
-                    <th>Other (C)</th>
+                    <td>Other (C)</td>
                     <td>{{score.sco_costOther}}</td>
                       </tr>
                 <tr>
@@ -620,7 +622,7 @@
                       </b></td>
                 </tr>
                 <tr >
-                    <th>Parts (E)</th>
+                    <td>Parts (E)</td>
                     <td>{{score.sco_costParts}}</td>
                       </tr>
                 <tr>
