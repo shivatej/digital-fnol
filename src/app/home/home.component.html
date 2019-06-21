@@ -597,30 +597,38 @@
             <table class="table table-bordered vertical_table" *ngFor="let score of scores">
               <tbody *ngIf ="score.sco_scoreType === 'claim'">
                 <tr>
-                    <th>Denting Cost</th>
+                  <div align="center">
+                  <th> Costs </th>
+                  <td><th> Amount </th></tr>
+              </div>
+                <tr>Denting (A)
                     <td >
                       {{score.sco_costDenting}}
                     </td>
                 </tr>
                 <tr>
-                    <th>Labour Cost</th>
-                    <td >
-                     {{score.sco_costLabor}}
-                    </td>
-                </tr>
-                <tr>
-                    <th>Painting Cost</th>
+                    <th>Painting (B)</th>
                     <td>{{score.sco_costPainting}}</td>
                 </tr>
+                <tr>
+                    <th>Other (C)</th>
+                    <td>{{score.sco_costOther}}</td>
+                </tr>
+                <tr>
+                    <th>Total Labour (D=A+B+C)</th>
+                    <td ><b>
+                     {{score.sco_costLabor}}
+                      </b></td>
+                </tr>
                 <tr >
-                    <th>Other Parts Cost</th>
+                    <th>Parts (E)</th>
                     <td>{{score.sco_costParts}}</td>
                 </tr>
                 <tr>
-                    <th>Total Cost</th>
-                    <td >
+                    <th>Total (D+E)</th>
+                    <td ><b>
                       {{score.sco_assessCost}}
-                    </td>
+                      </b></td>
                 </tr>
               </tbody>
             </table>
