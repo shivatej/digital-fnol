@@ -561,7 +561,7 @@
             </div>
           </div>
           <br>
-          <button type="button" class="btn btn-primary btn-block" (click)="step = 1;">Ok</button>
+          <button type="button" class="btn btn-primary btn-block" (click)="step = 1;">OK</button>
           <!---<button type="button" class="btn btn-default btn-block round-default">Track Your Claim</button>
           <br>
           <div class="row">
@@ -580,6 +580,8 @@
         <div class="container-pg">
            <div class="pg-header">
           <span>Estimation Report</span>
+          <br>
+          <span class="help_text" *ngIf="userSelectReport=='car Image'">All numbers in $</span>
         </div>
         <br />
         <br />
