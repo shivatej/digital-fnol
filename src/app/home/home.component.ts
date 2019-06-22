@@ -79,9 +79,9 @@ export class HomeComponent implements OnInit {
   }
 
   getCheckSumValue(data){
-    const crcVal = CRC32.bstr(data);
+    /**const crcVal = CRC32.bstr(data);
     const hexVal = this.lpad((crcVal >>> 0).toString(16), 8, "0");
-    return hexVal;
+    return hexVal;**/
   }
 
   lpad(s, len, chr) {
