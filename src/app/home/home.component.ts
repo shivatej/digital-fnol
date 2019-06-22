@@ -3,7 +3,7 @@ import { NgModel } from '@angular/forms';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
 import { SharedServiceService } from '../shared/shared-service.service';
-import CRC32 from 'crc-32/crc32.js';
+/**import CRC32 from 'crc-32/crc32.js';**/
 
 @Component({
   selector: 'app-home',
@@ -133,15 +133,15 @@ convertBTOA(reader) {
 }
 
  uploadDoc() {
-   /**this.isLoading = true;**/
+   this.isLoading = true;
   this.step = 14;
   /**this.sharedServiceService.uploadDocument(this.imageSrc, this.imageChkSum).then((data: any) => {
     this.responseData = data;
-    this.scores = this.responseData.scores;
-    console.log("success..", this.responseData.scores[0].sco_minCost);
+    this.scores = this.responseData.scores;**/
+    console.log("success.."/**, this.responseData.scores[0].sco_minCost)**/;
     this.isLoading = false;
     //window.open("https://www.google.com", "_blank");
-  }, (err) => {  });**/
+ /** }, (err) => {  });**/
  }
 
 
