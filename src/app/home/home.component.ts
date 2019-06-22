@@ -3,7 +3,7 @@ import { NgModel } from '@angular/forms';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
 import { SharedServiceService } from '../shared/shared-service.service';
-import CRC32 from 'crc-32/crc32.j;
+import CRC32 from 'crc-32/crc32.js';
 
 @Component({
   selector: 'app-home',
