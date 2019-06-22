@@ -133,15 +133,15 @@ convertBTOA(reader) {
 }
 
  uploadDoc() {
-  this.isLoading = true;
+   /**this.isLoading = true;**/
   this.step = 14;
-  this.sharedServiceService.uploadDocument(this.imageSrc, this.imageChkSum).then((data: any) => {
+  /**this.sharedServiceService.uploadDocument(this.imageSrc, this.imageChkSum).then((data: any) => {
     this.responseData = data;
     this.scores = this.responseData.scores;
     console.log("success..", this.responseData.scores[0].sco_minCost);
     this.isLoading = false;
     //window.open("https://www.google.com", "_blank");
-  }, (err) => {  });
+  }, (err) => {  });**/
  }
 
 
