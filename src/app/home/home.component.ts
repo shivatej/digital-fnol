@@ -56,6 +56,7 @@ export class HomeComponent implements OnInit {
   accInfo: boolean = false;
   scores:any;
   isLoading:boolean = false;
+  elemtArry:any;
   constructor(private sharedServiceService:SharedServiceService,private modalService: NgbModal) {}
 
   ngOnInit() {
@@ -132,18 +133,55 @@ convertBTOA(reader) {
 	});
 }
 
- uploadDoc() {
-  this.isLoading = true;
-  this.step = 14;
-  this.sharedServiceService.uploadDocument(this.imageSrc, this.imageChkSum).then((data: any) => {
+  createElemntsArray(elements) {
+    var elementsArray = [];
+    for (let i = 0; i < elements.length; i++) {
+      if (elements[i].ele_part && elements[i].ele_dmgType) {
+          elementsArray.push ({ "damgedpart" : elements[i].ele_part,
+          "damgedetails": elements[i].ele_dmgType
+        })
+      }
+    }
+    var output = [];
+    elementsArray.forEach(function(item) {
+      var existing = output.filter(function(v, i) {
+        return v.damgedpart=== item.damgedpart;
+      });
+      if (existing.length > 0) {
+        var existingIndex = output.indexOf(existing[0]);
+        if ( typeof item.damgedetails === 'object' ) {
+          for (var m = 0; m < item.damgedetails.length; m++) {
+            if ( ! output[existingIndex].damgedetails.includes(item.damgedetails[m])) {
+              output[existingIndex].damgedetails = output[existingIndex].damgedetails.concat(item.damgedetails[m]);
+            }
+          }
+      } else {
+          if (!output[existingIndex].damgedetails.includes(item.damgedetails)) {
+            output[existingIndex].damgedetails = output[existingIndex].damgedetails.concat(item.damgedetails);
+          }   
+        }
+      } else {
+        if (typeof item.damgedetails === 'string') {
+          item.damgedetails = [item.damgedetails];
+        }
+        output.push(item);
+      }
+    });
+    return output;
+    }
+
+  uploadDoc() {
+    this.isLoading = true;
+    this.step = 14;
+    this.sharedServiceService.uploadDocument(this.imageSrc, this.imageChkSum).then((data: any) => {
     this.responseData = data;
     this.scores = this.responseData.scores;
+    this.elemtArry = this.createElemntsArray(this.responseData.elements);
     console.log("success..", this.responseData.scores[0].sco_minCost);
     this.isLoading = false;
-    //window.open("https://www.google.com", "_blank");
-  }, (err) => {  });
- }
-
+      //window.open("https://www.google.com", "_blank");
+    }, (err) => {  });
+   }
 
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title',centered: true}).result.then((result) => {

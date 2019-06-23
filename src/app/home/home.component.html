@@ -580,8 +580,8 @@
            <div class="pg-header">
           <span>Estimation Report</span>
           <br>
-          <span class="help_text" *ngIf="userSelectReport=='car Image'">All numbers in $</span>
         </div>
+        <span class="help_text" *ngIf="userSelectReport=='car Image'">All numbers in $</span>
         <br />
         <br />
         <div *ngIf="isLoading;else estimation_content">
@@ -593,6 +593,20 @@
         </div>
         <ng-template #estimation_content>
           <div class="box-sha">
+            <table class="table table-bordered vertical_table">
+              <tbody>
+                <tr>
+                  <th> Damaged Part </th>
+                  <th> Damage Details </th>
+                </tr>
+                <tr *ngFor= "let ele of elemtArry">
+                  <td>{{ele.damgedpart}}</td>
+                    <td >
+                      {{ele.damgedetails}}
+                    </td>
+                </tr>
+              </tbody>
+            </table>
             <table class="table table-bordered vertical_table" *ngFor="let score of scores">
               <tbody *ngIf ="score.sco_scoreType === 'claim'">
                 <tr>       
