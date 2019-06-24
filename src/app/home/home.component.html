@@ -109,7 +109,7 @@
           <form class="form-inline">
             <div class="form-group">
               <div class="input-group">
-                <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [minDate]="minDate" [(ngModel)]="modelDOB" (ngModelChange)="checkUserDetails()" ngbDatepicker
+                <input class="form-control" placeholder="MM/DD/YYYY" name="dp" [minDate]="minDate" [(ngModel)]="modelDOB" (ngModelChange)="checkUserDetails()" ngbDatepicker
                   #d="ngbDatepicker">
                 <div class="input-group-append">
                   <button class="btn btn-outline-secondary calendar pd_bt_0" (click)="d.toggle();" type="button">
@@ -312,7 +312,7 @@
             <form class="form-inline">
               <div class="form-group">
                 <div class="input-group">
-                  <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker
+                  <input class="form-control" placeholder="MM/DD/YYYY" name="dp" [(ngModel)]="model" ngbDatepicker
                     #d="ngbDatepicker">
                   <div class="input-group-append">
                     <button class="btn btn-outline-secondary calendar pd_bt_0" (click)="d.toggle()" (ngModelChange)="checkAccDetails()" type="button">

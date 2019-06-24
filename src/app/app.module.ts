@@ -7,6 +7,8 @@ import { HeaderComponent } from './header/header.component';
 import { PolicyComponent } from './policy/policy.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
+import { NgbDateCustomParserFormatter } from "./shared/dateformate.service";
+import { NgbDateParserFormatter } from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   declarations: [
@@ -21,7 +23,7 @@ import { FormsModule } from '@angular/forms';
     NgbModule,
     FormsModule
   ],
-  providers: [],
+  providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter } ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
