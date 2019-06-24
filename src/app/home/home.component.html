@@ -600,8 +600,8 @@
                   <th> Damage Details </th>
                 </tr>
                 <tr *ngFor= "let ele of elemtArry">
-                  <td>{{ele.damgedpart}}</td>
-                    <td >
+                  <td>{{ele.damgedpart | titlecase}}</td>
+                    <td [style.text-transform]="'capitalize'">
                       {{ele.damgedetails}}
                     </td>
                 </tr>
@@ -616,31 +616,31 @@
                 <tr>
                   <td>Repair (A)</td>
                     <td >
-                     <!--- {{score.sco_costDenting}}--->200
+                      {{score.sco_costDenting}}
                     </td>
                 </tr>
                 <tr>
                     <td>Painting (B)</td>
-                    <td><!---{{score.sco_costPainting}}</td>-->245
+                    <td>{{score.sco_costPainting}}</td>
                       </tr>
                 <tr>
                     <td>Other (C)</td>
-                    <td><!---{{score.sco_costOther}}-->100</td>
+                    <td>{{score.sco_costOther}}</td>
                       </tr>
                 <tr>
                     <th>Total Labour (D=A+B+C)</th>
                     <td ><b>
-                     <!---{{score.sco_costLabor}}-->545
+                     {{score.sco_costLabor}}
                       </b></td>
                 </tr>
                 <tr >
                     <td>Parts (E)</td>
-                    <td><!---{{score.sco_costParts}}-->600</td>
+                    <td>{{score.sco_costParts}}</td>
                       </tr>
                 <tr>
                     <th>Total (D+E)</th>
                     <td ><b>
-                      <!---{{score.sco_assessCost}}-->1145
+                      {{score.sco_assessCost}}
                       </b></td>
                 </tr>
               </tbody>

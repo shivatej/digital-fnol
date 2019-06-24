@@ -161,10 +161,12 @@ convertBTOA(reader) {
           }   
         }
       } else {
-        if (typeof item.damgedetails === 'string') {
-          item.damgedetails = [item.damgedetails];
+        if (item.damgedetails !== "none") {
+          if ((typeof item.damgedetails === 'string')) {
+            item.damgedetails = [item.damgedetails];
+          }
+            output.push(item);
         }
-        output.push(item);
       }
     });
     return output;
