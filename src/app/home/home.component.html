@@ -457,21 +457,21 @@
         <span class="help_text" *ngIf="userSelectReport=='police report'">Please upload police report, if available</span>
         <span class="help_text" *ngIf="userSelectReport=='3rd party'">Please give name, phone number/email id of the other party OR upload an image of his/her insurance card</span>        <br>
         <div *ngIf="userSelectReport=='3rd party'">
-          <div class="form-group col-12">
+          <div class="form-group">
             <label for="comment"><b>Provide a short description of the damages to the other's property*</b></label>
             <textarea class="form-control" placeholder="Type here" rows="3" [(ngModel)]="cardesc" name="cardesc"></textarea>
           </div>
           <div class="optional_text"></div>
           <div class="form-group">
-            <div class="col-12">
+            <div>
               <input class="form-control" placeholder="Full Name"  [(ngModel)]="fullName" name="fullName" id="inputdefault" type="text">
             </div>
             <br>
-            <div class="col-12">
+            <div>
               <input class="form-control" placeholder="Phone Number" [(ngModel)]="phoneNum" name="PhoneNumber" id="inputdefault" type="text">
             </div>
             <br>
-            <div class="col-12">
+            <div >
               <input class="form-control" placeholder="E-mail" [(ngModel)]="Email" name="Email" id="inputdefault" type="text">
             </div>
             <br>
