@@ -325,7 +325,9 @@
               </div>
             </form>
             <div>
-               <div> <ngb-timepicker [(ngModel)]="time" (ngModelChange)="checkAccDetails()"></ngb-timepicker></div>
+               <div>
+                <ngb-timepicker [(ngModel)]="time" [meridian]=true mousewheel = true  (ngModelChange)="checkAccDetails()"></ngb-timepicker>
+               </div>
             </div>
             <div class="form-group">
               <label for="comment"><b>Description of the incident</b></label>
