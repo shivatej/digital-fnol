@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { NgModel } from '@angular/forms';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
 import { SharedServiceService } from '../shared/shared-service.service';
 import CRC32 from 'crc-32/crc32.js';
+import { MapsAPILoader, MouseEvent } from '@agm/core';
 
 @Component({
   selector: 'app-home',
@@ -57,9 +58,17 @@ export class HomeComponent implements OnInit {
   scores:any;
   isLoading:boolean = false;
   elemtArry:any;
-  constructor(private sharedServiceService:SharedServiceService,private modalService: NgbModal) {}
+  latitude: number;
+  longitude: number;
+  mapselected: boolean = false;
+  zoom: number;
+  private geoCoder;
+  address: string;
+  constructor(private sharedServiceService:SharedServiceService,private modalService: NgbModal, private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone) {}
 
   ngOnInit() {
+  
   }
   
  handleInputChange(e) {
@@ -219,7 +228,7 @@ convertBTOA(reader) {
   }
 
   checkAccidentDetails(){
-    if( this.zipCode && (this.phoneNumber || this.email)){
+    if( (this.zipCode || this.address.length > 0) && (this.phoneNumber || this.email)){
       this.pg7Continue = true;
     }
   }
@@ -257,6 +266,50 @@ convertBTOA(reader) {
       this .policyNumber ='877643001';
     }
     this.nextPage();
+  }
+
+  enableMap() {
+   this.mapselected = false;
+   //this.setCurrentLocation();
+
+  }
+
+   // Get Current Location Coordinates
+  private setCurrentLocation() {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.latitude = position.coords.latitude;
+        this.longitude = position.coords.longitude;
+        this.zoom = 8;
+        this.getAddress(this.latitude, this.longitude);
+      });
+    }
+  }
+
+
+  markerDragEnd($event: MouseEvent) {
+    console.log($event);
+    this.latitude = $event.coords.lat;
+    this.longitude = $event.coords.lng;
+    this.getAddress(this.latitude, this.longitude);
+  }
+
+  getAddress(latitude, longitude) {
+    this.geoCoder = new google.maps.Geocoder; 
+    this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
+      console.log(results);
+      if (status === 'OK') {
+        if (results[0]) {
+          this.zoom = 12;
+          this.address = results[0].formatted_address;
+        } else {
+          window.alert('No results found');
+        }
+      } else {
+        window.alert('Geocoder failed due to: ' + status);
+      }
+
+    });
   }
 
 }

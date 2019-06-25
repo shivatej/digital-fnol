@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
 import { NgbDateCustomParserFormatter } from "./shared/date-formatter.service";
 import { NgbDateParserFormatter } from "@ng-bootstrap/ng-bootstrap";
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,11 @@ import { NgbDateParserFormatter } from "@ng-bootstrap/ng-bootstrap";
     BrowserModule ,
     HttpClientModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAFgM81Qz-SwfTzUsr4F51AgDj0HdN88CQ',
+       libraries: ['places']
+    })
   ],
   providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter } ],
   bootstrap: [AppComponent]

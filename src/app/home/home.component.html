@@ -368,8 +368,8 @@
           <br>
           <div class="row">
             <div id="input_container">
-              <input type="text" [(ngModel)]="zipCode" id="input" value>
-              <i class="material-icons" id="input_img">
+              <input type="text" [(ngModel)]="zipCode" id="input" value >
+              <i class="material-icons" id="input_img"  (click)="enableMap()">
                   location_on
               </i>
             </div>
@@ -378,6 +378,12 @@
                 info
               </i>
             </div>
+             <div class="col-9" *ngIf="mapselected" style="padding-top: 15px" >
+              <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+                <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+                  (dragEnd)="markerDragEnd($event)"></agm-marker>
+              </agm-map>
+              </div>
           </div>
           <br>
           <div class="form-group">
