@@ -24,8 +24,8 @@ import { AgmCoreModule } from '@agm/core';
     NgbModule,
     FormsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAFgM81Qz-SwfTzUsr4F51AgDj0HdN88CQ',
-       libraries: ['places']
+      apiKey: 'AIzaSyBf7A8VkMbqw8TCsraJMLkOq9ElSpqufhg',
+      libraries: ['geometry', 'places']
     })
   ],
   providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter } ],

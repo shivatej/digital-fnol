@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, ViewChild, ElementRef} from '@angular/core';
 import { NgModel } from '@angular/forms';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
@@ -68,11 +68,17 @@ export class HomeComponent implements OnInit {
   address: string;
   secondImageData: any;
   private secondImageSrc: string = '';
+  imageChkSumScnd: any;
+
+
+  @ViewChild('search')
+  public searchElementRef: ElementRef;
+
+
   constructor(private sharedServiceService:SharedServiceService,private modalService: NgbModal, private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone) {}
 
   ngOnInit() {
-  
   }
 
   secondImgInputChanges(e){
@@ -133,7 +139,6 @@ export class HomeComponent implements OnInit {
     const data = event.target.result;
     this.imageSrc = btoa(data);
     this.imageData = 'data:image/png;base64,' + this.imageSrc;
-    console.log(this.imageChkSum);
     this.imageChkSum = this.getCheckSumValue(data);
   }
 
@@ -161,18 +166,18 @@ export class HomeComponent implements OnInit {
 // this.convertBTOA(reader).subscribe(fileBase64 => {const findIndex = this.uploadList.findIndex(doc => doc.file.name == fileEvnt.file.name);
 // if (findIndex > -1 && !this.uploadList[findIndex]['DocumentId'])
 // {
-// 	this.uploadRequest(fileSize, fileBase64, fileEvnt.file.name, fileEvnt.file.type);
+//    this.uploadRequest(fileSize, fileBase64, fileEvnt.file.name, fileEvnt.file.type);
 // }
 // });
-convertBTOA(reader) {
-	return Observable.create((observer:any) => {reader.onload = function () {
-			let base64String = (reader.result as string).split(';base64,')[1];
-			observer.next(base64String);
-			observer.complete();
+  convertBTOA(reader) {
+    return Observable.create((observer:any) => {reader.onload = function () {
+        let base64String = (reader.result as string).split(';base64,')[1];
+        observer.next(base64String);
+        observer.complete();
 
- 		};
-	});
-}
+      };
+    });
+  }
 
   createElemntsArray(elements) {
     var elementsArray = [];
@@ -260,7 +265,8 @@ convertBTOA(reader) {
   }
 
   checkAccidentDetails(){
-    if( (this.zipCode || this.address.length > 0) && (this.phoneNumber || this.email)){
+    //if( (this.zipCode || this.address.length > 0) && (this.phoneNumber || this.email)){
+      if(this.zipCode && (this.phoneNumber || this.email)){
       this.pg7Continue = true;
     }
   }
@@ -301,9 +307,32 @@ convertBTOA(reader) {
   }
 
   enableMap() {
-   this.mapselected = false;
-   //this.setCurrentLocation();
+    this.mapselected = false;
+    if (this.mapselected) {
+      this.mapsAPILoader.load().then(() => {
+        this.setCurrentLocation();
+        this.geoCoder = new google.maps.Geocoder;
+        let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+          types: ["address"]
+        });
+        autocomplete.addListener("place_changed", () => {
+          this.ngZone.run(() => {
+            //get the place result
+            let place: google.maps.places.PlaceResult = autocomplete.getPlace();
 
+            //verify result
+            if (place.geometry === undefined || place.geometry === null) {
+              return;
+            }
+
+            //set latitude, longitude and zoom
+            this.latitude = place.geometry.location.lat();
+            this.longitude = place.geometry.location.lng();
+            this.zoom = 12;
+          });
+        });
+      });
+    }
   }
 
    // Get Current Location Coordinates
@@ -327,7 +356,6 @@ convertBTOA(reader) {
   }
 
   getAddress(latitude, longitude) {
-    this.geoCoder = new google.maps.Geocoder; 
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
       if (status === 'OK') {
         if (results[0]) {
