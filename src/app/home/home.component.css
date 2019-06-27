@@ -218,3 +218,10 @@
 agm-map {
     height: 15em;
 }
+
+.second_image_upload_extra {
+    position: relative;
+    margin-left: calc(100% - 300px);
+    height: 13.1em;
+    margin-top: -208px;
+}

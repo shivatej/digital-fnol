@@ -53,6 +53,7 @@ export class HomeComponent implements OnInit {
   cardesc:string;
   carImageDesc:string;
   url:object = {};
+  secondImgUrl:object = {};
   minDate = {year: 1950, month: 1, day: 1};
   accInfo: boolean = false;
   scores:any;
@@ -63,12 +64,20 @@ export class HomeComponent implements OnInit {
   mapselected: boolean = false;
   zoom: number;
   private geoCoder;
+  secondImage: boolean = false;
   address: string;
+  secondImageData: any;
+  private secondImageSrc: string = '';
   constructor(private sharedServiceService:SharedServiceService,private modalService: NgbModal, private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone) {}
 
   ngOnInit() {
   
+  }
+
+  secondImgInputChanges(e){
+    this.secondImage = true;
+    this.handleInputChange(e);
   }
   
  handleInputChange(e) {
@@ -81,7 +90,12 @@ export class HomeComponent implements OnInit {
       return;
     }
     reader.addEventListener('load', (event: any) => {
-      this._handleReaderLoaded(event);
+      if (this.secondImage) {
+        this._handleReaderSecnd(event);
+      } else {
+        this._handleReaderLoaded(event);
+      }
+     
     });
     reader.readAsBinaryString(file);
     //reader.onload = this._handleReaderLoaded.bind(this);
@@ -103,8 +117,6 @@ export class HomeComponent implements OnInit {
     return new Array(L + 1).join(C)+ s;
   };
 
-
-
   _handleReaderLoaded(event) {
     switch(this.userSelectReport) {
       case "3rd party":
@@ -121,7 +133,27 @@ export class HomeComponent implements OnInit {
     const data = event.target.result;
     this.imageSrc = btoa(data);
     this.imageData = 'data:image/png;base64,' + this.imageSrc;
+    console.log(this.imageChkSum);
     this.imageChkSum = this.getCheckSumValue(data);
+  }
+
+  _handleReaderSecnd(event) {
+    switch(this.userSelectReport) {
+      case "3rd party":
+        this.secondImgUrl['3rdParty'] = event.target;
+        break;
+      case "police report":
+        this.secondImgUrl['policeReport'] = event.target;
+        break;
+      case "car Image":
+        this.secondImgUrl['carImage'] = event.target;
+        break;
+    }
+    this.step = 11;
+    const data = event.target.result;
+    this.secondImageSrc = btoa(data);
+    this.secondImageData = 'data:image/png;base64,' + this.secondImageSrc;
+    this.imageChkSumScnd = this.getCheckSumValue(data);
   }
 
  //   let reader = new FileReader();
@@ -297,7 +329,6 @@ convertBTOA(reader) {
   getAddress(latitude, longitude) {
     this.geoCoder = new google.maps.Geocoder; 
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
-      console.log(results);
       if (status === 'OK') {
         if (results[0]) {
           this.zoom = 12;

@@ -514,12 +514,19 @@
             <img *ngIf="userSelectReport=='3rd party'" [src]="(url['3rdParty'] && url['3rdParty']['result']) ? imageData : '../../assets/not_available.jpg'" height="100%" width="100%">
             <img *ngIf="userSelectReport=='police report'"[src]="(url['policeReport'] && url['policeReport']['result']) ? imageData : '../../assets/not_available.jpg'" height="100%" width="100%">
           </div>
-          <div class="col-6 image_div image_height_upload_extra">
-            <i class="material-icons">
-              add
-            </i>
-            <span>Upload/Capture Image</span>
-          </div>
+          <div class="col-6 image_div image_height_upload_extra" *ngIf = "!secondImage">
+            <i class="material-icons" (click)="fileToUpload.click()">
+            add
+          </i>
+          <span>Upload/Capture Image</span>
+        </div>
+        <input #fileToUpload type="file" style="display:none;" accept="image/*" (change)="secondImgInputChanges($event)"> 
+        <br>
+        </div>
+        <div class="col-6 second_image_upload_extra"  *ngIf = "secondImage">
+            <img *ngIf="userSelectReport=='car Image'"[src]="(secondImgUrl['carImage'] && secondImgUrl['carImage']['result']) ? secondImageData : '../../assets/not_available.jpg'" height="100%" width="100%">
+            <img *ngIf="userSelectReport=='3rd party'" [src]="(secondImgUrl['3rdParty'] && secondImgUrl['3rdParty']['result']) ? secondImageData : '../../assets/not_available.jpg'" height="100%" width="100%">
+            <img *ngIf="userSelectReport=='police report'"[src]="(secondImgUrl['policeReport'] && secondImgUrl['policeReport']['result']) ? secondImageData : '../../assets/not_available.jpg'" height="100%" width="100%">
         </div>
         <div  *ngIf="userSelectReport == 'car Image'" class="form-group">
           <label for="comment"><b>Provide a short description of the damages</b></label>
