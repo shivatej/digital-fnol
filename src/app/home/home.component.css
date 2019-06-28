@@ -225,3 +225,8 @@ agm-map {
     height: 13.1em;
     margin-top: -208px;
 }
+.dropdown_list_element:nth-child(3) {
+    height: 50px;
+    width:100%;
+    border: 0;
+}

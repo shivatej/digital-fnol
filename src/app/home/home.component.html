@@ -142,7 +142,6 @@
             <li>Keep receipts of all the repairs, parking fees and any related expenses that are incurred </li><br>
           </ul>
         <br>
-        <br>
         <button type="button" class="btn btn-primary btn-block" (click)="nextPage()">Continue with filing the claim</button>
       </div>
     </ng-container>
@@ -151,6 +150,8 @@
         <div class="pg-header">
           <span>Choose the policy to file a claim</span>
         </div>
+        <br>
+        <br>
         <br>
         <div class="dropdown_button box-sha">
           <div class="row" (click)="toggleMenu()">
@@ -168,27 +169,11 @@
           </div>
         </div>
         <div class="dropdown_list box-sha" *ngIf="listMenu">
-          <div class="dropdown_list_element" (click)="pg3Continue= false; radio= true">
+          <div class="dropdown_list_element" (click)="pg3Continue= true; radio= true" *ngFor = "let value of carsDropDown">
             <div class="row m_10">
               <div><input type="radio" name="radio"> </div>&nbsp; &nbsp;
               <div>
-                <p>Honda City 2016-FWV76</p>
-              </div>
-            </div>
-          </div>
-          <div class="dropdown_list_element" (click)="pg3Continue= true; radio= true">
-            <div class="row m_10">
-              <div><input type="radio" name="radio" [checked]="radio"> </div>&nbsp; &nbsp;
-              <div>
-                <p>Toyota Camry 2018-782WER</p>
-              </div>
-            </div>
-          </div>
-          <div class="dropdown_list_element_no_bottom" (click)="pg3Continue= false; radio= true">
-            <div class="row m_10">
-              <div><input type="radio" name="radio"> </div>&nbsp; &nbsp;
-              <div>
-                <p>Jeep Wrangler 2014-ODW451</p>
+                <p>{{value}}</p>
               </div>
             </div>
           </div>
@@ -209,6 +194,7 @@
             </div>
           </div>
         </div>
+        <br>
         <br>
         <button type="button" class="btn btn-default btn-block round-default" *ngIf="!pg3Continue">Continue</button>
         <button type="button" class="btn btn-primary btn-block" *ngIf="pg3Continue" (click)="nextPage()">Continue</button>
@@ -394,7 +380,6 @@
             <input class="form-control" placeholder="Email" id="inputdefault" type="text" [(ngModel)]="email" (ngModelChange)="checkAccidentDetails()">
           </div>
           <br>
-          <br>
           <button type="button" class="btn btn-default btn-block round-default" *ngIf="!pg7Continue" >Continue</button>
           <button type="button" class="btn btn-primary btn-block" *ngIf="pg7Continue" (click)="nextPage()">Continue</button>
         </div>
@@ -406,6 +391,7 @@
         <div class="pg-header"><span>Do you have any other details to add?</span></div>
         <span class="help_text">We encourage you to provide as much details as possible for a quicker resolution</span>
         <br><br>
+        <br>
          <div class="dropdown_button box-sha" (click)="userSelectReport='car Image'; nextPage(); uploadedcar = true">
           <div style="height:35px">
             <span>Images of your vehicle</span>
@@ -503,8 +489,8 @@
           <span *ngIf="userSelectReport=='3rd party'">Details of the other party</span>
           <span *ngIf="userSelectReport=='police report'">Police Report</span>
         </div>
-        <br>
         <span class="help_text" *ngIf="userSelectReport=='car Image'">Please upload/capture images showing damages to your vehicle</span> 
+        <br>
         <span class="help_text" *ngIf="userSelectReport=='police report'">Please upload police report, if available</span>
         <span class="help_text" *ngIf="userSelectReport=='3rd party'">Please upload/capture images of damages to the other party</span>
         <br>
@@ -528,6 +514,7 @@
             <img *ngIf="userSelectReport=='3rd party'" [src]="(secondImgUrl['3rdParty'] && secondImgUrl['3rdParty']['result']) ? secondImageData : '../../assets/not_available.jpg'" height="100%" width="100%">
             <img *ngIf="userSelectReport=='police report'"[src]="(secondImgUrl['policeReport'] && secondImgUrl['policeReport']['result']) ? secondImageData : '../../assets/not_available.jpg'" height="100%" width="100%">
         </div>
+        <br>
         <div  *ngIf="userSelectReport == 'car Image'" class="form-group">
           <label for="comment"><b>Provide a short description of the damages</b></label>
           <textarea class="form-control" placeholder="Type here" rows="3" [(ngModel)]="carImageDesc" name="carImageDesc"></textarea>
@@ -547,16 +534,21 @@
         <button type="button" class="btn btn-primary btn-block" (click)="nextPage()">Submit</button>
       </div>
     </ng-container>
-    <ng-container *ngIf="step===13">
+     <ng-container *ngIf="step===13">
       <br>
       <br>
       <br>
         <div class="container-pg">
           <div class="text-center">
             <span class="pg-head-last">
-                <div><span><b>Your claim has been submitted</b></span></div>
-            </span>          
-            <br>
+                <div>
+                  <span *ngIf = "firstName || lastName; else noName"><b>Thank you {{firstName}} {{lastName}}, your claim has been submitted</b>
+                  </span>
+                  <ng-template #noName>
+                    <span><b>Thank you, your claim has been submitted</b></span>
+                  </ng-template>
+                </div>
+            </span>
             <br>
             <br>
             <div class="reg-text">
@@ -569,11 +561,11 @@
           <br>
           <br>
           <br>
-          <br>
           <div class="pg-head-last">
               <span><b>Email and SMS have been sent to you for future reference</b></span>
             </div>
           </div>
+          <br>
           <br>
           <button type="button" class="btn btn-primary btn-block" (click)="step = 1;">OK</button>
           <!---<button type="button" class="btn btn-default btn-block round-default">Track Your Claim</button>
@@ -661,13 +653,12 @@
               </tbody>
             </table>
           </div>
-          <br />
+          <br>
+          <br>
           <button type="button" class="btn btn-primary btn-block" (click)="step = 9">Next</button>
       </ng-template>
 </div>
     </div>
-    
-
       <ng-template #content let-modal>
         <div class="modal-body">
           <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">

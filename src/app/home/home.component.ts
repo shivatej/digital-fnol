@@ -69,6 +69,7 @@ export class HomeComponent implements OnInit {
   secondImageData: any;
   private secondImageSrc: string = '';
   imageChkSumScnd: any;
+  carsDropDown: any;
 
 
   @ViewChild('search')
@@ -79,6 +80,11 @@ export class HomeComponent implements OnInit {
     private ngZone: NgZone) {}
 
   ngOnInit() {
+    this.carsDropDown = [
+      "Toyota Camry 2018-782WER",
+      "Chevrolet Colorado 2018-782WER",
+      "Honda Civic 2016-FWV76"
+    ];
   }
 
   secondImgInputChanges(e){
