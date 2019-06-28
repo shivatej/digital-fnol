@@ -271,7 +271,7 @@ export class HomeComponent implements OnInit {
   }
 
   checkAccidentDetails(){
-    if( (this.zipCode || this.address.length > 0) && (this.phoneNumber || this.email)){
+    if( (this.zipCode || ( this.address && this.address.length > 0)) && (this.phoneNumber || this.email)){
       this.pg7Continue = true;
     }
   }
