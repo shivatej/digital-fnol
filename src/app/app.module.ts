@@ -24,7 +24,7 @@ import { AgmCoreModule } from '@agm/core';
     NgbModule,
     FormsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBf7A8VkMbqw8TCsraJMLkOq9ElSpqufhg',
+      apiKey: 'AIzaSyDZ5rIF_as0p3eJW08nKkQE2c0EFdmpG1w',
       libraries: ['geometry', 'places']
     })
   ],

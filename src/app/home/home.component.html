@@ -354,8 +354,8 @@
           <br>
           <div class="row">
             <div id="input_container">
-              <input type="text" [(ngModel)]="zipCode" id="input" value >
-              <i class="material-icons" id="input_img"  (click)="enableMap()">
+              <input type="text" [(ngModel)]="zipCode" id="input" (keydown)="onKeydown($event)" #search autocomplete="off" [value]="address">
+              <i class="material-icons" id="input_img"  (click)="enableMap()" >
                   location_on
               </i>
             </div>

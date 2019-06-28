@@ -271,8 +271,7 @@ export class HomeComponent implements OnInit {
   }
 
   checkAccidentDetails(){
-    //if( (this.zipCode || this.address.length > 0) && (this.phoneNumber || this.email)){
-      if(this.zipCode && (this.phoneNumber || this.email)){
+    if( (this.zipCode || this.address.length > 0) && (this.phoneNumber || this.email)){
       this.pg7Continue = true;
     }
   }
@@ -313,14 +312,60 @@ export class HomeComponent implements OnInit {
   }
 
   enableMap() {
-    this.mapselected = false;
+    this.mapselected = !this.mapselected;
     if (this.mapselected) {
-      this.mapsAPILoader.load().then(() => {
-        this.setCurrentLocation();
+      this.longitude = -87.952377;
+      this.latitude = 41.840794;
+      this.zoom = 8;
+     }
+  }
+
+   // Get Current Location Coordinates
+  private setCurrentLocation() {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.longitude = -87.952377;
+        this.latitude = 41.840794;
+        this.zoom = 8;
+        this.getAddress(this.latitude, this.longitude);
+      });
+    }
+     
+    
+  }
+
+
+  markerDragEnd($event: MouseEvent) {
+    this.latitude = $event.coords.lat;
+    this.longitude = $event.coords.lng;
+    this.getAddress(this.latitude, this.longitude);
+  }
+
+  getAddress(latitude, longitude) {
+    this.geoCoder = new google.maps.Geocoder;
+    this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
+      if (status === 'OK') {
+        if (results[0]) {
+          this.zoom = 15;
+          this.address = results[0].formatted_address;
+        } else {
+          window.alert('No results found');
+        }
+      } else {
+        window.alert('Geocoder failed due to: ' + status);
+      }
+
+    });
+  }
+
+  onKeydown(event) {
+    if (event.key === "Enter") {
+    this.enableMap();
+    this.mapsAPILoader.load().then(() => {
         this.geoCoder = new google.maps.Geocoder;
-        let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-          types: ["address"]
-        });
+          let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+            types: ["address"]
+          });
         autocomplete.addListener("place_changed", () => {
           this.ngZone.run(() => {
             //get the place result
@@ -339,42 +384,6 @@ export class HomeComponent implements OnInit {
         });
       });
     }
-  }
-
-   // Get Current Location Coordinates
-  private setCurrentLocation() {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.latitude = position.coords.latitude;
-        this.longitude = position.coords.longitude;
-        this.zoom = 8;
-        this.getAddress(this.latitude, this.longitude);
-      });
-    }
-  }
-
-
-  markerDragEnd($event: MouseEvent) {
-    console.log($event);
-    this.latitude = $event.coords.lat;
-    this.longitude = $event.coords.lng;
-    this.getAddress(this.latitude, this.longitude);
-  }
-
-  getAddress(latitude, longitude) {
-    this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
-      if (status === 'OK') {
-        if (results[0]) {
-          this.zoom = 12;
-          this.address = results[0].formatted_address;
-        } else {
-          window.alert('No results found');
-        }
-      } else {
-        window.alert('Geocoder failed due to: ' + status);
-      }
-
-    });
   }
 
 }
