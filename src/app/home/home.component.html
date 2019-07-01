@@ -652,6 +652,86 @@
           </div>
         </div>
       </div>
+    <ng-container *ngIf= "step===16">
+      <div class="container-pg">
+         <div class="pg-header">
+          <span>TBD</span>
+          <br>
+        </div>
+        <br>
+         <span class="help_text"> How did this happen? Tell us more...</span>
+        <br>
+        <br>
+        <div>
+          <span><b>Anyone live in this home?</b></span> &nbsp;
+          <button type="button" class="btn btn-default round-default">Yes</button>&nbsp;
+          <button type="button" class="btn btn-default round-default" *ngIf="!pg16no" (click)="pg16no = true">No</button>
+          <button type="button" class="btn btn-primary " *ngIf="pg16no">No</button>
+        </div>
+        <br>
+        <br>
+        <div class="box-sha">
+           <div class="row text-center">
+              <div class="col-4 bg-hover" (click)="nextPage()">
+              <div class="box-sha">
+                <img height="80%" width="80%" src="../../assets/Icons_Policy Holder.png" alt="First slide">
+              </div>
+              <br>
+              <span>Pipe Broken</span>
+            </div>
+            <div class="col-4 bg-hover">
+              <div class="box-sha">
+                <img height="80%" width="85%" src="../../assets/Agent Image.PNG" alt="First slide">
+              </div>
+              <br>
+              <span>pipe Under ----</span>
+            </div>
+            <div class="col-4 bg-hover">
+              <div class="box-sha">
+                <img height="80%" width="80%" src="../../assets/Icons_Passenger.png" alt="First slide">
+              </div>
+              <br>
+              <span>Overflow from bathtub</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="step===17">
+     <div class="container-pg">
+        <div class="pg-header">
+          <span>TBD</span>
+        </div>
+        <br>
+         <span class="help_text">Let us see what all were damged.</span>
+        <br>
+        <br>
+        <div class="row text-center">
+              <div class="col-4 bg-hover" (click)="open(buildingmodal)">
+              <div class="box-sha">
+                <img height="80%" width="80%" src="../../assets/Icons_Policy Holder.png" alt="First slide">
+              </div>
+              <br>
+              <span>Building</span>
+            </div>
+            <div class="col-4 bg-hover">
+              <div class="box-sha">
+                <img height="80%" width="85%" src="../../assets/Agent Image.PNG" alt="First slide">
+              </div>
+              <br>
+              <span>Content</span>
+            </div>
+            <div class="col-4 bg-hover">
+              <div class="box-sha">
+                <img height="80%" width="80%" src="../../assets/Icons_Passenger.png" alt="First slide">
+              </div>
+              <br>
+              <span>Valulables</span>
+            </div>
+          </div>
+
+      </div>
+    </ng-container>
       <div *ngIf="step===14">
         <div class="container-pg">
            <div class="pg-header">
@@ -746,6 +826,20 @@
             </p>
             <br>
             <button type="button" class="btn btn-primary btn-block" (click)="modal.dismiss('Save click')">Got it!</button>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template #buildingmodal let-modal>
+        <div class="modal-body">
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <img height='30px' width='30px' src="../../assets/close-01.png">
+          </button>
+          <br>
+      
+          <div class="text-center">
+            <p class="p-no-maring-bottom">Please Choose the Building damage.
+            </p>
+            
           </div>
         </div>
       </ng-template>

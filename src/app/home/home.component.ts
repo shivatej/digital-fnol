@@ -74,7 +74,8 @@ export class HomeComponent implements OnInit {
   carsDropDown: any;
   menuList: boolean = false;
   dropdown_adressList: any;
-
+  pg16no:boolean = false;
+  pg16Continue: boolean = false;
 
   @ViewChild('search')
   public searchElementRef: ElementRef;
