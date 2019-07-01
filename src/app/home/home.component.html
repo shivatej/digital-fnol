@@ -180,7 +180,7 @@
         </div>
         <br>
         <div class="dropdown_button box-sha">
-          <div class="row">
+          <div class="row"  (click)="toggleAdressMenu()">
             &nbsp; &nbsp;
             <img height="10%" width="10%" src="../../assets/Icons_Property.png" alt="First slide"> &nbsp; &nbsp;
             <div>
@@ -194,10 +194,21 @@
             </div>
           </div>
         </div>
+        <div class="dropdown_list box-sha" *ngIf="menuList">
+          <div class="dropdown_list_element" (click)="pg3Continue= true; radio= true" *ngFor = "let value of dropdown_adressList">
+            <div class="row m_10">
+              <div><input type="radio" name="radio"> </div>&nbsp; &nbsp;
+              <div>
+                <p>{{value}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
         <br>
         <br>
         <button type="button" class="btn btn-default btn-block round-default" *ngIf="!pg3Continue">Continue</button>
-        <button type="button" class="btn btn-primary btn-block" *ngIf="pg3Continue" (click)="nextPage()">Continue</button>
+        <button type="button" class="btn btn-primary btn-block" *ngIf="pg3Continue" (click)="carOrPropertyPolicy()">Continue</button>
       </div>
     </ng-container>
     <ng-container *ngIf="step===6">
@@ -582,6 +593,65 @@
           <button type="button" class="btn btn-primary btn-block" (click)="step = 1;">Home</button>---->
         </div>
       </ng-container>
+      <div *ngIf="step===15">
+        <div class="container-pg">
+          <div class="pg-header">
+            <span>TBD</span>
+          </div>
+          <br>
+          <span class="help_text">Sorry to hear about the incident what happend?</span>
+          <br>
+          <br>
+          <div class="box-sha">
+            <div class="list_Option">
+                <img class="img_plac" src="../../assets/Icon_fire.png" alt="roadside">
+                <div class="dis_inl mrg_top_10px">Fire</div>
+                <span class="flo_rgt mrg_top_10px">
+                  <i class="material-icons">
+                     chevron_right
+                  </i>
+                </span>
+              <div class="div_clr"></div>
+            </div>
+          </div>
+          <div class="box-sha">
+           <div class="list_Option" (click)="nextPage()">
+                <img class="img_plac" src="../../assets/Icon_water.png" alt="roadside">
+                <div class="dis_inl mrg_top_10px">Water</div>
+                <span class="flo_rgt mrg_top_10px">
+                  <i class="material-icons">
+                     chevron_right
+                  </i>
+                </span>
+              <div class="div_clr"></div>
+            </div>
+          </div>
+          <div class="box-sha">
+            <div class="list_Option">
+                <img class="img_plac" src="../../assets/weather.png" alt="roadside">
+                <div class="dis_inl mrg_top_10px">Weather</div>
+                <span class="flo_rgt mrg_top_10px">
+                  <i class="material-icons">
+                     chevron_right
+                  </i>
+                </span>
+              <div class="div_clr"></div>
+            </div>
+          </div>
+          <div class="box-sha">
+            <div class="list_Option">
+                <img class="img_plac" src="../../assets/Icons_Roadside Assistance.png" alt="roadside">
+                <div class="dis_inl mrg_top_10px">Buglay</div>
+                <span class="flo_rgt mrg_top_10px">
+                  <i class="material-icons">
+                     chevron_right
+                  </i>
+                </span>
+              <div class="div_clr"></div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div *ngIf="step===14">
         <div class="container-pg">
            <div class="pg-header">
@@ -656,8 +726,8 @@
           <br>
           <br>
           <button type="button" class="btn btn-primary btn-block" (click)="step = 9">Next</button>
-      </ng-template>
-</div>
+        </ng-template>
+    </div>
     </div>
       <ng-template #content let-modal>
         <div class="modal-body">
@@ -679,3 +749,5 @@
           </div>
         </div>
       </ng-template>
+
+       

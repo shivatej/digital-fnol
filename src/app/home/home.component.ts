@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { SharedServiceService } from '../shared/shared-service.service';
 import CRC32 from 'crc-32/crc32.js';
 import { MapsAPILoader, MouseEvent } from '@agm/core';
+import { Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-home',
@@ -70,6 +72,8 @@ export class HomeComponent implements OnInit {
   private secondImageSrc: string = '';
   imageChkSumScnd: any;
   carsDropDown: any;
+  menuList: boolean = false;
+  dropdown_adressList: any;
 
 
   @ViewChild('search')
@@ -77,7 +81,7 @@ export class HomeComponent implements OnInit {
 
 
   constructor(private sharedServiceService:SharedServiceService,private modalService: NgbModal, private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone) {}
+    private ngZone: NgZone, private router: Router) {}
 
   ngOnInit() {
     this.carsDropDown = [
@@ -85,6 +89,9 @@ export class HomeComponent implements OnInit {
       "Chevrolet Colorado 2018-782WER",
       "Honda Civic 2016-FWV76"
     ];
+    this.dropdown_adressList = [
+      "261 South Helen St.Mount Juliet, TN 37122"
+    ]
   }
 
   secondImgInputChanges(e){
@@ -251,11 +258,13 @@ export class HomeComponent implements OnInit {
   }
 
   prevPage(){
-    if(this.step !== 14) {
-     this.step--;
+    if(this.step == 14) {
+      this.step = 11;
+    } else if (this.step = 15) {
+        this.step = 5;
     } else {
-        this.step = 11;
-    } 
+        this.step--;
+    }
   }
 
   checkUserDetails(){
@@ -386,4 +395,17 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  toggleAdressMenu() {
+   //this.menuList = !this.menuList;
+   this.menuList = false;
+   this.listMenu = false;
+  }
+
+  carOrPropertyPolicy() {
+    if (this.listMenu) {
+      this.step = 6;
+    } else if (this.menuList) {
+      this.step = 15;
+    }
+  }
 }

@@ -15,3 +15,16 @@ a {
   font-size:2rem;
 }
 
+
+@media(max-width: 767px) and (min-width: 504px){
+    .navbar-brand{
+        max-width: calc(40% - 55px);
+        max-height: calc(40% - 55px);
+    }
+}
+@media(min-width: 360px) and (max-width:472px) {
+    .navbar-brand{
+        max-width: calc(40% - 55px);
+        max-height: calc(40% - 55px);
+    }
+}
