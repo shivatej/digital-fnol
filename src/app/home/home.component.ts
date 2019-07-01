@@ -258,9 +258,9 @@ export class HomeComponent implements OnInit {
   }
 
   prevPage(){
-    if(this.step == 14) {
+    if(this.step === 14) {
       this.step = 11;
-    } else if (this.step = 15) {
+    } else if (this.step === 15) {
         this.step = 5;
     } else {
         this.step--;
