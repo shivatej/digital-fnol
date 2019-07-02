@@ -80,6 +80,7 @@ export class HomeComponent implements OnInit {
   form: FormGroup;
   buildingdamages = [];
   contentdamages = [];
+  valuabledamages = [];
   enableOtherText:boolean = false;
   otherText: boolean = false;
   valuableOtherText: boolean = false;
