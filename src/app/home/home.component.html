@@ -596,15 +596,13 @@
       <div *ngIf="step===15">
         <div class="container-pg">
           <div class="pg-header">
-            <span>TBD</span>
+            <span>Sorry to hear about the incident what happend?</span>
           </div>
-          <br>
-          <span class="help_text">Sorry to hear about the incident what happend?</span>
           <br>
           <br>
           <div class="box-sha">
             <div class="list_Option">
-                <img class="img_plac" src="../../assets/Icon_fire.png" alt="roadside">
+                <img class="img_size" src="../../assets/Fire.png" alt="roadside">
                 <div class="dis_inl mrg_top_10px">Fire</div>
                 <span class="flo_rgt mrg_top_10px">
                   <i class="material-icons">
@@ -616,7 +614,7 @@
           </div>
           <div class="box-sha">
            <div class="list_Option" (click)="nextPage()">
-                <img class="img_plac" src="../../assets/Icon_water.png" alt="roadside">
+                <img class="img_size" src="../../assets/Water.png">
                 <div class="dis_inl mrg_top_10px">Water</div>
                 <span class="flo_rgt mrg_top_10px">
                   <i class="material-icons">
@@ -628,7 +626,7 @@
           </div>
           <div class="box-sha">
             <div class="list_Option">
-                <img class="img_plac" src="../../assets/weather.png" alt="roadside">
+                <img class="img_size" src="../../assets/weather.png">
                 <div class="dis_inl mrg_top_10px">Weather</div>
                 <span class="flo_rgt mrg_top_10px">
                   <i class="material-icons">
@@ -639,9 +637,9 @@
             </div>
           </div>
           <div class="box-sha">
-            <div class="list_Option">
-                <img class="img_plac" src="../../assets/Icons_Roadside Assistance.png" alt="roadside">
-                <div class="dis_inl mrg_top_10px">Buglay</div>
+            <div class="list_Option_no_border">
+                <img class="img_size" src="../../assets/theft.png">
+                <div class="dis_inl mrg_top_10px">Theft</div>
                 <span class="flo_rgt mrg_top_10px">
                   <i class="material-icons">
                      chevron_right
@@ -655,44 +653,77 @@
     <ng-container *ngIf= "step===16">
       <div class="container-pg">
          <div class="pg-header">
-          <span>TBD</span>
+          <span>How did this happen? Tell us more...</span>
           <br>
         </div>
         <br>
-         <span class="help_text"> How did this happen? Tell us more...</span>
-        <br>
-        <br>
         <div>
-          <span><b>Anyone live in this home?</b></span> &nbsp;
+          <span><b>Anyone living in this home?</b></span> &nbsp;
           <button type="button" class="btn btn-default round-default">Yes</button>&nbsp;
           <button type="button" class="btn btn-default round-default" *ngIf="!pg16no" (click)="pg16no = true">No</button>
           <button type="button" class="btn btn-primary " *ngIf="pg16no">No</button>
         </div>
         <br>
-        <br>
         <div class="box-sha">
-           <div class="row text-center">
-              <div class="col-4 bg-hover" (click)="nextPage()">
-              <div class="box-sha">
-                <img height="80%" width="80%" src="../../assets/Icons_Policy Holder.png" alt="First slide">
-              </div>
-              <br>
-              <span>Pipe Broken</span>
-            </div>
-            <div class="col-4 bg-hover">
-              <div class="box-sha">
-                <img height="80%" width="85%" src="../../assets/Agent Image.PNG" alt="First slide">
-              </div>
-              <br>
-              <span>pipe Under ----</span>
-            </div>
-            <div class="col-4 bg-hover">
-              <div class="box-sha">
-                <img height="80%" width="80%" src="../../assets/Icons_Passenger.png" alt="First slide">
-              </div>
-              <br>
-              <span>Overflow from bathtub</span>
-            </div>
+          <div class="list_Option" (click)="nextPage()">
+            <img class="img_plac" src="../../assets/Icons_Flood.png" alt="roadside">
+            <div class="dis_inl mrg_top_10px">Pipe Broken</div>
+            <span class="flo_rgt mrg_top_10px">
+              <i class="material-icons">
+                chevron_right
+               </i>
+            </span>
+            <div class="div_clr"></div>
+          </div>
+          <div class="list_Option">
+            <img class="img_plac" src="../../assets/Icons_Flood.png" alt="roadside">
+            <div class="dis_inl mrg_top_10px">Pipe under </div>
+            <span class="flo_rgt mrg_top_10px">
+              <i class="material-icons">
+                chevron_right
+               </i>
+            </span>
+            <div class="div_clr"></div>
+          </div>
+          <div class="list_Option">
+            <img class="img_plac" src="../../assets/Icons_Flood.png" alt="roadside">
+            <div class="dis_inl mrg_top_10px">Overflow from bathtub</div>
+            <span class="flo_rgt mrg_top_10px">
+              <i class="material-icons">
+                chevron_right
+               </i>
+            </span>
+            <div class="div_clr"></div>
+          </div>
+          <div class="list_Option">
+            <img class="img_plac" src="../../assets/Icons_Flood.png" alt="roadside">
+            <div class="dis_inl mrg_top_10px">Sewer drainage</div>
+            <span class="flo_rgt mrg_top_10px">
+              <i class="material-icons">
+                chevron_right
+               </i>
+            </span>
+            <div class="div_clr"></div>
+          </div>
+          <div class="list_Option">
+            <img class="img_plac" src="../../assets/Icons_Flood.png" alt="roadside">
+            <div class="dis_inl mrg_top_10px">Snow on roof</div>
+            <span class="flo_rgt mrg_top_10px">
+              <i class="material-icons">
+                chevron_right
+               </i>
+            </span>
+            <div class="div_clr"></div>
+          </div>
+          <div class="list_Option">
+            <img class="img_plac" src="../../assets/Icons_Flood.png" alt="roadside">
+            <div class="dis_inl mrg_top_10px">Frozen pipe</div>
+            <span class="flo_rgt mrg_top_10px">
+              <i class="material-icons">
+                chevron_right
+               </i>
+            </span>
+            <div class="div_clr"></div>
           </div>
         </div>
       </div>
@@ -700,36 +731,37 @@
     <ng-container *ngIf="step===17">
      <div class="container-pg">
         <div class="pg-header">
-          <span>TBD</span>
+          <span>Let us see what all were damged</span>
         </div>
         <br>
-         <span class="help_text">Let us see what all were damged.</span>
-        <br>
-        <br>
+        <div class = "box-sha">
         <div class="row text-center">
               <div class="col-4 bg-hover" (click)="open(buildingmodal)">
               <div class="box-sha">
-                <img height="80%" width="80%" src="../../assets/Icons_Policy Holder.png" alt="First slide">
+                <img height="80%" width="80%" src="../../assets/Building.png" alt="First slide">
               </div>
               <br>
               <span>Building</span>
             </div>
-            <div class="col-4 bg-hover">
+            <div class="col-4 bg-hover" (click)="open(contentmodal)">
               <div class="box-sha">
-                <img height="80%" width="85%" src="../../assets/Agent Image.PNG" alt="First slide">
+                <img height="80%" width="85%" src="../../assets/Contents.png" alt="Second slide">
               </div>
               <br>
               <span>Content</span>
             </div>
-            <div class="col-4 bg-hover">
+            <div class="col-4 bg-hover" (click)="open(valuablemodal)">
               <div class="box-sha">
-                <img height="80%" width="80%" src="../../assets/Icons_Passenger.png" alt="First slide">
+                <img height="80%" width="86%" src="../../assets/Valulables.png" alt="Third slide">
               </div>
               <br>
               <span>Valulables</span>
             </div>
           </div>
-
+        </div>
+        <br>
+        <br>
+        <button type="button" class="btn btn-primary btn-block mg_15" (click)="nextPage()">Continue</button>
       </div>
     </ng-container>
       <div *ngIf="step===14">
@@ -831,17 +863,76 @@
       </ng-template>
       <ng-template #buildingmodal let-modal>
         <div class="modal-body">
-          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <img height='30px' width='30px' src="../../assets/close-01.png">
-          </button>
-          <br>
-      
-          <div class="text-center">
-            <p class="p-no-maring-bottom">Please Choose the Building damage.
+          <div class="text-center modal-header">
+            <p class="p-no-maring-bottom">Please choose all building damages
             </p>
-            
           </div>
+          <div class = "modal_checkbox box-sha">
+           <form [formGroup]="form" (ngSubmit)="submit('buildingdamages', modal)">
+              <div  *ngFor="let bdamage of form.controls.buildingdamages.controls; let i = index" class ="form-check checkbox_list_element">
+              <label formArrayName="buildingdamages"  class="form-check-label" >
+                <input type="checkbox" [formControlName]="i" class = "form-check-input" style="
+                  margin-left: -26px;" (change)="checkBoxInput($event, buildingdamages[i].name, 'buildingdamages')">
+                {{buildingdamages[i].name}}
+              </label>
+            </div>
+              <div *ngIf = "enableOtherText" class="form-group">
+                <input type="text" class="form-control other_textbox" placeholder="Type here" rows="3" [(ngModel)]="enableOtherText" name="enableOtherText">
+              </div>
+              <br>
+              <button [disabled]="!form.valid" class="btn btn-primary btn-block">OK</button>
+            </form>
+          </div> 
         </div>
       </ng-template>
+      <ng-template #contentmodal let-modal>
+        <div class="modal-body">
+          <div class="text-center modal-header">
+            <p class="p-no-maring-bottom">Please choose all content damages
+            </p>
+          </div>
+          <div class = "modal_checkbox box-sha">
+           <form [formGroup]="form" (ngSubmit)="submit('contentdamages',modal)">
+              <div  *ngFor="let bdamage of form.controls.contentdamages.controls; let i = index" class ="form-check checkbox_list_element">
+              <label formArrayName="contentdamages"  class="form-check-label" >
+                <input type="checkbox" [formControlName]="i" class = "form-check-input" style="
+                  margin-left: -26px;" (change)="checkBoxInput($event, contentdamages[i].name, 'contentdamages')">
+                {{contentdamages[i].name}}
+              </label>
+            </div>
+              <div *ngIf = "otherText" class="form-group">
+                 <input type="text" class="form-control other_textbox" placeholder="Type here" rows="3" [(ngModel)]="otherText" name="otherText">
+              </div>
+              <br>
+              <button [disabled]="!form.valid" class="btn btn-primary btn-block">OK</button>
+            </form>
+          </div> 
+        </div>
+      </ng-template>
+      <ng-template #valuablemodal let-modal>
+        <div class="modal-body">
+          <div class="text-center modal-header">
+            <p class="p-no-maring-bottom">Please select all valuable damages
+            </p>
+          </div>
+          <div class = "modal_checkbox box-sha">
+           <form [formGroup]="form" (ngSubmit)="submit('valuabledamages',modal)">
+              <div  *ngFor="let bdamage of form.controls.valuabledamages.controls; let i = index" class ="form-check checkbox_list_element">
+              <label formArrayName="valuabledamages"  class="form-check-label" >
+                <input type="checkbox" [formControlName]="i" class = "form-check-input" style="
+                  margin-left: -26px;" (change)="checkBoxInput($event, valuabledamages[i].name, 'valuabledamages')">
+                {{valuabledamages[i].name}}
+              </label>
+            </div>
+              <div *ngIf = "valuableOtherText" class="form-group">
+                 <input type="text" class="form-control other_textbox" placeholder="Type here" rows="3" [(ngModel)]="valuableOtherText" name="valuableOtherText">
+              </div>
+              <br>
+              <button [disabled]="!form.valid" class="btn btn-primary btn-block">OK</button>
+            </form>
+          </div> 
+        </div>
+      </ng-template>
+
 
        

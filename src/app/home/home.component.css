@@ -113,7 +113,6 @@
 }
 .modal-body{
     padding: 5%;
-    border: 2px solid blue;
 }
 
 .img_plac{
@@ -122,6 +121,7 @@
     margin-right: 10px;
     float: left;
 }
+
 .flo_lft{
     float: left;
 }
@@ -231,3 +231,46 @@ agm-map {
     width:100%;
     border: 0;
 }
+
+.img_size{
+    width: 50px;
+    height: 50px;
+    margin-right: 12px; 
+}
+
+.modal_checkbox {
+    padding-left: 50px;
+}
+
+.checkinput{
+    margin-left: 50px !important;
+    position: relative;
+}
+.checkbox_list_element{
+    border-bottom: 1px solid #F1EDED;
+    height: 50px;
+    width:100%;
+    padding-top: 15px;
+}
+.checkbox_list_element:nth-child(8) {
+    height: 50px;
+    width:100%;
+    border: 0;
+}
+
+.other_textbox{
+    position: absolute;
+    top: calc(100% - 150px);;
+    margin-left: 90px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 50%;
+    padding: 8px 8px;
+}
+
+.modal-header{
+    font-size: 110%;
+    font-weight: bold;
+}
+

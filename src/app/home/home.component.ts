@@ -6,7 +6,8 @@ import { SharedServiceService } from '../shared/shared-service.service';
 import CRC32 from 'crc-32/crc32.js';
 import { MapsAPILoader, MouseEvent } from '@agm/core';
 import { Router} from '@angular/router';
-
+import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn } from '@angular/forms';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -76,13 +77,34 @@ export class HomeComponent implements OnInit {
   dropdown_adressList: any;
   pg16no:boolean = false;
   pg16Continue: boolean = false;
+  form: FormGroup;
+  buildingdamages = [];
+  contentdamages = [];
+  enableOtherText:boolean = false;
+  otherText: boolean = false;
+  valuableOtherText: boolean = false;
 
   @ViewChild('search')
   public searchElementRef: ElementRef;
 
 
   constructor(private sharedServiceService:SharedServiceService,private modalService: NgbModal, private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone, private router: Router) {}
+    private ngZone: NgZone, private router: Router, private formBuilder: FormBuilder) {
+    this.form = this.formBuilder.group({
+      buildingdamages: new FormArray([]),
+      contentdamages: new FormArray([]),
+      valuabledamages : new FormArray([])
+    });
+
+    // of(this.getOrders()).subscribe(orders => {
+    //   this.orders = orders;
+    //   this.addCheckboxes();
+    // });
+    this.buildingdamages = this.getBuildingdamages();
+    this.contentdamages = this.getContentdamges();
+    this.valuabledamages = this.getValuabledamages();
+    this.addCheckboxes();
+  }
 
   ngOnInit() {
     this.carsDropDown = [
@@ -91,7 +113,9 @@ export class HomeComponent implements OnInit {
       "Honda Civic 2016-FWV76"
     ];
     this.dropdown_adressList = [
-      "261 South Helen St.Mount Juliet, TN 37122"
+      "261 South Helen St.Mount Juliet, TN 37122",
+      "230 North Helen St.Mount Juliet, TN 37126",
+      "236 East Helen St.Mount Juliet, TN 37125"
     ]
   }
 
@@ -409,4 +433,106 @@ export class HomeComponent implements OnInit {
       this.step = 15;
     }
   }
+
+  getBuildingdamages() {
+    return [
+      { name: 'Air Conditioner/Heater' },
+      { name: 'Building (Extension)' },
+      {name: 'Carpets'},
+      { name: 'Ceiling' },
+      { name: 'Window' },
+      { name: 'Wall' },
+      { name: 'Parking lot' },
+      { name: 'Other' }
+    ];
+  }
+
+  getContentdamges () {
+     return [
+      { name: 'Appliances' },
+      { name: 'Computers and Electronics' },
+      { name: 'Furniture(Interior & Exterior)' },
+      { name: 'Other Equipments' },
+      { name: 'Signs' },
+      { name: 'Tools' },
+      { name: 'Other' }
+    ];
+  }
+
+  getValuabledamages () {
+     return [
+      { name: 'Atm cards/Credi cards' },
+      { name: 'cash' },
+      { name: 'Gold/Silver/Other precious metals' },
+      { name: 'Jewellery' },
+      { name: 'Other' }
+    ];
+  }
+
+  submit(type, modal) {
+    console.log(modal);
+    if (type === "buildingdamages") {
+      const selectedBdamages = this.form.value.buildingdamages
+      .map((v, i) => v ? this.buildingdamages[i].name : null)
+      .filter(v => ((v !== name)&& (v !== null)));   
+    } else if(type === "contentdamages") {
+      const selectedCdamages = this.form.value.contentdamages
+      .map((v, i) => v ? this.contentdamages[i].name : null)
+      .filter(v => ((v !== name)&& (v !== null))); 
+    } else {
+      const selectedCdamages = this.form.value.valuabledamages
+      .map((v, i) => v ? this.valuabledamages[i].name : null)
+      .filter(v => ((v !== name)&& (v !== null)));
+    }
+     modal.dismiss('Cross click');
+  }
+
+  addCheckboxes() {
+    this.buildingdamages.map((o, i) => {
+      const control = new FormControl(i === 0); // if first item set to true, else false
+      (this.form.controls.buildingdamages as FormArray).push(control);
+    });
+
+    this.contentdamages.map((o, i) => {
+      const control = new FormControl(i === 0); // if first item set to true, else false
+      (this.form.controls.contentdamages as FormArray).push(control);
+    });
+
+    this.valuabledamages.map((o, i) => {
+      const control = new FormControl(i === 0); // if first item set to true, else false
+      (this.form.controls.valuabledamages as FormArray).push(control);
+    });
+  }
+
+  checkBoxInput(e, label, type) {
+    if (label === "Other" && e.target.checked) {
+      if (type === "buildingdamages") {
+        this.enableOtherText = true;
+      } else if (type === "contentdamages") {
+        this.otherText = true;
+      } else {
+        this.valuableOtherText = true;
+      }
+    } else if (label === "Other") {
+      if (type === "buildingdamages") {
+        this.enableOtherText = false;
+      } else if (type === "contentdamages") {
+        this.otherText = false;
+      } else {
+        this.valuableOtherText = false;
+      }
+    }
+  }
+}
+
+function minSelectedCheckboxes(min = 1) {
+  const validator: ValidatorFn = (formArray: FormArray) => {
+    const totalSelected = formArray.controls
+      .map(control => control.value)
+      .reduce((prev, next) => next ? prev + next : prev, 0);
+
+    return totalSelected >= min ? null : { required: true };
+  };
+
+  return validator;
 }
