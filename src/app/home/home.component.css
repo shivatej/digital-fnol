@@ -79,6 +79,7 @@
     display:inline-block;
     overflow: hidden;
     width: 70%;
+    padding-top: 6px;
 }
 
 .mrg_top_10px{
