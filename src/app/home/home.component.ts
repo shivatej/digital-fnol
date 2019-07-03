@@ -84,6 +84,7 @@ export class HomeComponent implements OnInit {
   enableOtherText:boolean = false;
   otherText: boolean = false;
   valuableOtherText: boolean = false;
+  propertyClaim: boolean = false
 
   @ViewChild('search')
   public searchElementRef: ElementRef;
@@ -193,7 +194,11 @@ export class HomeComponent implements OnInit {
         this.secondImgUrl['carImage'] = event.target;
         break;
     }
-    this.step = 11;
+    if (this.step !== 20) {
+      this.step = 11;
+    } else {
+      this.step = 20;
+    }
     const data = event.target.result;
     this.secondImageSrc = btoa(data);
     this.secondImageData = 'data:image/png;base64,' + this.secondImageSrc;
@@ -258,16 +263,21 @@ export class HomeComponent implements OnInit {
     }
 
   uploadDoc() {
-    this.isLoading = true;
-    this.step = 14;
-    this.sharedServiceService.uploadDocument(this.imageSrc, this.imageChkSum).then((data: any) => {
-    this.responseData = data;
-    this.scores = this.responseData.scores;
-    this.elemtArry = this.createElemntsArray(this.responseData.elements);
-    console.log("success..", this.responseData.scores[0].sco_minCost);
-    this.isLoading = false;
-      //window.open("https://www.google.com", "_blank");
-    }, (err) => {  });
+    if (this.step !== 20) {
+      this.isLoading = true;
+      this.step = 14;
+      this.sharedServiceService.uploadDocument(this.imageSrc, this.imageChkSum).then((data: any) => {
+      this.responseData = data;
+      this.scores = this.responseData.scores;
+      this.elemtArry = this.createElemntsArray(this.responseData.elements);
+      console.log("success..", this.responseData.scores[0].sco_minCost);
+      this.isLoading = false;
+        //window.open("https://www.google.com", "_blank");
+      }, (err) => {  });
+    } else {
+      this.step = 18;
+    }
+    
    }
 
   open(content) {
@@ -422,8 +432,7 @@ export class HomeComponent implements OnInit {
   }
 
   toggleAdressMenu() {
-   //this.menuList = !this.menuList;
-   this.menuList = false;
+   this.menuList = !this.menuList;
    this.listMenu = false;
   }
 
@@ -433,6 +442,15 @@ export class HomeComponent implements OnInit {
     } else if (this.menuList) {
       this.step = 15;
     }
+  }
+
+  page5Continue (type) { 
+    if (type === "car") { 
+      this.menuList = false;
+    } else {
+      this.listMenu = false;
+    }
+    this.pg3Continue= true;
   }
 
   getBuildingdamages() {
@@ -503,6 +521,11 @@ export class HomeComponent implements OnInit {
       const control = new FormControl(i === 0); // if first item set to true, else false
       (this.form.controls.valuabledamages as FormArray).push(control);
     });
+  }
+
+  propertySubmittion () {
+    this.step = 12;
+    this.propertyClaim = true;
   }
 
   checkBoxInput(e, label, type) {

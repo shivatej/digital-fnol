@@ -252,7 +252,7 @@ agm-map {
     width:100%;
     padding-top: 15px;
 }
-.checkbox_list_element:last-of-type  {
+.checkbox_list_element:last-of-type,  .list_Option:last-of-type {
     height: 50px;
     width:100%;
     border: 0;
