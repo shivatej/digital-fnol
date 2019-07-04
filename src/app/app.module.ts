@@ -10,12 +10,11 @@ import { NgbDateCustomParserFormatter } from "./shared/date-formatter.service";
 import { NgbDateParserFormatter } from "@ng-bootstrap/ng-bootstrap";
 import { AgmCoreModule } from '@agm/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
-  {path: 'home', component: DashboardComponent},
-  {path: '', component: DashboardComponent, pathMatch: 'full'},
+  {path: 'home', component: AppComponent},
+  {path: '', component: AppComponent, pathMatch: 'full'},
   {path: '**', redirectTo: '/home', pathMatch: 'full'} 
 ];
 
@@ -24,8 +23,7 @@ const appRoutes: Routes = [
     AppComponent,
     HeaderComponent,
     PolicyComponent,
-    HomeComponent,
-    DashboardComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule ,

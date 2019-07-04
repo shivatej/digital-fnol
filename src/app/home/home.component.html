@@ -536,6 +536,7 @@
         <button type="button" *ngIf="userSelectReport == 'police report'" class="btn btn-primary btn-block" (click)="step = 9">Next</button>
       </div>
     </ng-container>
+    <!-- Step 12 -->
     <ng-container *ngIf="step===12">
       <div class="container-pg">
         <div class="submission-header">
@@ -581,6 +582,12 @@
           </div>
           <br>
           <br>
+          <div *ngIf = "propertyClaim" (click)="open(help)">
+            <i class="material-icons help_mat" data-md-tooltip="Tips to avoid home issues">
+              help
+            </i>
+
+          </div>
           <button type="button" class="btn btn-primary btn-block" (click)="step = 1;">OK</button>
           <!---<button type="button" class="btn btn-default btn-block round-default">Track Your Claim</button>
           <br>
@@ -1047,7 +1054,7 @@
                 <input type="text" class="form-control other_textbox" placeholder="Type here">
               </div>
               <br>
-              <button [disabled]="!form.valid" class="btn btn-primary btn-block">OK</button>
+              <button class="btn btn-primary btn-block">OK</button>
             </form>
           </div> 
         </div>
@@ -1071,7 +1078,7 @@
                  <input type="text" class="form-control other_textbox" placeholder="Type here">
               </div>
               <br>
-              <button [disabled]="!form.valid" class="btn btn-primary btn-block">OK</button>
+              <button  class="btn btn-primary btn-block">OK</button>
             </form>
           </div> 
         </div>
@@ -1095,9 +1102,29 @@
                  <input type="text" class="form-control other_textbox" placeholder="Type here">
               </div>
               <br>
-              <button [disabled]="!form.valid" class="btn btn-primary btn-block">OK</button>
+              <button class="btn btn-primary btn-block">OK</button>
             </form>
           </div> 
+        </div>
+      </ng-template>
+      <ng-template #help let-modal>
+        <div class="modal-body">
+          <div class="pg-header text-center">
+            <p class="p-no-maring-bottom">Tips to keep your home safe
+            </p>
+          </div>
+            <div class="help_content">              
+              <ul>
+                <li>Move your car to a safe location </li><br>
+                <li>Determine if there are any injuries resulting in the incident</li><br>
+                <li>Call 911 and follow instructions from the police</li><br>
+                <li>Get names and information from the other involved in the incident </li><br>
+                <li>Take pictures of license plate of vehicle involved, damages and objects at the scene of the accident</li><br>
+                <li>Keep receipts of all the repairs, parking fees and any related expenses that are incurred </li><br>
+              </ul>
+            </div>
+            <br>
+              <button type="button" class="btn btn-primary btn-block" (click)="modal.dismiss('Save click')">OK</button>
         </div>
       </ng-template>
 
