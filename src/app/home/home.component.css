@@ -271,3 +271,9 @@ agm-map {
     font-weight: bold;
 }
 
+.dis_inline {
+    display:inline-block;
+    width: 70%;
+    padding-top: 6px;
+}
+
