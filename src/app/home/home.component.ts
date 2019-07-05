@@ -508,17 +508,17 @@ export class HomeComponent implements OnInit {
 
   addCheckboxes() {
     this.buildingdamages.map((o, i) => {
-      const control = new FormControl(i === 0); // if first item set to true, else false
+      const control = new FormControl(); // if first item set to true, else false
       (this.form.controls.buildingdamages as FormArray).push(control);
     });
 
     this.contentdamages.map((o, i) => {
-      const control = new FormControl(i === 0); // if first item set to true, else false
+      const control = new FormControl(); // if first item set to true, else false
       (this.form.controls.contentdamages as FormArray).push(control);
     });
 
     this.valuabledamages.map((o, i) => {
-      const control = new FormControl(i === 0); // if first item set to true, else false
+      const control = new FormControl(); // if first item set to true, else false
       (this.form.controls.valuabledamages as FormArray).push(control);
     });
   }
