@@ -102,8 +102,8 @@ export class SharedServiceService {
     };
 
     return new Promise((resolve, reject) => {
-      this.http.post(url, reqData).subscribe((response: any) => {
-      //this.http.post(proxyurl+url, reqData).subscribe((response: any) => {
+      //this.http.post(url, reqData).subscribe((response: any) => {
+      this.http.post(proxyurl+url, reqData).subscribe((response: any) => {
         console.log("Test....", response);
 
         resolve(response);
