@@ -185,7 +185,7 @@
             <img height="10%" width="10%" src="../../assets/Icons_Property.png" alt="First slide"> &nbsp; &nbsp;
             <div>
               <span><b>Policy Number</b></span>
-              <p>{{policyNumber}}</p>
+              <p>{{dropdown_adressList[0]}}</p>
               <!-- <span class="flo_rgt">
                   <i class="material-icons">
                     expand_more
@@ -195,7 +195,7 @@
           </div>
         </div>
         <div class="dropdown_list box-sha" *ngIf="menuList">
-          <div class="dropdown_list_element" (click)="page5Continue('property')" radio= "true" *ngFor = "let value of dropdown_adressList">
+          <div class="dropdown_list_element_no_bottom" (click)="page5Continue('property')" radio= "true" *ngFor = "let value of dropdown_adressList">
             <div class="row m_10">
               <div><input type="radio" name="radio"> </div>&nbsp; &nbsp;
               <div>
@@ -366,9 +366,9 @@
           <div class="row">
             <div id="input_container">
               <input type="text" [(ngModel)]="zipCode" id="input" (keydown)="onKeydown($event)" #search autocomplete="off" [value]="address">
-              <i class="material-icons" id="input_img">
+             <!--  <i class="material-icons" id="input_img">
                   location_on
-              </i>
+              </i> -->
             </div>
             <div (click)="open(content)">
               <i class="material-icons">
@@ -546,7 +546,7 @@
         <br>
         <br>
         <button type="button" class="btn btn-default btn-block round-default" (click)="carOrPropertyPolicy()">Go back and review</button>
-        <button type="button" class="btn btn-primary btn-block" (click)="nextPage()">Submit</button>
+        <button type="button" class="btn btn-primary btn-block" (click)="finalSubmit()">Submit</button>
       </div>
     </ng-container>
      <ng-container *ngIf="step===13">
@@ -571,7 +571,8 @@
             </div>
             <br>
             <div class="sub-num">
-              <span>PPA-456227</span>
+              <span *ngIf="propertyClaim">PP-{{claimNumber}}</span>
+              <span *ngIf="!propertyClaim">PPA-{{claimNumber}}</span>
             </div>
           <br>
           <br>
@@ -603,10 +604,10 @@
           <button type="button" class="btn btn-primary btn-block" (click)="step = 1;">Home</button>---->
         </div>
       </ng-container>
-      <div *ngIf="step===15">
+      <ng-container *ngIf="step===15">
         <div class="container-pg">
           <div class="pg-header">
-            <span>Sorry to hear about the incident what happend?</span>
+            <span>Sorry to hear about the incident, What happened?</span>
           </div>
           <br>
           <br>
@@ -659,8 +660,53 @@
             </div>
           </div>
         </div>
+      </ng-container>  
+    <!-- Step 16 -->
+      <ng-container *ngIf="step===16"> 
+      <div class="container-pg">
+        <div class="pg-header">
+          <span>Give us few more details</span>
+        </div>
+        <br>
+        <br>
+        <div>
+          <div>
+            <b>
+            When did this happen?
+            </b>
+            <br>
+          </div>
+         <div>
+            <form class="form-inline">
+              <div class="form-group">
+                <div class="input-group">
+                  <input class="form-control" placeholder="MM/DD/YYYY" name="dp" [(ngModel)]="propertyModel" ngbDatepicker
+                    #d="ngbDatepicker">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary calendar pd_bt_0" (click)="d.toggle()" (ngModelChange)="checkAccDetails()" type="button">
+                        <i class="material-icons">
+                            calendar_today
+                        </i>         
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <br>
+            <div>
+               <div>
+                <ngb-timepicker [(ngModel)]="propertytime" [meridian]=true mousewheel = true  (ngModelChange)="checkAccDetails()"></ngb-timepicker>
+               </div>
+            </div>
+          </div>
+          <br><br><br><br>
+          <button type="button" class="btn btn-default btn-block round-default" *ngIf="!pg16no">Continue</button>
+          <button type="button" class="btn btn-primary btn-block" *ngIf="pg16no" (click)="nextPage()" >Continue</button>
+        </div>
       </div>
-    <ng-container *ngIf= "step===16">
+    </ng-container>
+  <!--   Step 17 -->
+    <ng-container *ngIf= "step=== 17">
       <div class="container-pg">
          <div class="pg-header">
           <span>How did this happen? Tell us more...</span>
@@ -668,10 +714,10 @@
         </div>
         <br>
         <div>
-          <span><b>Anyone living in this home?</b></span> &nbsp;
+          <span><b>Is this home in livable condition</b></span> &nbsp;
           <button type="button" class="btn btn-default round-default">Yes</button>&nbsp;
-          <button type="button" class="btn btn-default round-default" *ngIf="!pg16no" (click)="pg16no = true">No</button>
-          <button type="button" class="btn btn-primary " *ngIf="pg16no">No</button>
+          <button type="button" class="btn btn-default round-default" *ngIf="!pg17no" (click)="pg17no = true">No</button>
+          <button type="button" class="btn btn-primary " *ngIf="pg17no">No</button>
         </div>
         <br>
         <div class="box-sha">
@@ -757,11 +803,22 @@
           </div>
         </div>
       </div>
-    </ng-container>
-    <ng-container *ngIf="step===17">
+    </ng-container>   
+    <!-- Step 18 -->
+    <ng-container *ngIf="step===18">
      <div class="container-pg">
         <div class="pg-header">
-          <span>Let us see what all were damged</span>
+          <span>Let us know what all got damaged</span>
+        </div>
+        <br>
+         <span class="help_text">Under each category, please choose all damages</span>
+         <br>
+        <br>
+        <div>
+          <span><b>Are there any damages to other property?</b></span> &nbsp;
+          <button type="button" class="btn btn-default round-default">Yes</button>&nbsp;
+          <button type="button" class="btn btn-default round-default" *ngIf="!pg18no" (click)="pg18no = true">No</button>
+          <button type="button" class="btn btn-primary " *ngIf="pg18no">No</button>
         </div>
         <br>
         <div class = "box-sha">
@@ -794,8 +851,8 @@
         <button type="button" class="btn btn-primary btn-block mg_15" (click)="nextPage()">Continue</button>
       </div>
     </ng-container>
-    <!-- Step 18 -->
-    <ng-container *ngIf="step===18">
+    <!-- Step 19 -->
+    <ng-container *ngIf="step===19">
       <div class="container-pg">
         <div class="pg-header"><span>Do you have any other details to add?</span></div>
         <span class="help_text">We encourage you to provide as much details as possible for a quicker resolution</span>
@@ -803,7 +860,7 @@
         <br>
         <div class="dropdown_button box-sha" (click)="userSelectReport='car Image'; nextPage(); uploadedcar = true">
           <div style="height:35px">
-            <span>Images of damages</span>
+            <span>Images of your damages</span>
              <span style="float:right">
               <i *ngIf="!uploadedcar" class="material-icons">
                 add
@@ -817,7 +874,7 @@
         <br>
         <div class="dropdown_button box-sha" (click)="userSelectReport='3rd party'; nextPage(); uploaded3rdparty = true; ">
           <div style="height:35px">
-            <span>Details of the other party</span>
+            <span>Details of the other party damages</span>
             <span style="float:right">
               <i *ngIf="!uploaded3rdparty" class="material-icons">
                 add
@@ -828,9 +885,10 @@
             </span>
           </div>
         </div>
+        <br>
         <div class="dropdown_button box-sha" (click)="userSelectReport='police report'; nextPage();uploadedpolice = true;">
           <div style="height:35px">
-            <span>Police report</span>
+            <span>Police/Fire report</span>
             <span style="float:right">
               <i *ngIf="!uploadedpolice" class="material-icons">
                 add
@@ -846,8 +904,8 @@
         <button type="button" class="btn btn-primary btn-block" (click)="propertySubmittion()">Next</button>
       </div>
     </ng-container>
-    <!-- Step 19 -->
-    <ng-container *ngIf="step===19">
+    <!-- Step 20 -->
+    <ng-container *ngIf="step===20">
       <div class="container-pg">
         <div class="pg-header">
           <span *ngIf="userSelectReport=='car Image'">Images of your damges</span>
@@ -892,8 +950,8 @@
         <button type="button" class="btn btn-primary btn-block mg_15" (click)="nextPage()">Continue</button>
       </div>
     </ng-container>
-    <!-- Step 20 -->
-    <ng-container *ngIf="step===20">
+    <!-- Step 21 -->
+    <ng-container *ngIf="step===21">
       <div class="container-pg">
         <div class="pg-header">
           <span *ngIf="userSelectReport=='car Image'">Images of Your Damages</span>
@@ -1023,8 +1081,7 @@
           <br>
       
           <div class="text-center">
-            <p class="p-no-maring-bottom">Please click on location icon to select the icon from the map where incident
-              occured
+            <p class="p-no-maring-bottom">Please drag to the loaction on the map.
             </p>
             <div class="optional_text"><span>or</span></div>
             <p class="p-no-maring-bottom">
@@ -1038,7 +1095,7 @@
       <ng-template #buildingmodal let-modal>
         <div class="modal-body">
           <div class="text-center modal-header">
-            <p class="p-no-maring-bottom">Please choose all building damages
+            <p class="p-no-maring-bottom">Please choose all damages to the building
             </p>
           </div>
           <div class = "modal_checkbox box-sha">
@@ -1062,7 +1119,7 @@
       <ng-template #contentmodal let-modal>
         <div class="modal-body">
           <div class="text-center modal-header">
-            <p class="p-no-maring-bottom">Please choose all content damages
+            <p class="p-no-maring-bottom">Please choose all contnent related damages
             </p>
           </div>
           <div class = "modal_checkbox box-sha">
@@ -1086,7 +1143,7 @@
       <ng-template #valuablemodal let-modal>
         <div class="modal-body">
           <div class="text-center modal-header">
-            <p class="p-no-maring-bottom">Please select all valuable damages
+            <p class="p-no-maring-bottom">Please choose valuable related damages
             </p>
           </div>
           <div class = "modal_checkbox box-sha">

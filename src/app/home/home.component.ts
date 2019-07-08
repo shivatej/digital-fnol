@@ -75,7 +75,6 @@ export class HomeComponent implements OnInit {
   menuList: boolean = false;
   dropdown_adressList: any;
   pg16no:boolean = false;
-  pg16Continue: boolean = false;
   form: FormGroup;
   buildingdamages = [];
   contentdamages = [];
@@ -83,7 +82,12 @@ export class HomeComponent implements OnInit {
   enableOtherText:boolean = false;
   otherText: boolean = false;
   valuableOtherText: boolean = false;
-  propertyClaim: boolean = false
+  propertyClaim: boolean = false;
+  pg18no:boolean = false;
+  pg17no:boolean = false;
+  propertytime: any;
+  propertyModel:any;
+  claimNumber: number;
 
   @ViewChild('search')
   public searchElementRef: ElementRef;
@@ -114,9 +118,7 @@ export class HomeComponent implements OnInit {
       "Honda Civic 2016-FWV76"
     ];
     this.dropdown_adressList = [
-      "261 South Helen St.Mount Juliet, TN 37122",
-      "230 North Helen St.Mount Juliet, TN 37126",
-      "236 East Helen St.Mount Juliet, TN 37125"
+      "261 South Helen, TN 37122",
     ]
     this.enableMap();
   }
@@ -194,10 +196,10 @@ export class HomeComponent implements OnInit {
         this.secondImgUrl['carImage'] = event.target;
         break;
     }
-    if (this.step !== 20) {
+    if (this.step !== 21) {
       this.step = 11;
     } else {
-      this.step = 20;
+      this.step = 21;
     }
     const data = event.target.result;
     this.secondImageSrc = btoa(data);
@@ -263,7 +265,7 @@ export class HomeComponent implements OnInit {
     }
 
   uploadDoc() {
-    if (this.step !== 20) {
+    if (this.step !== 21) {
       this.isLoading = true;
       this.step = 14;
       this.sharedServiceService.uploadDocument(this.imageSrc, this.imageChkSum).then((data: any) => {
@@ -275,7 +277,7 @@ export class HomeComponent implements OnInit {
         //window.open("https://www.google.com", "_blank");
       }, (err) => {  });
     } else {
-      this.step = 18;
+      this.step = 19;
     }
     
    }
@@ -309,10 +311,16 @@ export class HomeComponent implements OnInit {
     }
   }
   checkAccDetails(){
-    if( this.time && this.model && this.incidentDesc){
+    if( this.time && this.model){
        this.createdDate = this.model.year + "-"+this.model.month +"-"+ this.model.day+"T"+this.time.hour +":"+this.time.minute+":"+this.time.second;
       this.pg6Continue = true;
     }
+
+    if( this.propertytime && this.propertyModel){
+       this.createdDate = this.propertyModel.year + "-"+this.propertyModel.month +"-"+ this.propertyModel.day+"T"+this.propertytime.hour +":"+this.propertytime.minute+":"+this.propertytime.second;
+      this.pg16no = true;
+    }
+
   }
 
   checkAccidentDetails(){
@@ -359,22 +367,20 @@ export class HomeComponent implements OnInit {
   enableMap() {
       this.longitude = -87.952377;
       this.latitude = 41.840794;
-      this.zoom = 8;
+      this.zoom = 12;
   }
 
    // Get Current Location Coordinates
-  private setCurrentLocation() {
+ /* private setCurrentLocation() {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
         this.longitude = -87.952377;
         this.latitude = 41.840794;
-        this.zoom = 8;
+        this.zoom = 12;
         this.getAddress(this.latitude, this.longitude);
       });
-    }
-     
-    
-  }
+    }   
+  } */
 
 
   markerDragEnd($event: MouseEvent) {
@@ -475,8 +481,8 @@ export class HomeComponent implements OnInit {
 
   getValuabledamages () {
      return [
-      { name: 'Atm cards/Credi cards' },
-      { name: 'cash' },
+      { name: 'Atm cards/Credit cards' },
+      { name: 'Cash' },
       { name: 'Gold/Silver/Other precious metals' },
       { name: 'Jewellery' },
       { name: 'Other' }
@@ -541,6 +547,11 @@ export class HomeComponent implements OnInit {
         this.valuableOtherText = false;
       }
     }
+  }
+
+  finalSubmit() {
+    this.claimNumber = Math.floor(100000 + Math.random() * 900000)
+    this.nextPage();
   }
 }
 

@@ -2,6 +2,7 @@
     margin: 0;
     padding : 0;
     border: none;
+    overflow-x:hidden;
 }
 .container-body{
     margin: 0 auto;
@@ -70,7 +71,6 @@
 } */
 .list_Option_no_border{
     width: 100%;
-    height: 70px;
 }
 .flo_rgt{
     float: right;
@@ -317,3 +317,22 @@ agm-map {
  content:"\2713\0020";
  padding-right: 10px;
 }*/
+
+@media (max-width: 420px)   {
+    .second_image_upload_extra {
+        height: 7.1em;
+        margin-top: -110px;
+        position: relative;
+        margin-left: calc(100% - 160px);
+    } 
+}
+
+
+@media  (min-width: 552px) and (max-width: 767px) {
+  .second_image_upload_extra {
+    position: relative;
+    margin-left: calc(100% - 265px);
+    height: 11.1em;
+    margin-top: -175px;
+  }
+}
