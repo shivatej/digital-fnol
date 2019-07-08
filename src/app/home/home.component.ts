@@ -64,7 +64,6 @@ export class HomeComponent implements OnInit {
   elemtArry:any;
   latitude: number;
   longitude: number;
-  mapselected: boolean = false;
   zoom: number;
   private geoCoder;
   secondImage: boolean = false;
@@ -119,6 +118,7 @@ export class HomeComponent implements OnInit {
       "230 North Helen St.Mount Juliet, TN 37126",
       "236 East Helen St.Mount Juliet, TN 37125"
     ]
+    this.enableMap();
   }
 
   secondImgInputChanges(e){
@@ -357,12 +357,9 @@ export class HomeComponent implements OnInit {
   }
 
   enableMap() {
-    this.mapselected = !this.mapselected;
-    if (this.mapselected) {
       this.longitude = -87.952377;
       this.latitude = 41.840794;
       this.zoom = 8;
-     }
   }
 
    // Get Current Location Coordinates
@@ -404,8 +401,7 @@ export class HomeComponent implements OnInit {
   }
 
   onKeydown(event) {
-    if (event.key === "Enter") {
-    this.enableMap();
+   
     this.mapsAPILoader.load().then(() => {
         this.geoCoder = new google.maps.Geocoder;
           let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
@@ -428,7 +424,6 @@ export class HomeComponent implements OnInit {
           });
         });
       });
-    }
   }
 
   toggleAdressMenu() {
@@ -549,7 +544,7 @@ export class HomeComponent implements OnInit {
   }
 }
 
-function minSelectedCheckboxes(min = 1) {
+/*function minSelectedCheckboxes(min = 1) {
   const validator: ValidatorFn = (formArray: FormArray) => {
     const totalSelected = formArray.controls
       .map(control => control.value)
@@ -559,4 +554,4 @@ function minSelectedCheckboxes(min = 1) {
   };
 
   return validator;
-}
+}*/

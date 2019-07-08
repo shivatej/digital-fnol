@@ -366,7 +366,7 @@
           <div class="row">
             <div id="input_container">
               <input type="text" [(ngModel)]="zipCode" id="input" (keydown)="onKeydown($event)" #search autocomplete="off" [value]="address">
-              <i class="material-icons" id="input_img"  (click)="enableMap()" >
+              <i class="material-icons" id="input_img">
                   location_on
               </i>
             </div>
@@ -375,7 +375,7 @@
                 info
               </i>
             </div>
-             <div class="col-9" *ngIf="mapselected" style="padding-top: 15px" >
+             <div class="col-9" style="padding-top: 15px" >
               <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
                 <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
                   (dragEnd)="markerDragEnd($event)"></agm-marker>
