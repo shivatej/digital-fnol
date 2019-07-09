@@ -88,7 +88,8 @@ export class HomeComponent implements OnInit {
   propertytime: any;
   propertyModel:any;
   claimNumber: number;
-
+  propertyIncDesc:string;
+  
   @ViewChild('search')
   public searchElementRef: ElementRef;
 
@@ -299,7 +300,7 @@ export class HomeComponent implements OnInit {
     if(this.step === 14) {
       this.step = 11;
     } else if (this.step === 15) {
-        this.step = 5;
+        this.step = 4;
     } else {
         this.step--;
     }
@@ -437,21 +438,29 @@ export class HomeComponent implements OnInit {
    this.listMenu = false;
   }
 
-  carOrPropertyPolicy() {
+  carOrPropertyPolicy(pageno) {
     if (this.listMenu) {
-      this.step = 6;
+      if (pageno === "step4") {
+        this.step = 5;
+      } else {
+        this.step = 6;
+      }
     } else if (this.menuList) {
       this.step = 15;
     }
   }
 
-  page5Continue (type) { 
+  page4Continue (type, i) { 
     if (type === "car") { 
       this.menuList = false;
     } else {
+      this.menuList = true;
       this.listMenu = false;
     }
-    this.pg3Continue= true;
+    if (i) {
+      i.checked = true;
+    }  
+    this.pg3Continue= true; 
   }
 
   getBuildingdamages() {
@@ -490,7 +499,6 @@ export class HomeComponent implements OnInit {
   }
 
   submit(type, modal) {
-    console.log(modal);
     if (type === "buildingdamages") {
       const selectedBdamages = this.form.value.buildingdamages
       .map((v, i) => v ? this.buildingdamages[i].name : null)

@@ -44,6 +44,7 @@
     border-bottom: 1px solid #F1EDED;
     height: 50px;
     width:100%;
+    cursor: pointer;
 }
 .dropdown_list_element_no_bottom{
     height: 50px;
@@ -262,7 +263,7 @@ agm-map {
     position: absolute;
     top: calc(100% - 149px);;
     margin-left: 90px;
-    width: 50%;
+    width: 40%;
     padding: 8px 8px;
 }
 
@@ -277,10 +278,10 @@ agm-map {
     padding-top: 6px;
 }
 .help_mat {
-    position: absolute;
-    margin-left: -38px;
-    bottom: 9px;
     font-size: 35px;
+    margin-left: 150px;
+    padding-bottom: 30px;
+    cursor: pointer;
 }
 
 [data-md-tooltip]:before {
@@ -335,4 +336,19 @@ agm-map {
     height: 11.1em;
     margin-top: -175px;
   }
+}
+
+@media screen and (max-width: 768px) {
+  .help_mat {
+     margin-left: 10px;
+  }
+}
+.helpicn {
+    position: absolute;
+    margin-bottom: 10px;
+    bottom: 69px;
+    padding-left: 10px;
+}
+input[type="radio"] {
+   opacity: 0;
 }

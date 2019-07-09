@@ -128,24 +128,8 @@
         <button type="button" class="btn btn-primary btn-block" *ngIf="pg2PolicyClick" (click)="checkForPolicyNum()">Find My Policy</button>
       </div>
     </ng-container>
+    <!-- Step 4 -->
     <ng-container *ngIf="step===4">
-      <div class="container-pg">
-        <div class="pg-header"><span>Few Safety checks before filing a claim</span></div>
-        <br>
-        <br>
-          <ul>
-            <li>Move your car to a safe location </li><br>
-            <li>Determine if there are any injuries resulting in the incident</li><br>
-            <li>Call 911 and follow instructions from the police</li><br>
-            <li>Get names and information from the other involved in the incident </li><br>
-            <li>Take pictures of license plate of vehicle involved, damages and objects at the scene of the accident</li><br>
-            <li>Keep receipts of all the repairs, parking fees and any related expenses that are incurred </li><br>
-          </ul>
-        <br>
-        <button type="button" class="btn btn-primary btn-block" (click)="nextPage()">Continue with filing the claim</button>
-      </div>
-    </ng-container>
-    <ng-container *ngIf="step===5">
       <div class="container-pg">
         <div class="pg-header">
           <span>Choose the policy to file a claim</span>
@@ -169,18 +153,20 @@
           </div>
         </div>
         <div class="dropdown_list box-sha" *ngIf="listMenu">
-          <div class="dropdown_list_element" (click)="page5Continue('car')" radio= "true" *ngFor = "let value of carsDropDown">
+          <div class="dropdown_list_element" (click)="page4Continue('car', i)" *ngFor = "let item of carsDropDown; let i = index;" [style.background-color]="i.checked ? '#dee2e6':'' ">
             <div class="row m_10">
-              <div><input type="radio" name="radio"> </div>&nbsp; &nbsp;
               <div>
-                <p>{{value}}</p>
+                <input  #i type="radio" name="radio"> 
+              </div>&nbsp; &nbsp;
+              <div style="margin-left: -15px;">
+                {{item}}
               </div>
             </div>
           </div>
         </div>
         <br>
         <div class="dropdown_button box-sha">
-          <div class="row"  (click)="toggleAdressMenu()">
+          <div class="row"  (click)="page4Continue('property')">
             &nbsp; &nbsp;
             <img height="10%" width="10%" src="../../assets/Icons_Property.png" alt="First slide"> &nbsp; &nbsp;
             <div>
@@ -194,7 +180,7 @@
             </div>
           </div>
         </div>
-        <div class="dropdown_list box-sha" *ngIf="menuList">
+        <!-- <div class="dropdown_list box-sha" *ngIf="menuList">
           <div class="dropdown_list_element_no_bottom" (click)="page5Continue('property')" radio= "true" *ngFor = "let value of dropdown_adressList">
             <div class="row m_10">
               <div><input type="radio" name="radio"> </div>&nbsp; &nbsp;
@@ -203,14 +189,33 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <br>
         <br>
         <br>
         <button type="button" class="btn btn-default btn-block round-default" *ngIf="!pg3Continue">Continue</button>
-        <button type="button" class="btn btn-primary btn-block" *ngIf="pg3Continue" (click)="carOrPropertyPolicy()">Continue</button>
+        <button type="button" class="btn btn-primary btn-block" *ngIf="pg3Continue" (click)="carOrPropertyPolicy('step4')">Continue</button>
       </div>
     </ng-container>
+     <!-- Step 5 -->
+    <ng-container *ngIf="step===5">
+      <div class="container-pg">
+        <div class="pg-header"><span>Few Safety checks before filing a claim</span></div>
+        <br>
+        <br>
+          <ul>
+            <li>Move your car to a safe location </li><br>
+            <li>Determine if there are any injuries resulting in the incident</li><br>
+            <li>Call 911 and follow instructions from the police</li><br>
+            <li>Get names and information from the other involved in the incident </li><br>
+            <li>Take pictures of license plate of vehicle involved, damages and objects at the scene of the accident</li><br>
+            <li>Keep receipts of all the repairs, parking fees and any related expenses that are incurred </li><br>
+          </ul>
+        <br>
+        <button type="button" class="btn btn-primary btn-block" (click)="nextPage()">Continue with filing the claim</button>
+      </div>
+    </ng-container>
+    <!-- Step 6 -->
     <ng-container *ngIf="step===6">
       <div class="container-pg">
         <div class="pg-header">
@@ -493,6 +498,7 @@
         <button type="button" class="btn btn-primary btn-block mg_15" (click)="nextPage()">Continue</button>
       </div>
     </ng-container>
+    <!-- Step 11 -->
     <ng-container *ngIf="step===11">
       <div class="container-pg">
         <div class="pg-header">
@@ -545,7 +551,7 @@
         </div>
         <br>
         <br>
-        <button type="button" class="btn btn-default btn-block round-default" (click)="carOrPropertyPolicy()">Go back and review</button>
+        <button type="button" class="btn btn-default btn-block round-default" (click)="carOrPropertyPolicy('step11')">Go back and review</button>
         <button type="button" class="btn btn-primary btn-block" (click)="finalSubmit()">Submit</button>
       </div>
     </ng-container>
@@ -584,10 +590,12 @@
           <br>
           <br>
           <div *ngIf = "propertyClaim" (click)="open(help)">
-            <i class="material-icons help_mat" data-md-tooltip="Tips to avoid home issues">
+            <i class="material-icons help_mat">
               help
             </i>
-
+            <span class="helpicn">
+              Tips to avoid home issues
+            </span>
           </div>
           <button type="button" class="btn btn-primary btn-block" (click)="step = 1;">OK</button>
           <!---<button type="button" class="btn btn-default btn-block round-default">Track Your Claim</button>
@@ -662,12 +670,18 @@
         </div>
       </ng-container>  
     <!-- Step 16 -->
-      <ng-container *ngIf="step===16"> 
+    <ng-container *ngIf="step===16"> 
       <div class="container-pg">
         <div class="pg-header">
           <span>Give us few more details</span>
         </div>
         <br>
+        <div>
+          <span><b>Is anybody injured?</b></span> &nbsp;
+          <button type="button" class="btn btn-default round-default">Yes</button>&nbsp;
+          <button type="button" class="btn btn-default round-default" *ngIf="!pg16no" (click)="pg16no = true">No</button>
+          <button type="button" class="btn btn-primary " *ngIf="pg16no">No</button>
+        </div>
         <br>
         <div>
           <div>
@@ -686,20 +700,24 @@
                     <button class="btn btn-outline-secondary calendar pd_bt_0" (click)="d.toggle()" (ngModelChange)="checkAccDetails()" type="button">
                         <i class="material-icons">
                             calendar_today
-                        </i>         
+                        </i>             
                     </button>
                   </div>
                 </div>
               </div>
             </form>
-            <br>
             <div>
                <div>
                 <ngb-timepicker [(ngModel)]="propertytime" [meridian]=true mousewheel = true  (ngModelChange)="checkAccDetails()"></ngb-timepicker>
                </div>
             </div>
+            <div class="form-group">
+              <label for="comment"><b>Description of the incident</b></label>
+              <br>
+              <textarea class="form-control" [(ngModel)]="propertyIncDesc" (ngModelChange)="checkAccDetails()" placeholder="Type your description here" rows="5" id="comment"></textarea>
+            </div>
           </div>
-          <br><br><br><br>
+          <br>
           <button type="button" class="btn btn-default btn-block round-default" *ngIf="!pg16no">Continue</button>
           <button type="button" class="btn btn-primary btn-block" *ngIf="pg16no" (click)="nextPage()" >Continue</button>
         </div>
@@ -714,10 +732,10 @@
         </div>
         <br>
         <div>
-          <span><b>Is this home in livable condition</b></span> &nbsp;
-          <button type="button" class="btn btn-default round-default">Yes</button>&nbsp;
-          <button type="button" class="btn btn-default round-default" *ngIf="!pg17no" (click)="pg17no = true">No</button>
-          <button type="button" class="btn btn-primary " *ngIf="pg17no">No</button>
+          <span><b>Is this home in livable condition?</b></span>&nbsp;
+          <button type="button" class="btn btn-default round-default" *ngIf="!pg17no" (click)="pg17no = true">Yes</button>
+          <button type="button" class="btn btn-primary " *ngIf="pg17no">Yes</button>&nbsp;
+          <button type="button" class="btn btn-default round-default">No</button>
         </div>
         <br>
         <div class="box-sha">
@@ -810,12 +828,11 @@
         <div class="pg-header">
           <span>Let us know what all got damaged</span>
         </div>
-        <br>
-         <span class="help_text">Under each category, please choose all damages</span>
+         <span class="help_text">Under each category, please choose all damaged items</span>
          <br>
         <br>
         <div>
-          <span><b>Are there any damages to other property?</b></span> &nbsp;
+          <span><b>Are there any damages to other's property?</b></span> &nbsp;
           <button type="button" class="btn btn-default round-default">Yes</button>&nbsp;
           <button type="button" class="btn btn-default round-default" *ngIf="!pg18no" (click)="pg18no = true">No</button>
           <button type="button" class="btn btn-primary " *ngIf="pg18no">No</button>
@@ -1119,7 +1136,7 @@
       <ng-template #contentmodal let-modal>
         <div class="modal-body">
           <div class="text-center modal-header">
-            <p class="p-no-maring-bottom">Please choose all contnent related damages
+            <p class="p-no-maring-bottom">Please choose all content related damages
             </p>
           </div>
           <div class = "modal_checkbox box-sha">
@@ -1178,7 +1195,7 @@
                 <li>Promptly investigate and fix leaks</li><br>
                 <li>Upgrade washing machine hoses</li><br>
                 <li>Install water detection devices </li><br>
-                <li>Check your water pressure and install a pressure regulator, if required</li>
+                <li>Check your water pressure and install a pressure regulator, if required</li><br>
                 <li>Monitor your water bill – will always indicate if there is a leak somewhere</li>
               </ul>
             </div>
