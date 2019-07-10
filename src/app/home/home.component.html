@@ -171,7 +171,8 @@
             <img height="10%" width="10%" src="../../assets/Icons_Property.png" alt="First slide"> &nbsp; &nbsp;
             <div>
               <span><b>Policy Number</b></span>
-              <p>{{policyNumber}}</p>
+              <p *ngIf ='!noPolicyNumber'>{{policyNumber}}</p>
+              <p *ngIf = 'noPolicyNumber'>866643000</p>
               <!-- <span class="flo_rgt">
                   <i class="material-icons">
                     expand_more

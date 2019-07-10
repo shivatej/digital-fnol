@@ -89,6 +89,7 @@ export class HomeComponent implements OnInit {
   propertyModel:any;
   claimNumber: number;
   propertyIncDesc:string;
+  noPolicyNumber:boolean = false;
   
   @ViewChild('search')
   public searchElementRef: ElementRef;
@@ -361,6 +362,7 @@ export class HomeComponent implements OnInit {
   checkForPolicyNum() {
     if(this.policyNumber.length == 0){
       this .policyNumber ='877643001';
+      this.noPolicyNumber = true;
     }
     this.nextPage();
   }
