@@ -453,14 +453,16 @@ export class HomeComponent implements OnInit {
   page4Continue (type, i) { 
     if (type === "car") { 
       this.menuList = false;
+      this.listMenu = true;
     } else {
       this.menuList = true;
       this.listMenu = false;
     }
     if (i) {
       i.checked = true;
+      this.pg3Continue= true; 
     }  
-    this.pg3Continue= true; 
+    
   }
 
   getBuildingdamages() {

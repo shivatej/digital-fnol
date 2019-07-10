@@ -171,7 +171,7 @@
             <img height="10%" width="10%" src="../../assets/Icons_Property.png" alt="First slide"> &nbsp; &nbsp;
             <div>
               <span><b>Policy Number</b></span>
-              <p>{{dropdown_adressList[0]}}</p>
+              <p>{{policyNumber}}</p>
               <!-- <span class="flo_rgt">
                   <i class="material-icons">
                     expand_more
@@ -180,16 +180,16 @@
             </div>
           </div>
         </div>
-        <!-- <div class="dropdown_list box-sha" *ngIf="menuList">
-          <div class="dropdown_list_element_no_bottom" (click)="page5Continue('property')" radio= "true" *ngFor = "let value of dropdown_adressList">
+        <div class="dropdown_list box-sha" *ngIf="menuList">
+          <div class="dropdown_list_element_no_bottom" (click)="page4Continue('property', i)" radio= "true" *ngFor = "let value of dropdown_adressList; let i = index;" [style.background-color]="i.checked ? '#dee2e6':'' ">
             <div class="row m_10">
-              <div><input type="radio" name="radio"> </div>&nbsp; &nbsp;
-              <div>
+              <div><input #i type="radio" name="radio"> </div>&nbsp; &nbsp;
+              <div style="margin-left: -15px;">
                 <p>{{value}}</p>
               </div>
             </div>
           </div>
-        </div> -->
+        </div>
         <br>
         <br>
         <br>
@@ -587,16 +587,17 @@
               <span><b>Email and SMS have been sent to you for future reference</b></span>
             </div>
           </div>
-          <br>
-          <br>
+          <br><br>
           <div *ngIf = "propertyClaim" (click)="open(help)">
             <i class="material-icons help_mat">
               help
             </i>
             <span class="helpicn">
-              Tips to avoid home issues
+              Safety tips for your home
             </span>
           </div>
+          <br>
+          <br>
           <button type="button" class="btn btn-primary btn-block" (click)="step = 1;">OK</button>
           <!---<button type="button" class="btn btn-default btn-block round-default">Track Your Claim</button>
           <br>
@@ -676,13 +677,13 @@
           <span>Give us few more details</span>
         </div>
         <br>
-        <div>
+       <!--  <div>
           <span><b>Is anybody injured?</b></span> &nbsp;
           <button type="button" class="btn btn-default round-default">Yes</button>&nbsp;
           <button type="button" class="btn btn-default round-default" *ngIf="!pg16no" (click)="pg16no = true">No</button>
           <button type="button" class="btn btn-primary " *ngIf="pg16no">No</button>
         </div>
-        <br>
+        <br> -->
         <div>
           <div>
             <b>
@@ -931,7 +932,8 @@
         </div>
          <span class="help_text" *ngIf="userSelectReport=='car Image'">Please upload images showing damages.</span>
         <span class="help_text" *ngIf="userSelectReport=='police report'">Please upload police report, if available</span>
-        <span class="help_text" *ngIf="userSelectReport=='3rd party'">Please provide contact details or upload any available images of insurance card, driving license or carnumber plate</span> 
+        <span class="help_text" *ngIf="userSelectReport=='3rd party'">Please provide contact details or upload any available images of insurance card.</span> 
+        <br>
         <br>
         <div *ngIf="userSelectReport=='3rd party'">
           <div class="form-group">
