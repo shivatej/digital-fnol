@@ -283,6 +283,7 @@ agm-map {
     padding-bottom: 30px;
     cursor: pointer;
     position: absolute;
+    margin-top: -4px;
 }
 
 [data-md-tooltip]:before {
@@ -346,8 +347,6 @@ agm-map {
 }
 .helpicn {
     margin-left:215px;
-    position: absolute;
-    bottom: 65px;
 }
 input[type="radio"] {
    opacity: 0;
