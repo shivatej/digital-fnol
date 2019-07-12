@@ -90,6 +90,7 @@ export class HomeComponent implements OnInit {
   claimNumber: number;
   propertyIncDesc:string;
   noPolicyNumber:boolean = false;
+  maxDate: any;
   
   @ViewChild('search')
   public searchElementRef: ElementRef;
@@ -111,6 +112,12 @@ export class HomeComponent implements OnInit {
     this.contentdamages = this.getContentdamges();
     this.valuabledamages = this.getValuabledamages();
     this.addCheckboxes();
+    var today = new Date();
+    this.maxDate = {
+      year: today.getFullYear(), 
+      month: today.getMonth() + 1, 
+      day: today.getDate()
+    }
   }
 
   ngOnInit() {

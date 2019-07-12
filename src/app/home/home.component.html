@@ -110,7 +110,7 @@
             <div class="form-group">
               <div class="input-group">
                 <input class="form-control" placeholder="MM/DD/YYYY" name="dp" [minDate]="minDate" [(ngModel)]="modelDOB" (ngModelChange)="checkUserDetails()" ngbDatepicker
-                  #d="ngbDatepicker">
+                  #d="ngbDatepicker" data-container="body" [maxDate] = "maxDate">
                 <div class="input-group-append">
                   <button class="btn btn-outline-secondary calendar pd_bt_0" (click)="d.toggle();" type="button">
                       <i class="material-icons">
@@ -316,7 +316,7 @@
               <div class="form-group">
                 <div class="input-group">
                   <input class="form-control" placeholder="MM/DD/YYYY" name="dp" [(ngModel)]="model" ngbDatepicker
-                    #d="ngbDatepicker">
+                    #d="ngbDatepicker" [maxDate] = "maxDate" data-container="body">
                   <div class="input-group-append">
                     <button class="btn btn-outline-secondary calendar pd_bt_0" (click)="d.toggle()" (ngModelChange)="checkAccDetails()" type="button">
                         <i class="material-icons">
@@ -696,7 +696,7 @@
               <div class="form-group">
                 <div class="input-group">
                   <input class="form-control" placeholder="MM/DD/YYYY" name="dp" [(ngModel)]="propertyModel" ngbDatepicker
-                    #d="ngbDatepicker">
+                    #d="ngbDatepicker" [maxDate] = "maxDate" data-container="body">
                   <div class="input-group-append">
                     <button class="btn btn-outline-secondary calendar pd_bt_0" (click)="d.toggle()" (ngModelChange)="checkAccDetails()" type="button">
                         <i class="material-icons">
