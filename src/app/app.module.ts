@@ -10,6 +10,7 @@ import { NgbDateCustomParserFormatter } from "./shared/date-formatter.service";
 import { NgbDateParserFormatter } from "@ng-bootstrap/ng-bootstrap";
 import { AgmCoreModule } from '@agm/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AmazingTimePickerModule } from 'amazing-time-picker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
@@ -31,6 +32,7 @@ const appRoutes: Routes = [
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
+    AmazingTimePickerModule,
     RouterModule.forRoot(appRoutes),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDZ5rIF_as0p3eJW08nKkQE2c0EFdmpG1w',

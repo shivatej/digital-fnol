@@ -327,15 +327,29 @@
                 </div>
               </div>
             </form>
+            <br>
             <div>
-               <div>
-                <ngb-timepicker [(ngModel)]="time" [meridian]=true mousewheel = true  (ngModelChange)="checkAccDetails()"></ngb-timepicker>
-               </div>
+              <form class="form-inline">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <input type="text" atp-time-picker value="{{displayTime}}" class="form-control" placeholder="HH:MM"/>
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary calendar pd_bt_0" type="button" (click)="openTime('auto')">
+                            <i class="material-icons">
+                                access_time
+                            </i>             
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+               <!--  <input atp-time-picker value="19:00"/> -->
             </div>
+            <br>
             <div class="form-group">
               <label for="comment"><b>Description of the incident</b></label>
               <br>
-              <textarea class="form-control" [(ngModel)]="incidentDesc" (ngModelChange)="checkAccDetails()" placeholder="Type your description here" rows="5" id="comment"></textarea>
+              <textarea class="form-control" [(ngModel)]="incidentDesc" placeholder="Type your description here" rows="5" id="comment"></textarea>
             </div>
           </div>
           <br>
@@ -707,15 +721,28 @@
                 </div>
               </div>
             </form>
+            <br>
             <div>
-               <div>
-                <ngb-timepicker [(ngModel)]="propertytime" [meridian]=true mousewheel = true  (ngModelChange)="checkAccDetails()"></ngb-timepicker>
-               </div>
+              <form class="form-inline">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <input type="text" atp-time-picker value="{{displayPropTime}}" class="form-control" placeholder="HH:MM"/>
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary calendar pd_bt_0" type="button" (click)="openTime('proptTime')">
+                            <i class="material-icons">
+                                access_time
+                            </i>             
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
             </div>
+            <br>
             <div class="form-group">
               <label for="comment"><b>Description of the incident</b></label>
               <br>
-              <textarea class="form-control" [(ngModel)]="propertyIncDesc" (ngModelChange)="checkAccDetails()" placeholder="Type your description here" rows="5" id="comment"></textarea>
+              <textarea class="form-control" [(ngModel)]="propertyIncDesc" placeholder="Type your description here" rows="5" id="comment"></textarea>
             </div>
           </div>
           <br>

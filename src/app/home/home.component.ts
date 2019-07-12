@@ -7,6 +7,7 @@ import CRC32 from 'crc-32/crc32.js';
 import { MapsAPILoader, MouseEvent } from '@agm/core';
 import { Router} from '@angular/router';
 import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn } from '@angular/forms';
+import { AmazingTimePickerService } from 'amazing-time-picker';
 import { of } from 'rxjs';
 
 @Component({
@@ -91,13 +92,15 @@ export class HomeComponent implements OnInit {
   propertyIncDesc:string;
   noPolicyNumber:boolean = false;
   maxDate: any;
+  displayTime: any;
+  displayPropTime : any;
   
   @ViewChild('search')
   public searchElementRef: ElementRef;
 
 
   constructor(private sharedServiceService:SharedServiceService,private modalService: NgbModal, private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone, private router: Router, private formBuilder: FormBuilder) {
+    private ngZone: NgZone, private router: Router, private formBuilder: FormBuilder, private atp: AmazingTimePickerService) {
     this.form = this.formBuilder.group({
       buildingdamages: new FormArray([]),
       contentdamages: new FormArray([]),
@@ -320,6 +323,7 @@ export class HomeComponent implements OnInit {
     }
   }
   checkAccDetails(){
+    console.log("pdfdf");
     if( this.time && this.model){
        this.createdDate = this.model.year + "-"+this.model.month +"-"+ this.model.day+"T"+this.time.hour +":"+this.time.minute+":"+this.time.second;
       this.pg6Continue = true;
@@ -571,6 +575,26 @@ export class HomeComponent implements OnInit {
   finalSubmit() {
     this.claimNumber = Math.floor(100000 + Math.random() * 900000)
     this.nextPage();
+  }
+
+
+  openTime(type) {
+    const amazingTimePicker = this.atp.open({
+      theme: 'material-blue'
+    });
+    amazingTimePicker.afterClose().subscribe(time => {
+       let splitTime = (time.split(":"));
+       var tttime = [parseInt(splitTime[0])-12, splitTime[1]].join(":").toString();
+      
+      this.checkAccDetails();
+      if (type === "auto") {
+        this.displayTime = (parseInt(splitTime[0]) > 12? tttime : time) + ( parseInt(splitTime[0]) >= 12 ? 'PM' : 'AM');
+        this.time = time;
+      } else {
+        this.displayPropTime = (parseInt(splitTime[0]) > 12? tttime : time) + ( parseInt(splitTime[0]) >= 12 ? 'PM' : 'AM');
+        this.propertytime = time;
+      }
+    });
   }
 }
 
