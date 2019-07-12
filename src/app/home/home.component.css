@@ -320,16 +320,32 @@ agm-map {
  content:"\2713\0020";
  padding-right: 10px;
 }*/
-
-@media (max-width: 420px)   {
+@media (max-width: 400px)   {
     .second_image_upload_extra {
         height: 7.1em;
         margin-top: -110px;
         position: relative;
-        margin-left: calc(100% - 160px);
+        margin-left: calc(100% - 170px);
     } 
 }
 
+@media (max-width: 375px)   {
+    .second_image_upload_extra {
+        height: 7.1em;
+        margin-top: -115px;
+        position: relative;
+        margin-left: calc(100% - 180px);
+    } 
+}
+
+@media (min-width: 401px) and (max-width: 550px)   {
+    .second_image_upload_extra {
+        height: 8em;
+        margin-top: -127px;
+        position: relative;
+        margin-left: calc(100% - 200px);
+    } 
+}
 
 @media  (min-width: 552px) and (max-width: 767px) {
   .second_image_upload_extra {

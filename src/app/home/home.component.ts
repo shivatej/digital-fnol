@@ -583,17 +583,16 @@ export class HomeComponent implements OnInit {
       theme: 'material-blue'
     });
     amazingTimePicker.afterClose().subscribe(time => {
-       let splitTime = (time.split(":"));
-       var tttime = [parseInt(splitTime[0])-12, splitTime[1]].join(":").toString();
-      
-      this.checkAccDetails();
+      let splitTime = (time.split(":"));
+      var samTime = [parseInt(splitTime[0])-12, splitTime[1]].join(":").toString();
       if (type === "auto") {
-        this.displayTime = (parseInt(splitTime[0]) > 12? tttime : time) + ( parseInt(splitTime[0]) >= 12 ? 'PM' : 'AM');
+        this.displayTime = (parseInt(splitTime[0]) > 12? samTime : time) + ( parseInt(splitTime[0]) >= 12 ? 'PM' : 'AM');
         this.time = time;
       } else {
-        this.displayPropTime = (parseInt(splitTime[0]) > 12? tttime : time) + ( parseInt(splitTime[0]) >= 12 ? 'PM' : 'AM');
+        this.displayPropTime = (parseInt(splitTime[0]) > 12? samTime : time) + ( parseInt(splitTime[0]) >= 12 ? 'PM' : 'AM');
         this.propertytime = time;
       }
+      this.checkAccDetails();
     });
   }
 }

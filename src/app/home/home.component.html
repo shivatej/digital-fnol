@@ -136,7 +136,6 @@
         </div>
         <br>
         <br>
-        <br>
         <div class="dropdown_button box-sha">
           <div class="row" (click)="toggleMenu()">
             &nbsp;&nbsp;
@@ -316,9 +315,9 @@
               <div class="form-group">
                 <div class="input-group">
                   <input class="form-control" placeholder="MM/DD/YYYY" name="dp" [(ngModel)]="model" ngbDatepicker
-                    #d="ngbDatepicker" [maxDate] = "maxDate" data-container="body">
+                    #d="ngbDatepicker" [maxDate] = "maxDate" data-container="body" (ngModelChange)="checkAccDetails()">
                   <div class="input-group-append">
-                    <button class="btn btn-outline-secondary calendar pd_bt_0" (click)="d.toggle()" (ngModelChange)="checkAccDetails()" type="button">
+                    <button class="btn btn-outline-secondary calendar pd_bt_0" (click)="d.toggle()"type="button">
                         <i class="material-icons">
                             calendar_today
                         </i>             
@@ -332,7 +331,7 @@
               <form class="form-inline">
                   <div class="form-group">
                     <div class="input-group">
-                      <input type="text" atp-time-picker value="{{displayTime}}" class="form-control" placeholder="HH:MM"/>
+                      <input type="text" value="{{displayTime}}" class="form-control" placeholder="HH:MM"/>
                       <div class="input-group-append">
                         <button class="btn btn-outline-secondary calendar pd_bt_0" type="button" (click)="openTime('auto')">
                             <i class="material-icons">
@@ -710,9 +709,9 @@
               <div class="form-group">
                 <div class="input-group">
                   <input class="form-control" placeholder="MM/DD/YYYY" name="dp" [(ngModel)]="propertyModel" ngbDatepicker
-                    #d="ngbDatepicker" [maxDate] = "maxDate" data-container="body">
+                    #d="ngbDatepicker" [maxDate] = "maxDate" data-container="body"  (ngModelChange)="checkAccDetails()">
                   <div class="input-group-append">
-                    <button class="btn btn-outline-secondary calendar pd_bt_0" (click)="d.toggle()" (ngModelChange)="checkAccDetails()" type="button">
+                    <button class="btn btn-outline-secondary calendar pd_bt_0" (click)="d.toggle()" type="button">
                         <i class="material-icons">
                             calendar_today
                         </i>             
@@ -726,7 +725,7 @@
               <form class="form-inline">
                   <div class="form-group">
                     <div class="input-group">
-                      <input type="text" atp-time-picker value="{{displayPropTime}}" class="form-control" placeholder="HH:MM"/>
+                      <input type="text" value="{{displayPropTime}}" class="form-control" placeholder="HH:MM"/>
                       <div class="input-group-append">
                         <button class="btn btn-outline-secondary calendar pd_bt_0" type="button" (click)="openTime('proptTime')">
                             <i class="material-icons">
