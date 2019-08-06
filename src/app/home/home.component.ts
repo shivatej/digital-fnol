@@ -94,6 +94,8 @@ export class HomeComponent implements OnInit {
   maxDate: any;
   displayTime: any;
   displayPropTime : any;
+  finalJson:object = {};
+  vehicle: any;
   
   @ViewChild('search')
   public searchElementRef: ElementRef;
@@ -107,10 +109,6 @@ export class HomeComponent implements OnInit {
       valuabledamages : new FormArray([])
     });
 
-    // of(this.getOrders()).subscribe(orders => {
-    //   this.orders = orders;
-    //   this.addCheckboxes();
-    // });
     this.buildingdamages = this.getBuildingdamages();
     this.contentdamages = this.getContentdamges();
     this.valuabledamages = this.getValuabledamages();
@@ -281,18 +279,23 @@ export class HomeComponent implements OnInit {
       this.isLoading = true;
       this.step = 14;
       this.sharedServiceService.uploadDocument(this.imageSrc, this.imageChkSum).then((data: any) => {
-      this.responseData = data;
-      this.scores = this.responseData.scores;
-      this.elemtArry = this.createElemntsArray(this.responseData.elements);
-      console.log("success..", this.responseData.scores[0].sco_minCost);
-      this.isLoading = false;
-        //window.open("https://www.google.com", "_blank");
+        this.responseData = data;
+        this.scores = this.responseData.scores;
+        this.elemtArry = this.createElemntsArray(this.responseData.elements);
+        console.log("success..", this.responseData.scores[0].sco_minCost);
+        this.isLoading = false;
+          //window.open("https://www.google.com", "_blank");
       }, (err) => {  });
     } else {
       this.step = 19;
     }
     
    }
+
+  finalJsonServiceCall() {
+    this.sharedServiceService.finalJson(this.finalJson).then((data:any) =>{
+    }, (err) => {});
+  }
 
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title',centered: true}).result.then((result) => {
@@ -323,7 +326,6 @@ export class HomeComponent implements OnInit {
     }
   }
   checkAccDetails(){
-    console.log("pdfdf");
     if( this.time && this.model){
        this.createdDate = this.model.year + "-"+this.model.month +"-"+ this.model.day+"T"+this.time.hour +":"+this.time.minute+":"+this.time.second;
       this.pg6Continue = true;
@@ -463,10 +465,11 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  page4Continue (type, i) { 
+  page4Continue (type, i, value) { 
     if (type === "car") { 
       this.menuList = false;
       this.listMenu = true;
+      this.vehicle = value;
     } else {
       this.menuList = true;
       this.listMenu = false;
@@ -475,7 +478,7 @@ export class HomeComponent implements OnInit {
       i.checked = true;
       this.pg3Continue= true; 
     }  
-    
+    console.log(this.vehicle);
   }
 
   getBuildingdamages() {
@@ -575,8 +578,9 @@ export class HomeComponent implements OnInit {
   finalSubmit() {
     this.claimNumber = Math.floor(100000 + Math.random() * 900000)
     this.nextPage();
+    this.prepareFinalJson();
+    this.finalJsonServiceCall();
   }
-
 
   openTime(type) {
     const amazingTimePicker = this.atp.open({
@@ -595,7 +599,6 @@ export class HomeComponent implements OnInit {
       this.checkAccDetails();
     });
   }
-}
 
 /*function minSelectedCheckboxes(min = 1) {
   const validator: ValidatorFn = (formArray: FormArray) => {
@@ -608,3 +611,49 @@ export class HomeComponent implements OnInit {
 
   return validator;
 }*/
+
+prepareFinalJson() {
+    this.finalJson = {
+    "Role": "Driver",
+    "policyNumber": this.policyNumber,
+    "firstName": this.firstName,
+    "lastName": this.lastName,
+    // "dob": this.modelDOB? this.modelDOB.month + "/" + this.modelDOB.day + "/" + this.modelDOB.year : "",
+    "incident": {
+      "vehicle": this.vehicle,
+      "incidentDetails": {
+        "incidentType": "Collision with another vehicle",
+        "description": this.incidentDesc,
+        "Injuries": "No",
+        // "incidentDate": this.model? this.model.month + "/" + this.model.day + "/" + this.model.year : "",
+        "incidentTime": this.displayTime,
+        "incidentLocation": this.address,
+        "presentVehicleLocation": "Home",
+        "phoneNumber": this.phoneNumber,
+        "email": this.email,
+        "vehicleImage": {
+          "image_name": "vehicleImage.jpeg",
+          "img_data":  this.imageChkSum
+        },
+        "otherPartyDetails": {
+          "damageDescription": this.cardesc,
+          "fullName": this.fullName,
+          "phoneNumer": this.phoneNum,
+          "vehicleImage": {
+            "image_name": "ggg.jpeg",
+            "img_data":  this.imageChkSum
+          }
+        },
+        "PoliceReport": {
+          "image_name": "",
+          "img_data": this.imageChkSum
+        }
+      },
+      "claim": {
+        "ReferenceNo": this.claimNumber,
+        "Channel": "Self-service"
+      }
+    }
+  }
+}
+}

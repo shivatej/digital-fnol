@@ -102,8 +102,8 @@ export class SharedServiceService {
     };
 
     return new Promise((resolve, reject) => {
-      this.http.post(url, reqData).subscribe((response: any) => {
-      //this.http.post(proxyurl+url, reqData).subscribe((response: any) => {
+      //this.http.post(url, reqData).subscribe((response: any) => {
+      this.http.post(proxyurl+url, reqData).subscribe((response: any) => {
         console.log("Test....", response);
 
         resolve(response);
@@ -114,6 +114,35 @@ export class SharedServiceService {
     });
 
   }
+
+
+  finalJson(reqData) {
+    const username = 'iccfnol1';
+    const password = 'appian@2';
+    let authorizationData = 'Basic ' + btoa(username + ':' + password);
+
+    const headerOptions = {
+        headers: new HttpHeaders({
+            'Content-Type':  'application/json',
+            'Authorization': authorizationData
+        })
+    };
+
+    let url = 'https://capgemini-indiademo.appiancloud.com/suite/webapi/FavI_Q';
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    return new Promise((resolve, reject) => {
+      //this.http.post(url, reqData).subscribe((response: any) => {
+      this.http.post(proxyurl+url, reqData,headerOptions).subscribe((response: any) => {
+        console.log("Test....", response);
+
+        resolve(response);
+      }, error => {
+        this.setIsLoggedIn(false);
+        console.error(error)
+      });
+    });
+  }
+
 
   // createAuthorizationHeaders() {
   //   // let headers = new HttpHeaders({
