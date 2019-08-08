@@ -30,10 +30,12 @@
 
 .btn-primary{
     border-radius: 20px;
+    background:  #21a9af;
+    border: #21a9af;
 }
 .round-default{
     border-radius: 20px;
-    border: 1px solid blue;
+    border: 1px solid #21a9af;
     color: black;
 }
 

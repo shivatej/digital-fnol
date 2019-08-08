@@ -152,7 +152,7 @@
           </div>
         </div>
         <div class="dropdown_list box-sha" *ngIf="listMenu">
-          <div class="dropdown_list_element" (click)="page4Continue('car', i)" *ngFor = "let item of carsDropDown; let i = index;" [style.background-color]="i.checked ? '#dee2e6':'' ">
+          <div class="dropdown_list_element" (click)="page4Continue('car', i, item)" *ngFor = "let item of carsDropDown; let i = index;" [style.background-color]="i.checked ? '#dee2e6':'' ">
             <div class="row m_10">
               <div>
                 <input  #i type="radio" name="radio"> 
