@@ -13,6 +13,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AmazingTimePickerModule } from 'amazing-time-picker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+
 const appRoutes: Routes = [
   {path: 'home', component: AppComponent},
   {path: '', component: AppComponent, pathMatch: 'full'},
@@ -37,8 +38,9 @@ const appRoutes: Routes = [
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDZ5rIF_as0p3eJW08nKkQE2c0EFdmpG1w',
       libraries: ['geometry', 'places']
-    })
+    }),
   ],
+
   providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter } ],
   bootstrap: [AppComponent]
 })
