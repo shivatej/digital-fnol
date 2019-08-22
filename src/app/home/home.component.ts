@@ -9,7 +9,6 @@ import { Router} from '@angular/router';
 import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn } from '@angular/forms';
 import { AmazingTimePickerService } from 'amazing-time-picker';
 import { of } from 'rxjs';
-declare const google: any;
 
 @Component({
   selector: 'app-home',
@@ -97,8 +96,6 @@ export class HomeComponent implements OnInit {
   displayPropTime : any;
   finalJson:object = {};
   vehicle: any;
-
-  
   
   @ViewChild('search')
   public searchElementRef: ElementRef;
@@ -426,6 +423,7 @@ export class HomeComponent implements OnInit {
   }
 
   onKeydown(event) {
+   
     this.mapsAPILoader.load().then(() => {
         this.geoCoder = new google.maps.Geocoder;
           let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
@@ -433,7 +431,6 @@ export class HomeComponent implements OnInit {
           });
         autocomplete.addListener("place_changed", () => {
           this.ngZone.run(() => {
-        
             //get the place result
             let place: google.maps.places.PlaceResult = autocomplete.getPlace();
 

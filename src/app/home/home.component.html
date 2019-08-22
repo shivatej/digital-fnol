@@ -42,7 +42,7 @@
             <input class="form-control" placeholder="Zip Code" id="inputdefault" type="text">
           </div>
           <br>
-          <button type="button" class="btn btn-default btn-block round-default ng-star-inserted">Get a Quote</button>
+          <button type="button" class="btn btn-default btn-block round-default">Get a Quote</button>
         </div>
         <br>
         <div class="optional_text"><span>or</span></div>
@@ -501,17 +501,15 @@
           <div class="optional_text"><span>or</span></div>
         </div>
         <br>
-    
-        <div class="image_div image_height_upload" (click)="fileToUpload.click()">
-          <!-- <i class="material-icons" (click)="fileToUpload.click()">
+        <div class="image_div image_height_upload">
+          <i class="material-icons" (click)="fileToUpload.click()">
             add
-          </i> -->
-          <!-- <span>Upload/Capture Image</span> -->
+          </i>
+          <span>Upload/Capture Image</span>
         </div>
-        
         <input #fileToUpload type="file" style="display:none;" accept="image/*" (change)="handleInputChange($event)"> 
         <br>
-        <button type="button" class="btn btn-primary btn-block" (click)="nextPage()">Continue</button>
+        <button type="button" class="btn btn-primary btn-block mg_15" (click)="nextPage()">Continue</button>
       </div>
     </ng-container>
     <!-- Step 11 -->
@@ -533,11 +531,11 @@
             <img *ngIf="userSelectReport=='3rd party'" [src]="(url['3rdParty'] && url['3rdParty']['result']) ? imageData : '../../assets/not_available.jpg'" height="100%" width="100%">
             <img *ngIf="userSelectReport=='police report'"[src]="(url['policeReport'] && url['policeReport']['result']) ? imageData : '../../assets/not_available.jpg'" height="100%" width="100%">
           </div>
-          <div class="col-6 image_div image_height_upload_extra" *ngIf = "!secondImage" (click)="fileToUpload.click()">
-            <!-- <i class="material-icons" (click)="fileToUpload.click()">
+          <div class="col-6 image_div image_height_upload_extra" *ngIf = "!secondImage">
+            <i class="material-icons" (click)="fileToUpload.click()">
             add
           </i>
-          <span>Upload/Capture Image</span> -->
+          <span>Upload/Capture Image</span>
         </div>
         <input #fileToUpload type="file" style="display:none;" accept="image/*" (change)="secondImgInputChanges($event)"> 
         <br>

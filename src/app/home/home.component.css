@@ -29,12 +29,12 @@
 }
 
 .btn-primary{
-    border-radius: 10px;
+    border-radius: 20px;
     background:  #21a9af;
     border: #21a9af;
 }
 .round-default{
-    border-radius: 10px;
+    border-radius: 20px;
     border: 1px solid #21a9af;
     color: black;
 }
@@ -155,12 +155,7 @@
 }
 .image_div{
     position: relative;
-    /* border: 2px dashed black; */
-    background-image: url(../../assets/CameraPic_small.png);
-    background-repeat: no-repeat;
-    height:220px;
-    margin: auto 24%;
-    margin: 34px auto 0 24%;
+    border: 2px dashed black;
 }
 
 .image_div span{
@@ -306,7 +301,7 @@ agm-map {
    color: white;
    border-radius: 2px;
    font-size: 12px;
-   font-family: Montserrat;
+   font-family: Roboto,sans-serif;
    font-weight: 400;
 }
 [data-md-tooltip]:hover:before {
@@ -374,6 +369,3 @@ agm-map {
 input[type="radio"] {
    opacity: 0;
 }
-
-
-/*-----------------------------------------------*/
