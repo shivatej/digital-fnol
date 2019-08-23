@@ -376,3 +376,42 @@ input[type="radio"] {
 
 
 /*-----------------------------------------------*/
+
+.wrapper{
+    display:block;
+    position:relative;
+    background:#fff;
+    height:35px;
+    }
+    
+    label{
+    display:block;
+    position:relative;
+    top:-25px;
+    left:0px;
+    color:#999;
+    Z-index:1;
+    transition:all 0.3s ease;
+    }
+    
+    input{
+    display:block;
+    position:relative;
+    background:none;
+    border:none;
+    border-bottom:1px solid #ddd;
+    width:100%;
+    z-index:2;
+    }
+    
+    input:focus, input:valid{
+      outline:none !important;
+      border-bottom: 1px solid #00aced;
+      top:15px;
+    }
+    
+    input:focus + label, input:valid + label{
+      /* top:-100; */
+      font-size:11px;
+      color: #00aced;
+    }

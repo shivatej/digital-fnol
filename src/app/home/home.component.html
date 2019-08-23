@@ -38,8 +38,9 @@
           </div>
           <br>
           <br>
-          <div class="col-3">
-            <input class="form-control" placeholder="Zip Code" id="inputdefault" type="text">
+          <div class="col-3 wrapper">
+            <input id="inputdefault" type="text" required autocomplete="off" />
+            <label for="Zipcode">Zip Code</label>
           </div>
           <br>
           <button type="button" class="btn btn-default btn-block round-default ng-star-inserted">Get a Quote</button>
@@ -90,27 +91,31 @@
         <br>
         <br>
         <form>
-          <div class="form-group">
-            <input class="form-control" [(ngModel)]="policyNumber" name="policyNumber" placeholder="Policy Number" id="inputdefault" type="text" (keyup)="pg2PolicyClick = true">
+          <div class="wrapper">
+            <input  [(ngModel)]="policyNumber" name="policyNumber" id="inputdefault" type="text" (keyup)="pg2PolicyClick = true">
+            <label for="Policy Number">Policy Number</label>
           </div>
           <br>
           <div class="optional_text"><span>or</span></div>
           <br>
           <div class="form-group row">
             <div class="col-6">
-              <input class="form-control" placeholder="First Name" [(ngModel)]="firstName"  (ngModelChange)="checkUserDetails()" name="firstName" id="inputdefault" type="text">
+              <input  [(ngModel)]="firstName"  (ngModelChange)="checkUserDetails()" name="firstName" id="inputdefault" type="text">
+              <label for="FirstName">First Name</label>
             </div>
             <div class="col-6">
-              <input class="form-control" placeholder="Last Name" [(ngModel)]="lastName" (ngModelChange)="checkUserDetails()" name="lastName" id="inputdefault" type="text">
+              <input [(ngModel)]="lastName" (ngModelChange)="checkUserDetails()" name="lastName" id="inputdefault" type="text">
+              <label for="lastname">Last Name</label>
             </div>
           </div>
           <br>
           <label for="comment"><b>DOB</b></label>
           <form class="form-inline">
             <div class="form-group">
-              <div class="input-group">
-                <input class="form-control" placeholder="MM/DD/YYYY" name="dp" [minDate]="minDate" [(ngModel)]="modelDOB" (ngModelChange)="checkUserDetails()" ngbDatepicker
+              <div class="wrapper">
+                <input class="form-control" name="dp" [minDate]="minDate" [(ngModel)]="modelDOB" (ngModelChange)="checkUserDetails()" ngbDatepicker
                   #d="ngbDatepicker" data-container="body" [maxDate] = "maxDate">
+                  <label for="mm/dd/yy">MM/DD/YYYY</label>
                 <div class="input-group-append">
                   <button class="btn btn-outline-secondary calendar pd_bt_0" (click)="d.toggle();" type="button">
                       <i class="material-icons">
