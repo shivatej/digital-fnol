@@ -92,7 +92,7 @@
         <br>
         <form>
           <div class="wrapper">
-            <input  [(ngModel)]="policyNumber" name="policyNumber" id="inputdefault" type="text" (keyup)="pg2PolicyClick = true">
+            <input  [(ngModel)]="policyNumber" name="policyNumber" required autocomplete="off" id="inputdefault" type="text" (keyup)="pg2PolicyClick = true"/>
             <label for="Policy Number">Policy Number</label>
           </div>
           <br>
@@ -100,11 +100,11 @@
           <br>
           <div class="form-group row">
             <div class="col-6">
-              <input  [(ngModel)]="firstName"  (ngModelChange)="checkUserDetails()" name="firstName" id="inputdefault" type="text">
+              <input  [(ngModel)]="firstName"  (ngModelChange)="checkUserDetails()" name="firstName" required autocomplete="off" id="inputdefault" type="text">
               <label for="FirstName">First Name</label>
             </div>
             <div class="col-6">
-              <input [(ngModel)]="lastName" (ngModelChange)="checkUserDetails()" name="lastName" id="inputdefault" type="text">
+              <input [(ngModel)]="lastName" (ngModelChange)="checkUserDetails()" name="lastName" required autocomplete="off" id="inputdefault" type="text">
               <label for="lastname">Last Name</label>
             </div>
           </div>
@@ -112,17 +112,15 @@
           <label for="comment"><b>DOB</b></label>
           <form class="form-inline">
             <div class="form-group">
-              <div class="wrapper">
-                <input class="form-control" name="dp" [minDate]="minDate" [(ngModel)]="modelDOB" (ngModelChange)="checkUserDetails()" ngbDatepicker
-                  #d="ngbDatepicker" data-container="body" [maxDate] = "maxDate">
-                  <label for="mm/dd/yy">MM/DD/YYYY</label>
-                <div class="input-group-append">
-                  <button class="btn btn-outline-secondary calendar pd_bt_0" (click)="d.toggle();" type="button">
+              <div class="wrapper dinline">
+                <input placeholder="MM/DD/YYYY" name="dp" [minDate]="minDate" [(ngModel)]="modelDOB" (ngModelChange)="checkUserDetails()" ngbDatepicker
+                  #d="ngbDatepicker" data-container="body" [maxDate] = "maxDate" required autocomplete="off">
+                  <button class="btn calendar " (click)="d.toggle();" type="button">
                       <i class="material-icons">
                           calendar_today
                       </i>
                   </button>
-                </div>
+                
               </div>
             </div>
           </form>

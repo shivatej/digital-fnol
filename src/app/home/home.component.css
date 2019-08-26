@@ -385,33 +385,43 @@ input[type="radio"] {
     }
     
     label{
+    font-size: 15px;
+    font-weight: 400;
     display:block;
     position:relative;
     top:-25px;
     left:0px;
-    color:#999;
+    color:#6c757d;;
     Z-index:1;
-    transition:all 0.3s ease;
+    transition: all 0.5s ease;
     }
     
     input{
+    font-size: 15px;
+    font-weight: 400;
     display:block;
     position:relative;
     background:none;
     border:none;
-    border-bottom:1px solid #ddd;
+    border-bottom:1px solid #6c757d;;
     width:100%;
     z-index:2;
     }
     
     input:focus, input:valid{
       outline:none !important;
-      border-bottom: 1px solid #00aced;
-      top:15px;
+      border-bottom: 1px solid #3f51b5;;
+      top:0;
+      position: absolute;
     }
     
     input:focus + label, input:valid + label{
-      /* top:-100; */
+      top: -20px !important;
       font-size:11px;
-      color: #00aced;
+      font-weight: 500;
+      color: #3f51b5;;
+    }
+
+    .dinline{
+        display: inline-flex;
     }
