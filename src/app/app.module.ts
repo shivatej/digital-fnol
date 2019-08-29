@@ -6,10 +6,18 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { PolicyComponent } from './policy/policy.component';
 import { HomeComponent } from './home/home.component';
-import { FormsModule } from '@angular/forms';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import { NgbDateCustomParserFormatter } from "./shared/date-formatter.service";
+import { NgbDateParserFormatter } from "@ng-bootstrap/ng-bootstrap";
+import { AgmCoreModule } from '@agm/core';
+import { RouterModule, Routes } from '@angular/router';
+import { AmazingTimePickerModule } from 'amazing-time-picker';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+const appRoutes: Routes = [
+  {path: 'home', component: AppComponent},
+  {path: '', component: AppComponent, pathMatch: 'full'},
+  {path: '**', redirectTo: '/home', pathMatch: 'full'} 
+];
 
 @NgModule({
   declarations: [
@@ -23,12 +31,15 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
     HttpClientModule,
     NgbModule,
     FormsModule,
-    BrowserAnimationsModule,
-    NoopAnimationsModule,
-   
-    
+    ReactiveFormsModule,
+    AmazingTimePickerModule,
+    RouterModule.forRoot(appRoutes),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDZ5rIF_as0p3eJW08nKkQE2c0EFdmpG1w',
+      libraries: ['geometry', 'places']
+    })
   ],
-  providers: [],
+  providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter } ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

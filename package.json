@@ -36,8 +36,7 @@
     "express": "^4.16.4",
     "file-type": "^4.3.0",
     "font-awesome": "^4.7.0",
-    "hammerjs": "^2.0.8",
-    "mdbootstrap": "^4.8.8",
+    
     "morgan": "^1.8.1",
     "path": "^0.12.7",
     "request": "^2.81.0",
