@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SharedServiceService} from '../shared/shared-service.service';
 import { Subscription } from 'rxjs';
-import { Router} from '@angular/router';
-
+ 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -12,7 +11,7 @@ export class HeaderComponent implements OnInit {
   step: any;
   subscription: Subscription;
 
-  constructor(private sharedServiceService:SharedServiceService, private router: Router) { }
+  constructor(private sharedServiceService:SharedServiceService) { }
 
   ngOnInit() {
     this.subscription = this.sharedServiceService.getHeading().subscribe(step => { 
@@ -25,7 +24,5 @@ export class HeaderComponent implements OnInit {
     // unsubscribe to ensure no memory leaks
     this.subscription.unsubscribe();
 }
-  selectHome() {
-    this.router.navigate(['./home']);
-  }
+  
 }

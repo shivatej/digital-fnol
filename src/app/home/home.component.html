@@ -38,12 +38,11 @@
           </div>
           <br>
           <br>
-          <div class="col-3 wrapper">
-            <input id="inputdefault" type="text" required autocomplete="off" />
-            <label for="Zipcode">Zip Code</label>
+          <div class="col-3">
+            <input class="form-control" placeholder="Zip Code" id="inputdefault" type="text">
           </div>
           <br>
-          <button type="button" class="btn btn-default btn-block round-default ng-star-inserted">Get a Quote</button>
+          <button type="button" class="btn btn-default btn-block round-default">Get a Quote</button>
         </div>
         <br>
         <div class="optional_text"><span>or</span></div>
@@ -70,14 +69,14 @@
           </div>
           <div class="col-4 bg-hover">
             <div class="box-sha">
-              <img height="80%" width="93%" src="../../assets/Agent_Broker.png" alt="First slide">
+              <img height="80%" width="80%" src="../../assets/Agent Image.PNG" alt="First slide">
             </div>
             <br>
             <span>Agent/Broker</span>
           </div>
           <div class="col-4 bg-hover">
             <div class="box-sha">
-              <img height="80%" width="81%" src="../../assets/Icons_Passenger.png" alt="First slide">
+              <img height="80%" width="80%" src="../../assets/Icons_Passenger.png" alt="First slide">
             </div>
             <br>
             <span>Others filing a claim</span>
@@ -91,36 +90,34 @@
         <br>
         <br>
         <form>
-          <div class="wrapper">
-            <input  [(ngModel)]="policyNumber" name="policyNumber" required autocomplete="off" id="inputdefault" type="text" (keyup)="pg2PolicyClick = true"/>
-            <label for="Policy Number">Policy Number</label>
+          <div class="form-group">
+            <input class="form-control" [(ngModel)]="policyNumber" name="policyNumber" placeholder="Policy Number" id="inputdefault" type="text" (keyup)="pg2PolicyClick = true">
           </div>
           <br>
           <div class="optional_text"><span>or</span></div>
           <br>
           <div class="form-group row">
             <div class="col-6">
-              <input  [(ngModel)]="firstName"  (ngModelChange)="checkUserDetails()" name="firstName" required autocomplete="off" id="inputdefault" type="text">
-              <label for="FirstName">First Name</label>
+              <input class="form-control" placeholder="First Name" [(ngModel)]="firstName"  (ngModelChange)="checkUserDetails()" name="firstName" id="inputdefault" type="text">
             </div>
             <div class="col-6">
-              <input [(ngModel)]="lastName" (ngModelChange)="checkUserDetails()" name="lastName" required autocomplete="off" id="inputdefault" type="text">
-              <label for="lastname">Last Name</label>
+              <input class="form-control" placeholder="Last Name" [(ngModel)]="lastName" (ngModelChange)="checkUserDetails()" name="lastName" id="inputdefault" type="text">
             </div>
           </div>
           <br>
           <label for="comment"><b>DOB</b></label>
           <form class="form-inline">
             <div class="form-group">
-              <div class="wrapper dinline">
-                <input placeholder="MM/DD/YYYY" name="dp" [minDate]="minDate" [(ngModel)]="modelDOB" (ngModelChange)="checkUserDetails()" ngbDatepicker
-                  #d="ngbDatepicker" data-container="body" [maxDate] = "maxDate" required autocomplete="off">
-                  <button class="btn calendar " (click)="d.toggle();" type="button">
+              <div class="input-group">
+                <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [minDate]="minDate" [(ngModel)]="modelDOB" (ngModelChange)="checkUserDetails()" ngbDatepicker
+                  #d="ngbDatepicker">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary calendar pd_bt_0" (click)="d.toggle();" type="button">
                       <i class="material-icons">
                           calendar_today
                       </i>
                   </button>
-                
+                </div>
               </div>
             </div>
           </form>
@@ -131,13 +128,30 @@
         <button type="button" class="btn btn-primary btn-block" *ngIf="pg2PolicyClick" (click)="checkForPolicyNum()">Find My Policy</button>
       </div>
     </ng-container>
-    <!-- Step 4 -->
     <ng-container *ngIf="step===4">
+      <div class="container-pg">
+        <div class="pg-header"><span>Few Safety checks before filing a claim</span></div>
+        <br>
+        <br>
+          <ul>
+            <li>Move your car to a safe location </li><br>
+            <li>Determine if there are any injuries resulting in the incident</li><br>
+            <li>Call 911 and follow instructions from the police</li><br>
+            <li>Get names and information from the other involved in the incident </li><br>
+            <li>Determine if there are any injuries resulting in the incident</li><br>
+            <li>Take pictures of license plate of vehicle involved, damages and objects at the scene of the accident</li><br>
+            <li>Keep receipts of all the repairs, parking fees and any related expenses that are incurred </li><br>
+          </ul>
+        <br>
+        <br>
+        <button type="button" class="btn btn-primary btn-block" (click)="nextPage()">Continue with filing the claim</button>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="step===5">
       <div class="container-pg">
         <div class="pg-header">
           <span>Choose the policy to file a claim</span>
         </div>
-        <br>
         <br>
         <div class="dropdown_button box-sha">
           <div class="row" (click)="toggleMenu()">
@@ -155,26 +169,39 @@
           </div>
         </div>
         <div class="dropdown_list box-sha" *ngIf="listMenu">
-          <div class="dropdown_list_element" (click)="page4Continue('car', i, item)" *ngFor = "let item of carsDropDown; let i = index;" [style.background-color]="i.checked ? '#dee2e6':'' ">
+          <div class="dropdown_list_element" (click)="pg3Continue= false; radio= true">
             <div class="row m_10">
+              <div><input type="radio" name="radio"> </div>&nbsp; &nbsp;
               <div>
-                <input  #i type="radio" name="radio"> 
-              </div>&nbsp; &nbsp;
-              <div style="margin-left: -15px;">
-                {{item}}
+                <p>Honda City 2016-FWV76</p>
+              </div>
+            </div>
+          </div>
+          <div class="dropdown_list_element" (click)="pg3Continue= true; radio= true">
+            <div class="row m_10">
+              <div><input type="radio" name="radio" [checked]="radio"> </div>&nbsp; &nbsp;
+              <div>
+                <p>Toyota Camry 2018-782WER</p>
+              </div>
+            </div>
+          </div>
+          <div class="dropdown_list_element_no_bottom" (click)="pg3Continue= false; radio= true">
+            <div class="row m_10">
+              <div><input type="radio" name="radio"> </div>&nbsp; &nbsp;
+              <div>
+                <p>Jeep Wrangler 2014-ODW451</p>
               </div>
             </div>
           </div>
         </div>
         <br>
         <div class="dropdown_button box-sha">
-          <div class="row"  (click)="page4Continue('property')">
+          <div class="row">
             &nbsp; &nbsp;
             <img height="10%" width="10%" src="../../assets/Icons_Property.png" alt="First slide"> &nbsp; &nbsp;
             <div>
               <span><b>Policy Number</b></span>
-              <p *ngIf ='!noPolicyNumber'>{{policyNumber}}</p>
-              <p *ngIf = 'noPolicyNumber'>866643000</p>
+              <p>56788-8909-6789</p>
               <!-- <span class="flo_rgt">
                   <i class="material-icons">
                     expand_more
@@ -183,42 +210,11 @@
             </div>
           </div>
         </div>
-        <div class="dropdown_list box-sha" *ngIf="menuList">
-          <div class="dropdown_list_element_no_bottom" (click)="page4Continue('property', i)" radio= "true" *ngFor = "let value of dropdown_adressList; let i = index;" [style.background-color]="i.checked ? '#dee2e6':'' ">
-            <div class="row m_10">
-              <div><input #i type="radio" name="radio"> </div>&nbsp; &nbsp;
-              <div style="margin-left: -15px;">
-                <p>{{value}}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <br>
-        <br>
         <br>
         <button type="button" class="btn btn-default btn-block round-default" *ngIf="!pg3Continue">Continue</button>
-        <button type="button" class="btn btn-primary btn-block" *ngIf="pg3Continue" (click)="carOrPropertyPolicy('step4')">Continue</button>
+        <button type="button" class="btn btn-primary btn-block" *ngIf="pg3Continue" (click)="nextPage()">Continue</button>
       </div>
     </ng-container>
-     <!-- Step 5 -->
-    <ng-container *ngIf="step===5">
-      <div class="container-pg">
-        <div class="pg-header"><span>Few Safety checks before filing a claim</span></div>
-        <br>
-        <br>
-          <ul>
-            <li>Move your car to a safe location </li><br>
-            <li>Determine if there are any injuries resulting in the incident</li><br>
-            <li>Call 911 and follow instructions from the police</li><br>
-            <li>Get names and information from the other involved in the incident </li><br>
-            <li>Take pictures of license plate of vehicle involved, damages and objects at the scene of the accident</li><br>
-            <li>Keep receipts of all the repairs, parking fees and any related expenses that are incurred </li><br>
-          </ul>
-        <br>
-        <button type="button" class="btn btn-primary btn-block" (click)="nextPage()">Continue with filing the claim</button>
-      </div>
-    </ng-container>
-    <!-- Step 6 -->
     <ng-container *ngIf="step===6">
       <div class="container-pg">
         <div class="pg-header">
@@ -228,7 +224,7 @@
         <br />
         <div class="box-sha">
           <div class="list_Option">
-              <img class="img_plac" src="../../assets/Icons_Roadside_Assistance.png" alt="roadside">
+              <img class="img_plac" src="../../assets/Icons_Roadside Assistance.png" alt="roadside">
               <div class="dis_inl mrg_top_10px">Need roadside assistance</div>
               <span class="flo_rgt mrg_top_10px">
                 <i class="material-icons">
@@ -317,10 +313,10 @@
             <form class="form-inline">
               <div class="form-group">
                 <div class="input-group">
-                  <input class="form-control" placeholder="MM/DD/YYYY" name="dp" [(ngModel)]="model" ngbDatepicker
-                    #d="ngbDatepicker" [maxDate] = "maxDate" data-container="body" (ngModelChange)="checkAccDetails()">
+                  <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker
+                    #d="ngbDatepicker">
                   <div class="input-group-append">
-                    <button class="btn btn-outline-secondary calendar pd_bt_0" (click)="d.toggle()"type="button">
+                    <button class="btn btn-outline-secondary calendar pd_bt_0" (click)="d.toggle()" (ngModelChange)="checkAccDetails()" type="button">
                         <i class="material-icons">
                             calendar_today
                         </i>             
@@ -329,29 +325,13 @@
                 </div>
               </div>
             </form>
-            <br>
             <div>
-              <form class="form-inline">
-                  <div class="form-group">
-                    <div class="input-group">
-                      <input type="text" value="{{displayTime}}" class="form-control" placeholder="HH:MM"/>
-                      <div class="input-group-append">
-                        <button class="btn btn-outline-secondary calendar pd_bt_0" type="button" (click)="openTime('auto')">
-                            <i class="material-icons">
-                                access_time
-                            </i>             
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-               <!--  <input atp-time-picker value="19:00"/> -->
+               <div> <ngb-timepicker [(ngModel)]="time" (ngModelChange)="checkAccDetails()"></ngb-timepicker></div>
             </div>
-            <br>
             <div class="form-group">
               <label for="comment"><b>Description of the incident</b></label>
               <br>
-              <textarea class="form-control" [(ngModel)]="incidentDesc" placeholder="Type your description here" rows="5" id="comment"></textarea>
+              <textarea class="form-control" [(ngModel)]="incidentDesc" (ngModelChange)="checkAccDetails()" placeholder="Type your description here" rows="5" id="comment"></textarea>
             </div>
           </div>
           <br>
@@ -387,22 +367,16 @@
           <br>
           <div class="row">
             <div id="input_container">
-              <input type="text" [(ngModel)]="zipCode" id="input" (keydown)="onKeydown($event)" #search autocomplete="off" [value]="address">
-             <!--  <i class="material-icons" id="input_img">
+              <input type="text" [(ngModel)]="zipCode" id="input" value>
+              <i class="material-icons" id="input_img">
                   location_on
-              </i> -->
+              </i>
             </div>
             <div (click)="open(content)">
               <i class="material-icons">
                 info
               </i>
             </div>
-             <div class="col-9" style="padding-top: 15px" >
-              <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
-                <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
-                  (dragEnd)="markerDragEnd($event)"></agm-marker>
-              </agm-map>
-              </div>
           </div>
           <br>
           <div class="form-group">
@@ -412,6 +386,7 @@
             <br>
             <input class="form-control" placeholder="Email" id="inputdefault" type="text" [(ngModel)]="email" (ngModelChange)="checkAccidentDetails()">
           </div>
+          <br>
           <br>
           <button type="button" class="btn btn-default btn-block round-default" *ngIf="!pg7Continue" >Continue</button>
           <button type="button" class="btn btn-primary btn-block" *ngIf="pg7Continue" (click)="nextPage()">Continue</button>
@@ -424,7 +399,6 @@
         <div class="pg-header"><span>Do you have any other details to add?</span></div>
         <span class="help_text">We encourage you to provide as much details as possible for a quicker resolution</span>
         <br><br>
-        <br>
          <div class="dropdown_button box-sha" (click)="userSelectReport='car Image'; nextPage(); uploadedcar = true">
           <div style="height:35px">
             <span>Images of your vehicle</span>
@@ -480,23 +454,23 @@
         </div>
         <span class="help_text" *ngIf="userSelectReport=='car Image'">Please upload images showing damages to your vehicle</span>
         <span class="help_text" *ngIf="userSelectReport=='police report'">Please upload police report, if available</span>
-        <span class="help_text" *ngIf="userSelectReport=='3rd party'">Please provide contact details or upload any available images of insurance card, driving license or carnumber plate</span>        <br>
+        <span class="help_text" *ngIf="userSelectReport=='3rd party'">Please give name, phone number/email id of the other party OR upload an image of his/her insurance card</span>        <br>
         <div *ngIf="userSelectReport=='3rd party'">
-          <div class="form-group">
+          <div class="form-group col-12">
             <label for="comment"><b>Provide a short description of the damages to the other's property*</b></label>
             <textarea class="form-control" placeholder="Type here" rows="3" [(ngModel)]="cardesc" name="cardesc"></textarea>
           </div>
           <div class="optional_text"></div>
           <div class="form-group">
-            <div>
+            <div class="col-12">
               <input class="form-control" placeholder="Full Name"  [(ngModel)]="fullName" name="fullName" id="inputdefault" type="text">
             </div>
             <br>
-            <div>
+            <div class="col-12">
               <input class="form-control" placeholder="Phone Number" [(ngModel)]="phoneNum" name="PhoneNumber" id="inputdefault" type="text">
             </div>
             <br>
-            <div >
+            <div class="col-12">
               <input class="form-control" placeholder="E-mail" [(ngModel)]="Email" name="Email" id="inputdefault" type="text">
             </div>
             <br>
@@ -504,20 +478,17 @@
           <div class="optional_text"><span>or</span></div>
         </div>
         <br>
-    
         <div class="image_div image_height_upload" (click)="fileToUpload.click()">
-          <!-- <i class="material-icons" (click)="fileToUpload.click()">
+          <!-- <i class="material-icons" >
             add
-          </i> -->
-          <!-- <span>Upload/Capture Image</span> -->
+          </i>
+          <span>Upload/Take Image</span> -->
         </div>
-        
         <input #fileToUpload type="file" style="display:none;" accept="image/*" (change)="handleInputChange($event)"> 
         <br>
-        <button type="button" class="btn btn-primary btn-block" (click)="nextPage()">Continue</button>
+        <button type="button" class="btn btn-primary btn-block mg_15" (click)="nextPage()">Continue</button>
       </div>
     </ng-container>
-    <!-- Step 11 -->
     <ng-container *ngIf="step===11">
       <div class="container-pg">
         <div class="pg-header">
@@ -525,10 +496,10 @@
           <span *ngIf="userSelectReport=='3rd party'">Details of the other party</span>
           <span *ngIf="userSelectReport=='police report'">Police Report</span>
         </div>
-        <span class="help_text" *ngIf="userSelectReport=='car Image'">Please upload/capture images showing damages to your vehicle</span> 
         <br>
+        <span class="help_text" *ngIf="userSelectReport=='car Image'">Please upload/take images showing damages to your vehicle</span> 
         <span class="help_text" *ngIf="userSelectReport=='police report'">Please upload police report, if available</span>
-        <span class="help_text" *ngIf="userSelectReport=='3rd party'">Please upload/capture images of damages to the other party</span>
+        <span class="help_text" *ngIf="userSelectReport=='3rd party'">Please upload/take images of damages to the other party</span>
         <br>
         <div class="row">
           <div class="col-6">
@@ -536,21 +507,13 @@
             <img *ngIf="userSelectReport=='3rd party'" [src]="(url['3rdParty'] && url['3rdParty']['result']) ? imageData : '../../assets/not_available.jpg'" height="100%" width="100%">
             <img *ngIf="userSelectReport=='police report'"[src]="(url['policeReport'] && url['policeReport']['result']) ? imageData : '../../assets/not_available.jpg'" height="100%" width="100%">
           </div>
-          <div class="col-6 image_div image_height_upload_extra" *ngIf = "!secondImage" (click)="fileToUpload.click()">
-            <!-- <i class="material-icons" (click)="fileToUpload.click()">
-            add
-          </i>
-          <span>Upload/Capture Image</span> -->
+          <div class="col-6 image_div image_height_upload_extra" >
+            <!-- <i class="material-icons">
+              add
+            </i>
+            <span>Upload/Take Image</span> -->
+          </div>
         </div>
-        <input #fileToUpload type="file" style="display:none;" accept="image/*" (change)="secondImgInputChanges($event)"> 
-        <br>
-        </div>
-        <div class="col-6 second_image_upload_extra"  *ngIf = "secondImage">
-            <img *ngIf="userSelectReport=='car Image'"[src]="(secondImgUrl['carImage'] && secondImgUrl['carImage']['result']) ? secondImageData : '../../assets/not_available.jpg'" height="100%" width="100%">
-            <img *ngIf="userSelectReport=='3rd party'" [src]="(secondImgUrl['3rdParty'] && secondImgUrl['3rdParty']['result']) ? secondImageData : '../../assets/not_available.jpg'" height="100%" width="100%">
-            <img *ngIf="userSelectReport=='police report'"[src]="(secondImgUrl['policeReport'] && secondImgUrl['policeReport']['result']) ? secondImageData : '../../assets/not_available.jpg'" height="100%" width="100%">
-        </div>
-        <br>
         <div  *ngIf="userSelectReport == 'car Image'" class="form-group">
           <label for="comment"><b>Provide a short description of the damages</b></label>
           <textarea class="form-control" placeholder="Type here" rows="3" [(ngModel)]="carImageDesc" name="carImageDesc"></textarea>
@@ -561,44 +524,35 @@
         <button type="button" *ngIf="userSelectReport == 'police report'" class="btn btn-primary btn-block" (click)="step = 9">Next</button>
       </div>
     </ng-container>
-    <!-- Step 12 -->
     <ng-container *ngIf="step===12">
       <div class="container-pg">
-        <div class="submission-header">
-          <span *ngIf = "!propertyClaim"><b>Are you ready to submit this claim?</b></span>
-          <span *ngIf = "propertyClaim"><b>Thanks for all the information</b></span>
-        </div>
+        <div class="submission-header"><span><b>Are you ready to submit this claim?</b></span></div>
         <br>
         <br>
-        <button type="button" class="btn btn-default btn-block round-default" (click)="carOrPropertyPolicy('step11')">Go back and review</button>
-        <button type="button" class="btn btn-primary btn-block" (click)="finalSubmit()">Submit</button>
+        <button type="button" class="btn btn-default btn-block round-default" (click)="step=6">Go back and review</button>
+        <button type="button" class="btn btn-primary btn-block" (click)="nextPage()">Submit</button>
       </div>
     </ng-container>
-     <ng-container *ngIf="step===13">
+    <ng-container *ngIf="step===13">
       <br>
       <br>
       <br>
         <div class="container-pg">
           <div class="text-center">
             <span class="pg-head-last">
-                <div>
-                  <span *ngIf = "firstName || lastName; else noName"><b>Thank you {{firstName}} {{lastName}}, your claim has been submitted</b>
-                  </span>
-                  <ng-template #noName>
-                    <span><b>Thank you, your claim has been submitted</b></span>
-                  </ng-template>
-                </div>
-            </span>
+                <div><span><b>Your claim has been submitted</b></span></div>
+            </span>          
+            <br>
             <br>
             <br>
             <div class="reg-text">
-              <span>Reference No. for your claim is:</span>
+              <span>Registration No. for your claim is:</span>
             </div>
             <br>
             <div class="sub-num">
-              <span *ngIf="propertyClaim">PP-{{claimNumber}}</span>
-              <span *ngIf="!propertyClaim">PPA-{{claimNumber}}</span>
+              <span>PPA-456227</span>
             </div>
+          <br>
           <br>
           <br>
           <br>
@@ -606,17 +560,6 @@
               <span><b>Email and SMS have been sent to you for future reference</b></span>
             </div>
           </div>
-          <br><br>
-          <div *ngIf = "propertyClaim" (click)="open(help)">
-            <i class="material-icons help_mat">
-              help
-            </i>
-            <span class="helpicn">
-              Safety tips for your home
-            </span>
-          </div>
-          <br>
-          <button type="button" class="btn btn-primary btn-block" (click)="step = 1;">OK</button>
           <!---<button type="button" class="btn btn-default btn-block round-default">Track Your Claim</button>
           <br>
           <div class="row">
@@ -631,498 +574,9 @@
           <button type="button" class="btn btn-primary btn-block" (click)="step = 1;">Home</button>---->
         </div>
       </ng-container>
-      <ng-container *ngIf="step===15">
-        <div class="container-pg">
-          <div class="pg-header">
-            <span>Sorry to hear about the incident, What happened?</span>
-          </div>
-          <br>
-          <br>
-          <div class="box-sha">
-            <div class="list_Option">
-                <img class="img_size" src="../../assets/Fire.png" alt="roadside">
-                <div class="dis_inline mrg_top_10px">Fire</div>
-                <span class="flo_rgt mrg_top_10px">
-                  <i class="material-icons">
-                     chevron_right
-                  </i>
-                </span>
-              <div class="div_clr"></div>
-            </div>
-          </div>
-          <div class="box-sha">
-           <div class="list_Option" (click)="nextPage()">
-                <img class="img_size" src="../../assets/Water.png">
-                <div class="dis_inline mrg_top_10px">Water</div>
-                <span class="flo_rgt mrg_top_10px">
-                  <i class="material-icons">
-                     chevron_right
-                  </i>
-                </span>
-              <div class="div_clr"></div>
-            </div>
-          </div>
-          <div class="box-sha">
-            <div class="list_Option">
-                <img class="img_size" src="../../assets/weather.png">
-                <div class="dis_inline mrg_top_10px">Weather</div>
-                <span class="flo_rgt mrg_top_10px">
-                  <i class="material-icons">
-                     chevron_right
-                  </i>
-                </span>
-              <div class="div_clr"></div>
-            </div>
-          </div>
-          <div class="box-sha">
-            <div class="list_Option_no_border">
-                <img class="img_size" src="../../assets/theft.png">
-                <div class="dis_inline mrg_top_10px">Theft</div>
-                <span class="flo_rgt mrg_top_10px">
-                  <i class="material-icons">
-                     chevron_right
-                  </i>
-                </span>
-              <div class="div_clr"></div>
-            </div>
-          </div>
-        </div>
-      </ng-container>  
-    <!-- Step 16 -->
-    <ng-container *ngIf="step===16"> 
-      <div class="container-pg">
-        <div class="pg-header">
-          <span>Give us few more details</span>
-        </div>
-        <br>
-       <!--  <div>
-          <span><b>Is anybody injured?</b></span> &nbsp;
-          <button type="button" class="btn btn-default round-default">Yes</button>&nbsp;
-          <button type="button" class="btn btn-default round-default" *ngIf="!pg16no" (click)="pg16no = true">No</button>
-          <button type="button" class="btn btn-primary " *ngIf="pg16no">No</button>
-        </div>
-        <br> -->
-        <div>
-          <div>
-            <b>
-            When did this happen?
-            </b>
-            <br>
-          </div>
-         <div>
-            <form class="form-inline">
-              <div class="form-group">
-                <div class="input-group">
-                  <input class="form-control" placeholder="MM/DD/YYYY" name="dp" [(ngModel)]="propertyModel" ngbDatepicker
-                    #d="ngbDatepicker" [maxDate] = "maxDate" data-container="body"  (ngModelChange)="checkAccDetails()">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-secondary calendar pd_bt_0" (click)="d.toggle()" type="button">
-                        <i class="material-icons">
-                            calendar_today
-                        </i>             
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </form>
-            <br>
-            <div>
-              <form class="form-inline">
-                  <div class="form-group">
-                    <div class="input-group">
-                      <input type="text" value="{{displayPropTime}}" class="form-control" placeholder="HH:MM"/>
-                      <div class="input-group-append">
-                        <button class="btn btn-outline-secondary calendar pd_bt_0" type="button" (click)="openTime('proptTime')">
-                            <i class="material-icons">
-                                access_time
-                            </i>             
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-            </div>
-            <br>
-            <div class="form-group">
-              <label for="comment"><b>Description of the incident</b></label>
-              <br>
-              <textarea class="form-control" [(ngModel)]="propertyIncDesc" placeholder="Type your description here" rows="5" id="comment"></textarea>
-            </div>
-          </div>
-          <br>
-          <button type="button" class="btn btn-default btn-block round-default" *ngIf="!pg16no">Continue</button>
-          <button type="button" class="btn btn-primary btn-block" *ngIf="pg16no" (click)="nextPage()" >Continue</button>
-        </div>
-      </div>
-    </ng-container>
-  <!--   Step 17 -->
-    <ng-container *ngIf= "step=== 17">
-      <div class="container-pg">
-         <div class="pg-header">
-          <span>How did this happen? Tell us more...</span>
-          <br>
-        </div>
-        <br>
-        <div>
-          <span><b>Is this home in livable condition?</b></span>&nbsp;
-          <button type="button" class="btn btn-default round-default" *ngIf="!pg17no" (click)="pg17no = true">Yes</button>
-          <button type="button" class="btn btn-primary " *ngIf="pg17no">Yes</button>&nbsp;
-          <button type="button" class="btn btn-default round-default">No</button>
-        </div>
-        <br>
-        <div class="box-sha">
-          <div class="list_Option" (click)="nextPage()">
-            <img class="img_plac" src="../../assets/Leaking_pipe.png" alt="roadside">
-            <div class="dis_inl mrg_top_10px">Leaking/bursting pipe </div>
-            <span class="flo_rgt mrg_top_10px">
-              <i class="material-icons">
-                chevron_right
-               </i>
-            </span>
-            <div class="div_clr"></div>
-          </div>
-          <div class="list_Option">
-            <img class="img_plac" src="../../assets/Water_buildup.png" alt="roadside">
-            <div class="dis_inl mrg_top_10px">Water buildup in basement/attic </div>
-            <span class="flo_rgt mrg_top_10px">
-              <i class="material-icons">
-                chevron_right
-               </i>
-            </span>
-            <div class="div_clr"></div>
-          </div>
-          <div class="list_Option">
-            <img class="img_plac" src="../../assets/Faulty_household_appliances.png" alt="roadside">
-            <div class="dis_inl mrg_top_10px">Faulty household appliances/sanitation</div>
-            <span class="flo_rgt mrg_top_10px">
-              <i class="material-icons">
-                chevron_right
-               </i>
-            </span>
-            <div class="div_clr"></div>
-          </div>
-          <div class="list_Option">
-            <img class="img_plac" src="../../assets/Plumbing_issue.png" alt="roadside">
-            <div class="dis_inl mrg_top_10px">Plumbing issue </div>
-            <span class="flo_rgt mrg_top_10px">
-              <i class="material-icons">
-                chevron_right
-               </i>
-            </span>
-            <div class="div_clr"></div>
-          </div>
-          <div class="list_Option">
-            <img class="img_plac" src="../../assets/Heating_ventilating.png" alt="roadside">
-            <div class="dis_inl mrg_top_10px">Heating, ventilating and AC units </div>
-            <span class="flo_rgt mrg_top_10px">
-              <i class="material-icons">
-                chevron_right
-               </i>
-            </span>
-            <div class="div_clr"></div>
-          </div>
-           <div class="list_Option">
-            <img class="img_plac" src="../../assets/Leaking_roof.png" alt="roadside">
-            <div class="dis_inl mrg_top_10px">Leaking roof </div>
-            <span class="flo_rgt mrg_top_10px">
-              <i class="material-icons">
-                chevron_right
-               </i>
-            </span>
-            <div class="div_clr"></div>
-          </div>
-           <div class="list_Option">
-            <img class="img_plac" src="../../assets/Drain_issue.png" alt="roadside">
-            <div class="dis_inl mrg_top_10px">Drain/sewer issue </div>
-            <span class="flo_rgt mrg_top_10px">
-              <i class="material-icons">
-                chevron_right
-               </i>
-            </span>
-            <div class="div_clr"></div>
-          </div>
-          <div class="list_Option">
-            <img class="img_plac" src="../../assets/Sprinkler_malfunction.png" alt="roadside">
-            <div class="dis_inl mrg_top_10px">Sprinkler malfunction</div>
-            <span class="flo_rgt mrg_top_10px">
-              <i class="material-icons">
-                chevron_right
-               </i>
-            </span>
-            <div class="div_clr"></div>
-          </div>
-        </div>
-      </div>
-    </ng-container>   
-    <!-- Step 18 -->
-    <ng-container *ngIf="step===18">
-     <div class="container-pg">
-        <div class="pg-header">
-          <span>Let us know what all got damaged</span>
-        </div>
-         <span class="help_text">Under each category, please choose all damaged items</span>
-         <br>
-        <br>
-        <div>
-          <span><b>Are there any damages to other's property?</b></span> &nbsp;
-          <button type="button" class="btn btn-default round-default">Yes</button>&nbsp;
-          <button type="button" class="btn btn-default round-default" *ngIf="!pg18no" (click)="pg18no = true">No</button>
-          <button type="button" class="btn btn-primary " *ngIf="pg18no">No</button>
-        </div>
-        <br>
-        <div class = "box-sha">
-        <div class="row text-center">
-              <div class="col-4 bg-hover" (click)="open(buildingmodal)">
-              <div class="box-sha">
-                <img height="80%" width="85%" src="../../assets/Building.png" alt="First slide">
-              </div>
-              <br>
-              <span>Building</span>
-            </div>
-            <div class="col-4 bg-hover" (click)="open(contentmodal)">
-              <div class="box-sha">
-                <img height="80%" width="85%" src="../../assets/Contents.png" alt="Second slide">
-              </div>
-              <br>
-              <span>Contents</span>
-            </div>
-            <div class="col-4 bg-hover" (click)="open(valuablemodal)">
-              <div class="box-sha">
-                <img height="80%" width="85%" src="../../assets/Valulables.png" alt="Third slide">
-              </div>
-              <br>
-              <span>Valulables</span>
-            </div>
-          </div>
-        </div>
-        <br>
-        <br>
-        <button type="button" class="btn btn-primary btn-block mg_15" (click)="nextPage()">Continue</button>
-      </div>
-    </ng-container>
-    <!-- Step 19 -->
-    <ng-container *ngIf="step===19">
-      <div class="container-pg">
-        <div class="pg-header"><span>Do you have any other details to add?</span></div>
-        <span class="help_text">We encourage you to provide as much details as possible for a quicker resolution</span>
-        <br><br>
-        <br>
-        <div class="dropdown_button box-sha" (click)="userSelectReport='car Image'; nextPage(); uploadedcar = true">
-          <div style="height:35px">
-            <span>Images of your damages</span>
-             <span style="float:right">
-              <i *ngIf="!uploadedcar" class="material-icons">
-                add
-              </i>
-              <i *ngIf="uploadedcar" class="material-icons">
-                  done
-              </i>
-            </span>
-          </div>
-        </div>
-        <br>
-        <div class="dropdown_button box-sha" (click)="userSelectReport='3rd party'; nextPage(); uploaded3rdparty = true; ">
-          <div style="height:35px">
-            <span>Details of the other party damages</span>
-            <span style="float:right">
-              <i *ngIf="!uploaded3rdparty" class="material-icons">
-                add
-              </i> 
-              <i *ngIf="uploaded3rdparty" class="material-icons">
-                done
-              </i>           
-            </span>
-          </div>
-        </div>
-        <br>
-        <div class="dropdown_button box-sha" (click)="userSelectReport='police report'; nextPage();uploadedpolice = true;">
-          <div style="height:35px">
-            <span>Police/Fire report</span>
-            <span style="float:right">
-              <i *ngIf="!uploadedpolice" class="material-icons">
-                add
-              </i> 
-              <i *ngIf="uploadedpolice" class="material-icons">
-                  done
-               </i>           
-            </span>
-          </div>
-        </div>
-        <br>
-        <br>       
-        <button type="button" class="btn btn-primary btn-block" (click)="propertySubmittion()">Next</button>
-      </div>
-    </ng-container>
-    <!-- Step 20 -->
-    <ng-container *ngIf="step===20">
-      <div class="container-pg">
-        <div class="pg-header">
-          <span *ngIf="userSelectReport=='car Image'">Images of your damges</span>
-          <span *ngIf="userSelectReport=='3rd party'">Details of the other party</span>
-          <span *ngIf="userSelectReport=='police report'">Police Report</span>
-        </div>
-         <span class="help_text" *ngIf="userSelectReport=='car Image'">Please upload images showing damages.</span>
-        <span class="help_text" *ngIf="userSelectReport=='police report'">Please upload police report, if available</span>
-        <span class="help_text" *ngIf="userSelectReport=='3rd party'">Please provide contact details or upload any available images of insurance card.</span> 
-        <br>
-        <br>
-        <div *ngIf="userSelectReport=='3rd party'">
-          <div class="form-group">
-            <label for="comment"><b>Provide a short description of the damages to the other's property*</b></label>
-            <textarea class="form-control" placeholder="Type here" rows="3" [(ngModel)]="cardesc" name="cardesc"></textarea>
-          </div>
-          <div class="optional_text"></div>
-          <div class="form-group">
-            <div>
-              <input class="form-control" placeholder="Full Name"  [(ngModel)]="fullName" name="fullName" id="inputdefault" type="text">
-            </div>
-            <br>
-            <div>
-              <input class="form-control" placeholder="Phone Number" [(ngModel)]="phoneNum" name="PhoneNumber" id="inputdefault" type="text">
-            </div>
-            <br>
-            <div >
-              <input class="form-control" placeholder="E-mail" [(ngModel)]="Email" name="Email" id="inputdefault" type="text">
-            </div>
-            <br>
-          </div>
-          <div class="optional_text"><span>or</span></div>
-        </div>
-        <br>
-        <div class="image_div image_height_upload">
-          <i class="material-icons" (click)="fileToUpload.click()">
-            add
-          </i>
-          <span>Upload/Capture Image</span>
-        </div>
-        <input #fileToUpload type="file" style="display:none;" accept="image/*" (change)="handleInputChange($event)"> 
-        <br>
-        <button type="button" class="btn btn-primary btn-block mg_15" (click)="nextPage()">Continue</button>
-      </div>
-    </ng-container>
-    <!-- Step 21 -->
-    <ng-container *ngIf="step===21">
-      <div class="container-pg">
-        <div class="pg-header">
-          <span *ngIf="userSelectReport=='car Image'">Images of Your Damages</span>
-          <span *ngIf="userSelectReport=='3rd party'">Details of the other party</span>
-          <span *ngIf="userSelectReport=='police report'">Police Report</span>
-        </div>
-        <span class="help_text" *ngIf="userSelectReport=='car Image'">Please upload/capture images showing damages</span> 
-        <br>
-        <span class="help_text" *ngIf="userSelectReport=='police report'">Please upload police report, if available</span>
-        <span class="help_text" *ngIf="userSelectReport=='3rd party'">Please upload/capture images of damages to the other party</span>
-        <br>
-        <div class="row">
-          <div class="col-6">
-            <img *ngIf="userSelectReport=='car Image'"[src]="(url['carImage'] && url['carImage']['result']) ? imageData : '../../assets/not_available.jpg'" height="100%" width="100%">
-            <img *ngIf="userSelectReport=='3rd party'" [src]="(url['3rdParty'] && url['3rdParty']['result']) ? imageData : '../../assets/not_available.jpg'" height="100%" width="100%">
-            <img *ngIf="userSelectReport=='police report'"[src]="(url['policeReport'] && url['policeReport']['result']) ? imageData : '../../assets/not_available.jpg'" height="100%" width="100%">
-          </div>
-          <div class="col-6 image_div image_height_upload_extra" *ngIf = "!secondImage">
-            <i class="material-icons" (click)="fileToUpload.click()">
-            add
-          </i>
-          <span>Upload/Capture Image</span>
-        </div>
-        <input #fileToUpload type="file" style="display:none;" accept="image/*" (change)="secondImgInputChanges($event)"> 
-        <br>
-        </div>
-        <div class="col-6 second_image_upload_extra"  *ngIf = "secondImage">
-            <img *ngIf="userSelectReport=='car Image'"[src]="(secondImgUrl['carImage'] && secondImgUrl['carImage']['result']) ? secondImageData : '../../assets/not_available.jpg'" height="100%" width="100%">
-            <img *ngIf="userSelectReport=='3rd party'" [src]="(secondImgUrl['3rdParty'] && secondImgUrl['3rdParty']['result']) ? secondImageData : '../../assets/not_available.jpg'" height="100%" width="100%">
-            <img *ngIf="userSelectReport=='police report'"[src]="(secondImgUrl['policeReport'] && secondImgUrl['policeReport']['result']) ? secondImageData : '../../assets/not_available.jpg'" height="100%" width="100%">
-        </div>
-        <br>
-        <div  *ngIf="userSelectReport == 'car Image'" class="form-group">
-          <label for="comment"><b>Provide a short description of the damages</b></label>
-          <textarea class="form-control" placeholder="Type here" rows="3" [(ngModel)]="carImageDesc" name="carImageDesc"></textarea>
-        </div>
-               <br>
-        <button type="button" *ngIf="userSelectReport == 'car Image'" class="btn btn-primary btn-block" (click)="uploadDoc();">Next</button>
-        <button type="button" *ngIf="userSelectReport == '3rd party' " class="btn btn-primary btn-block" (click)="step = 9">Next</button>
-        <button type="button" *ngIf="userSelectReport == 'police report'" class="btn btn-primary btn-block" (click)="step = 9">Next</button>
-      </div>
-      
-    </ng-container>
-    <!-- Step 14 -->
-      <div *ngIf="step===14">
-        <div class="container-pg">
-           <div class="pg-header">
-          <span>Estimation Report</span>
-          <br>
-        </div>
-        <span class="help_text" *ngIf="userSelectReport=='car Image'">All numbers in $</span>
-        <br />
-        <br />
-        <div *ngIf="isLoading;else estimation_content">
-            <div class="d-flex justify-content-center">
-              <div class="spinner-border text-primary" role="status">
-                <span class="sr-only">Loading...</span>
-              </div>
-            </div>
-        </div>
-        <ng-template #estimation_content>
-          <div class="box-sha">
-            <table class="table table-bordered vertical_table">
-              <tbody>
-                <tr>
-                  <th> Damaged Part </th>
-                  <th> Damage Details </th>
-                </tr>
-                <tr *ngFor= "let ele of elemtArry">
-                  <td>{{ele.damgedpart | titlecase}}</td>
-                    <td [style.text-transform]="'capitalize'">
-                      {{ele.damgedetails}}
-                    </td>
-                </tr>
-              </tbody>
-            </table>
-            <table class="table table-bordered vertical_table" *ngFor="let score of scores">
-              <tbody *ngIf ="score.sco_scoreType === 'claim'">
-                <tr>       
-                  <th> Costs </th>
-                  <th> Amount </th>
-                </tr>              
-                <tr>
-                  <td>Repair (A)</td>
-                    <td >
-                      {{score.sco_costDenting}}
-                    </td>
-                </tr>
-                <tr>
-                    <td>Painting (B)</td>
-                    <td>{{score.sco_costPainting}}</td>
-                      </tr>
-                <tr>
-                    <td>Other (C)</td>
-                    <td>{{score.sco_costOther}}</td>
-                      </tr>
-                <tr>
-                    <th>Total Labour (D=A+B+C)</th>
-                    <td ><b>
-                     {{score.sco_costLabor}}
-                      </b></td>
-                </tr>
-                <tr >
-                    <td>Parts (E)</td>
-                    <td>{{score.sco_costParts}}</td>
-                      </tr>
-                <tr>
-                    <th>Total (D+E)</th>
-                    <td ><b>
-                      {{score.sco_assessCost}}
-                      </b></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <br>
-          <br>
-          <button type="button" class="btn btn-primary btn-block" (click)="step = 9">Next</button>
-        </ng-template>
-    </div>
-    </div>
+</div>
+    
+
       <ng-template #content let-modal>
         <div class="modal-body">
           <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -1131,7 +585,8 @@
           <br>
       
           <div class="text-center">
-            <p class="p-no-maring-bottom">Please drag to the loaction on the map.
+            <p class="p-no-maring-bottom">Please click on location icon to select the icon from the map where incident
+              occured
             </p>
             <div class="optional_text"><span>or</span></div>
             <p class="p-no-maring-bottom">
@@ -1142,100 +597,3 @@
           </div>
         </div>
       </ng-template>
-      <ng-template #buildingmodal let-modal>
-        <div class="modal-body">
-          <div class="text-center modal-header">
-            <p class="p-no-maring-bottom">Please choose all damages to the building
-            </p>
-          </div>
-          <div class = "modal_checkbox box-sha">
-           <form [formGroup]="form" (ngSubmit)="submit('buildingdamages', modal)">
-              <div  *ngFor="let bdamage of form.controls.buildingdamages.controls; let i = index" class ="form-check checkbox_list_element">
-              <label formArrayName="buildingdamages"  class="form-check-label" >
-                <input type="checkbox" [formControlName]="i" class = "form-check-input" style="
-                  margin-left: -26px;" (change)="checkBoxInput($event, buildingdamages[i].name, 'buildingdamages')">
-                {{buildingdamages[i].name}}
-              </label>
-            </div>
-              <div *ngIf = "enableOtherText" class="form-group">
-                <input type="text" class="form-control other_textbox" placeholder="Type here">
-              </div>
-              <br>
-              <button class="btn btn-primary btn-block">OK</button>
-            </form>
-          </div> 
-        </div>
-      </ng-template>
-      <ng-template #contentmodal let-modal>
-        <div class="modal-body">
-          <div class="text-center modal-header">
-            <p class="p-no-maring-bottom">Please choose all content related damages
-            </p>
-          </div>
-          <div class = "modal_checkbox box-sha">
-           <form [formGroup]="form" (ngSubmit)="submit('contentdamages',modal)">
-              <div  *ngFor="let bdamage of form.controls.contentdamages.controls; let i = index" class ="form-check checkbox_list_element">
-              <label formArrayName="contentdamages"  class="form-check-label" >
-                <input type="checkbox" [formControlName]="i" class = "form-check-input" style="
-                  margin-left: -26px;" (change)="checkBoxInput($event, contentdamages[i].name, 'contentdamages')">
-                {{contentdamages[i].name}}
-              </label>
-            </div>
-              <div *ngIf = "otherText" class="form-group">
-                 <input type="text" class="form-control other_textbox" placeholder="Type here">
-              </div>
-              <br>
-              <button  class="btn btn-primary btn-block">OK</button>
-            </form>
-          </div> 
-        </div>
-      </ng-template>
-      <ng-template #valuablemodal let-modal>
-        <div class="modal-body">
-          <div class="text-center modal-header">
-            <p class="p-no-maring-bottom">Please choose valuable related damages
-            </p>
-          </div>
-          <div class = "modal_checkbox box-sha">
-           <form [formGroup]="form" (ngSubmit)="submit('valuabledamages',modal)">
-              <div  *ngFor="let bdamage of form.controls.valuabledamages.controls; let i = index" class ="form-check checkbox_list_element">
-              <label formArrayName="valuabledamages"  class="form-check-label" >
-                <input type="checkbox" [formControlName]="i" class = "form-check-input" style="
-                  margin-left: -26px;" (change)="checkBoxInput($event, valuabledamages[i].name, 'valuabledamages')">
-                {{valuabledamages[i].name}}
-              </label>
-            </div>
-              <div *ngIf = "valuableOtherText" class="form-group">
-                 <input type="text" class="form-control other_textbox" placeholder="Type here">
-              </div>
-              <br>
-              <button class="btn btn-primary btn-block">OK</button>
-            </form>
-          </div> 
-        </div>
-      </ng-template>
-      <ng-template #help let-modal>
-        <div class="modal-body">
-          <div class="pg-header">
-            <p class="p-no-maring-bottom">Tips to keep your home safe
-            </p>
-          </div>
-            <div class="box-sha">
-              <ul>
-                <li>Know the location of your water main </li><br>
-                <li>Shut down the main if you are leaving for an extended time</li><br>
-                <li>Check appliances regularly for leaks</li><br>
-                <li>Promptly investigate and fix leaks</li><br>
-                <li>Upgrade washing machine hoses</li><br>
-                <li>Install water detection devices </li><br>
-                <li>Check your water pressure and install a pressure regulator, if required</li><br>
-                <li>Monitor your water bill – will always indicate if there is a leak somewhere</li>
-              </ul>
-            </div>
-            <br>
-              <button type="button" class="btn btn-primary btn-block" (click)="modal.dismiss('Save click')">OK</button>
-        </div>
-      </ng-template>
-
-
-       
