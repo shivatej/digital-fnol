@@ -39,7 +39,10 @@
           <br>
           <br>
           <div class="col-3">
-            <input class="form-control" placeholder="Zip Code" id="inputdefault" type="text">
+            <mat-form-field hideRequiredMarker appearance="legacy">
+                <input matInput placeholder="Zip Code" [(ngModel)]="zipcode" name="zipcode" id="inputdefault" type ="text" (ngModelChange)="checkForDetails()" [attr.disabled]="disableField" [formControl]="email" required>
+                <mat-error *ngIf="email.invalid" align="end">{{getErrorMessage()}}</mat-error> 
+            </mat-form-field>
           </div>
           <br>
           <button type="button" class="btn btn-default btn-block round-default ng-star-inserted">Get a Quote</button>
@@ -90,29 +93,36 @@
         <br>
         <br>
         <form>
-          <div class="form-group">
-            <input class="form-control" [(ngModel)]="policyNumber" name="policyNumber" placeholder="Policy Number" id="inputdefault" type="text" (keyup)="pg2PolicyClick = true">
-          </div>
+          <mat-form-field >
+              <input matInput placeholder="Policy Number" [(ngModel)]="policyNumber" name="policyNumber" id="inputdefault" type ="text" (keyup)="pg2PolicyClick = true"> 
+          </mat-form-field>
           <br>
           <div class="optional_text"><span>or</span></div>
           <br>
-          <div class="form-group row">
+          <div class="row mt-45">
             <div class="col-6">
-              <input class="form-control" placeholder="First Name" [(ngModel)]="firstName"  (ngModelChange)="checkUserDetails()" name="firstName" id="inputdefault" type="text">
+                <mat-form-field >
+                    <input matInput placeholder="First Name" [(ngModel)]="firstName" name="firstName" id="inputdefault" type ="text" (ngModelChange)="checkUserDetails()"> 
+                </mat-form-field>
             </div>
             <div class="col-6">
-              <input class="form-control" placeholder="Last Name" [(ngModel)]="lastName" (ngModelChange)="checkUserDetails()" name="lastName" id="inputdefault" type="text">
+                <mat-form-field>
+                    <input matInput placeholder="Last Name" [(ngModel)]="lastName" name="lastName" id="inputdefault" type ="text" (ngModelChange)="checkUserDetails()"> 
+                </mat-form-field>
             </div>
           </div>
           <br>
           <label for="comment"><b>DOB</b></label>
+           
           <form class="form-inline">
             <div class="form-group">
               <div class="input-group">
-                <input class="form-control" placeholder="MM/DD/YYYY" name="dp" [minDate]="minDate" [(ngModel)]="modelDOB" (ngModelChange)="checkUserDetails()" ngbDatepicker
-                  #d="ngbDatepicker" data-container="body" [maxDate] = "maxDate">
-                <div class="input-group-append">
-                  <button class="btn btn-outline-secondary calendar pd_bt_0" (click)="d.toggle();" type="button">
+                <mat-form-field >
+                  <input matInput placeholder="MM/DD/YYYY" name="dp" [minDate]="minDate" [(ngModel)]="modelDOB" (ngModelChange)="checkUserDetails()" ngbDatepicker
+                  #d="ngbDatepicker" data-container="body" [maxDate] = "maxDate"/>
+                </mat-form-field>
+                <div class="">
+                  <button class="btn calendar pd_bt_0" (click)="d.toggle();" type="button">
                       <i class="material-icons">
                           calendar_today
                       </i>
@@ -314,15 +324,17 @@
             <form class="form-inline">
               <div class="form-group">
                 <div class="input-group">
-                  <input class="form-control" placeholder="MM/DD/YYYY" name="dp" [(ngModel)]="model" ngbDatepicker
-                    #d="ngbDatepicker" [maxDate] = "maxDate" data-container="body" (ngModelChange)="checkAccDetails()">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-secondary calendar pd_bt_0" (click)="d.toggle()"type="button">
+                  <mat-form-field class="w9em">
+                    <input matInput placeholder="MM/DD/YYYY" name="dp" [(ngModel)]="model" ngbDatepicker
+                    #d="ngbDatepicker" [maxDate] = "maxDate" data-container="body" (ngModelChange)="checkAccDetails()"/>
+                  </mat-form-field>
+                  
+                    <button class="btn calendar pd_bt_0" (click)="d.toggle()"type="button">
                         <i class="material-icons">
                             calendar_today
                         </i>             
                     </button>
-                  </div>
+              
                 </div>
               </div>
             </form>
@@ -331,14 +343,14 @@
               <form class="form-inline">
                   <div class="form-group">
                     <div class="input-group">
-                      <input type="text" value="{{displayTime}}" class="form-control" placeholder="HH:MM"/>
-                      <div class="input-group-append">
-                        <button class="btn btn-outline-secondary calendar pd_bt_0" type="button" (click)="openTime('auto')">
+                      <mat-form-field class="w9em">
+                        <input matInput type="text" value="{{displayTime}}" class="form-control" placeholder="HH:MM"/>
+                      </mat-form-field>
+                      <button class="btn calendar pd_bt_0" type="button" (click)="openTime('auto')">
                             <i class="material-icons">
                                 access_time
                             </i>             
                         </button>
-                      </div>
                     </div>
                   </div>
                 </form>
@@ -383,17 +395,23 @@
           </div>
           <br>
           <div class="row">
-            <div id="input_container">
-              <input type="text" [(ngModel)]="zipCode" id="input" (keydown)="onKeydown($event)" #search autocomplete="off" [value]="address">
+            <div id="input_container" class="dinline">
+              
              <!--  <i class="material-icons" id="input_img">
                   location_on
               </i> -->
+            
+              <mat-form-field class="w25em">
+                  <input matInput type="search" [(ngModel)]="zipCode" id="input" (keydown)="onKeydown($event)" #search autocomplete="off" [value]="address" class="border_none">
+                  <!-- <input matInput placeholder="Zip Code" [(ngModel)]="zipcode" name="zipcode" id="inputdefault" type ="text" (ngModelChange)="checkForDetails()" [attr.disabled]="disableField" [formControl]="email" required> -->
+              </mat-form-field> 
+              <div (click)="open(content)">
+                <i class="material-icons mt20">
+                  info
+                </i>
+              </div>
             </div>
-            <div (click)="open(content)">
-              <i class="material-icons">
-                info
-              </i>
-            </div>
+            
              <div class="col-9" style="padding-top: 15px" >
               <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
                 <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
@@ -405,9 +423,14 @@
           <div class="form-group">
             <label> <b>Where can we contact you in case of further questions?</b></label>
             <br>
-            <input class="form-control" placeholder="Phone Number" id="inputdefault" type="text" [(ngModel)]="phoneNumber" (ngModelChange)="checkAccidentDetails()">            
-            <br>
-            <input class="form-control" placeholder="Email" id="inputdefault" type="text" [(ngModel)]="email" (ngModelChange)="checkAccidentDetails()">
+            <mat-form-field hideRequiredMarker appearance="legacy">
+             <input matInput placeholder="Phone Number" id="inputdefault" type="tel" [(ngModel)]="phoneNumber" (ngModelChange)="checkAccidentDetails()"> 
+            </mat-form-field>       
+             <br>
+             <mat-form-field hideRequiredMarker appearance="legacy">
+             <input matInput placeholder="Email" id="inputdefault" type="text" (ngModelChange)="checkAccidentDetails()" [formControl]="email" required>
+             <mat-error *ngIf="email.invalid" align="end">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>    
           </div>
           <br>
           <button type="button" class="btn btn-default btn-block round-default" *ngIf="!pg7Continue" >Continue</button>
@@ -498,7 +521,7 @@
             </div>
             <br>
           </div>
-          <div class="optional_text"><span>or</span></div>
+          <div class="optional_text_2"><span>or</span></div>
         </div>
         <br>
     
@@ -710,10 +733,12 @@
             <form class="form-inline">
               <div class="form-group">
                 <div class="input-group">
-                  <input class="form-control" placeholder="MM/DD/YYYY" name="dp" [(ngModel)]="propertyModel" ngbDatepicker
+                  <mat-form-field>
+                  <input matInput placeholder="MM/DD/YYYY" name="dp" [(ngModel)]="propertyModel" ngbDatepicker
                     #d="ngbDatepicker" [maxDate] = "maxDate" data-container="body"  (ngModelChange)="checkAccDetails()">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-secondary calendar pd_bt_0" (click)="d.toggle()" type="button">
+                  </mat-form-field>
+                  <div class="">
+                    <button class="btn calendar pd_bt_0" (click)="d.toggle()" type="button">
                         <i class="material-icons">
                             calendar_today
                         </i>             
@@ -727,9 +752,11 @@
               <form class="form-inline">
                   <div class="form-group">
                     <div class="input-group">
-                      <input type="text" value="{{displayPropTime}}" class="form-control" placeholder="HH:MM"/>
-                      <div class="input-group-append">
-                        <button class="btn btn-outline-secondary calendar pd_bt_0" type="button" (click)="openTime('proptTime')">
+                      <mat-form-field>
+                       <input matInput type="text" value="{{displayPropTime}}" placeholder="HH:MM"/>
+                      </mat-form-field>
+                      <div class="">
+                        <button class="btn calendar pd_bt_0" type="button" (click)="openTime('proptTime')">
                             <i class="material-icons">
                                 access_time
                             </i>             

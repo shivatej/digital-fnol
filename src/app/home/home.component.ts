@@ -8,7 +8,10 @@ import { MapsAPILoader, MouseEvent } from '@agm/core';
 import { Router} from '@angular/router';
 import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn } from '@angular/forms';
 import { AmazingTimePickerService } from 'amazing-time-picker';
+import {ErrorStateMatcher} from '@angular/material/core';
 import { of } from 'rxjs';
+import { Validators} from '@angular/forms';
+declare var google: any;
 
 @Component({
   selector: 'app-home',
@@ -16,6 +19,14 @@ import { of } from 'rxjs';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+  email = new FormControl('', [Validators.required, Validators.email]);
+
+  getErrorMessage() {
+    return this.email.hasError('required') ? 'You must enter a value' :
+        this.email.hasError('email') ? 'Not a valid input' :
+            '';
+  }
 
   private imageSrc: string = '';
   isPolicyButton:boolean = false;
@@ -50,7 +61,7 @@ export class HomeComponent implements OnInit {
   incidentDesc:string;
   zipCode:string;
   phoneNumber:string;
-  email:string;
+  // email:string;
   fullName:string;
   phoneNum:string;
   Email:string;

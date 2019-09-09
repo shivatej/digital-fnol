@@ -1,3 +1,27 @@
+.mt20{
+    margin-top:20px;
+}
+
+.mt-45{
+    margin-top: -45px;
+}
+
+.border_none{
+    border:none !important;
+}
+
+.dinline{
+    display: inline-flex;
+}
+
+.w25em{
+    width:25.5em !important;
+}
+
+.w9em{
+    width:9.5em !important;
+}
+
 .main-body{
     margin: 0;
     padding : 0;
@@ -137,7 +161,15 @@
     text-align:center; 
     border-bottom: 2px solid #6e7684; 
     line-height:0.1em; 
-    margin:10px 0 20px; 
+    margin: 30px 0 48px; 
+}
+
+.optional_text_2 { 
+    width:100%; 
+    text-align:center; 
+    border-bottom: 2px solid #6e7684; 
+    line-height:0.1em; 
+    margin: 7px 0 -17px; 
 }
 
 .optional_text span { 
