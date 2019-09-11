@@ -1088,9 +1088,7 @@
         </div>
         <ng-template #estimation_content>
           <div class="box-sha">
-            <table class="table table-bordered vertical_table">
-              <col width="200">
-              <col width="200">
+            <table class="table table-bordered vertical_table">          
               <tbody>
                 <tr>
                   <th> Damaged Part </th>
@@ -1105,8 +1103,6 @@
               </tbody>
             </table>
             <table class="table table-bordered vertical_table" *ngFor="let score of scores">
-              <col width="200">
-              <col width="200">
               <tbody *ngIf ="score.sco_scoreType === 'claim'">
                 <tr>       
                   <th> Costs </th>
