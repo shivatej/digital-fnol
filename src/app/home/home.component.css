@@ -251,7 +251,7 @@
 }
 
 .vertical_table {
-    table-layout: fixed;
+    table-layout: auto;
 }
 
 agm-map {
