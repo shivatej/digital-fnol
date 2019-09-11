@@ -8,7 +8,7 @@
   <div class="container-body">
     <ng-container *ngIf="step===1">
       <div class="container-pg">
-        <div><span>Looking for best insurance plan for you?</span></div>
+        <div><span>Looking for the best insurance plan for you?</span></div>
         <div class="home_pg_header"><span>Let's get started</span></div>
         <br>
         <br>
@@ -68,7 +68,7 @@
               <img height="80%" width="80%" src="../../assets/Icons_Policy Holder.png" alt="First slide">
             </div>
             <br>
-            <span>Policy Holder</span>
+            <span>Policyholder</span>
           </div>
           <div class="col-4 bg-hover">
             <div class="box-sha">
@@ -210,15 +210,15 @@
      <!-- Step 5 -->
     <ng-container *ngIf="step===5">
       <div class="container-pg">
-        <div class="pg-header"><span>Few Safety checks before filing a claim</span></div>
+        <div class="pg-header"><span>Few Safety checks...</span></div>
         <br>
         <br>
           <ul>
             <li>Move your car to a safe location </li><br>
-            <li>Determine if there are any injuries resulting in the incident</li><br>
+            <li>Determine if there are any injuries resulting from the incident</li><br>
             <li>Call 911 and follow instructions from the police</li><br>
-            <li>Get names and information from the other involved in the incident </li><br>
-            <li>Take pictures of license plate of vehicle involved, damages and objects at the scene of the accident</li><br>
+            <li>Get names and information from others involved in the incident </li><br>
+            <li>Take pictures of license plates of vehicles involved, damages and objects at the scene of the accident</li><br>
             <li>Keep receipts of all the repairs, parking fees and any related expenses that are incurred </li><br>
           </ul>
         <br>
@@ -266,7 +266,7 @@
           </div>
           <div class="list_Option">
             <img class="img_plac" src="../../assets/Icons_Something Fell.png " alt="roadside">
-            <div class="dis_inl mrg_top_10px">Fell on vehicle/property
+            <div class="dis_inl mrg_top_10px">Something fell on vehicle
             </div>
             <span class="flo_rgt mrg_top_10px">
               <i class="material-icons">
@@ -602,10 +602,10 @@
           <div class="text-center">
             <span class="pg-head-last">
                 <div>
-                  <span *ngIf = "firstName || lastName; else noName"><b>Thank you {{firstName}} {{lastName}}, your claim has been submitted</b>
+                  <span *ngIf = "firstName || lastName; else noName"><b>Thank you {{firstName}} {{lastName}}, your claim has been submitted!</b>
                   </span>
                   <ng-template #noName>
-                    <span><b>Thank you, your claim has been submitted</b></span>
+                    <span><b>Thank you, your claim has been submitted!</b></span>
                   </ng-template>
                 </div>
             </span>
