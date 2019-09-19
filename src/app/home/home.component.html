@@ -552,7 +552,7 @@
         <br>
         <div class="row">
           <div class="col-6">
-            <img *ngIf="userSelectReport=='car Image'"[src]="(url['carImage'] && url['carImage']['result']) ? imageData : '../../assets/not_available.jpg'" height="100%" width="100%">
+            <!--<img *ngIf="userSelectReport=='car Image'"[src]="(url['carImage'] && url['carImage']['result']) ? imageData : '../../assets/not_available.jpg'" height="100%" width="100%">-->
             <img *ngIf="userSelectReport=='3rd party'" [src]="(url['3rdParty'] && url['3rdParty']['result']) ? imageData : '../../assets/not_available.jpg'" height="100%" width="100%">
             <img *ngIf="userSelectReport=='police report'"[src]="(url['policeReport'] && url['policeReport']['result']) ? imageData : '../../assets/not_available.jpg'" height="100%" width="100%">
           </div>
