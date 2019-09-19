@@ -135,9 +135,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.carsDropDown = [
-      "2018 Toyota Camry",
-      "2018 Chevrolet Colorado",
-      "2016 Honda Civic"
+      "2005 Hyundai Santa Fe",
+      "2010 Chevy Impala",
+      "2011 KIA Soul"
     ];
     this.dropdown_adressList = [
       "261 South Helen, TN 37122",
