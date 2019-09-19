@@ -380,11 +380,11 @@
           <div><b>Where is the vehicle currently located?</b></div>
           <br>
           <div>
-            <button type="button" class="btn btn-default round-default" *ngIf="!homeAccbtn" (click) = "homeAccbtn = true">Home</button> 
+            <button type="button" class="btn btn-default round-default" *ngIf="!homeAccbtn" (click) = "currentVehilceLocation = 'Home'">Home</button> 
             <button type="button" class="btn btn-primary" *ngIf="homeAccbtn" >Home</button> &nbsp;
-            <button type="button" class="btn btn-default round-default" *ngIf="!accSitebtn" (click) = "accSitebtn = true">Accident Site</button>
+            <button type="button" class="btn btn-default round-default" *ngIf="!accSitebtn" (click) = "currentVehilceLocation = 'Accident Site'">Accident Site</button>
             <button type="button" class="btn btn-primary" *ngIf="accSitebtn" >Accident Site</button> &nbsp;
-            <button type="button" class="btn btn-default round-default" *ngIf="!bodyShpbtn" (click) = "bodyShpbtn = true">Body Shop</button> 
+            <button type="button" class="btn btn-default round-default" *ngIf="!bodyShpbtn" (click) = "currentVehilceLocation = 'Body Shop'">Body Shop</button> 
             <button type="button" class="btn btn-primary" *ngIf="bodyShpbtn" >Body Shop</button> &nbsp;
           </div>
         </div>
@@ -517,7 +517,7 @@
             </div>
             <br>
             <div >
-              <input class="form-control" placeholder="E-mail" [(ngModel)]="Email" name="Email" id="inputdefault" type="text">
+              <input class="form-control" placeholder="E-mail" [(ngModel)]="thirdPartyEmail" name="Email" id="inputdefault" type="text">
             </div>
             <br>
           </div>
@@ -1076,7 +1076,7 @@
           <span>Estimation Report</span>
           <br>
         </div>
-        <span class="help_text" *ngIf="userSelectReport=='car Image'">All numbers in $</span>
+        <span class="help_text" *ngIf="userSelectReport=='car Image'">Demo purpose only, not shown to claimant</span>
         <br />
         <br />
         <div *ngIf="isLoading;else estimation_content">
@@ -1105,8 +1105,8 @@
             <table class="table table-bordered vertical_table" *ngFor="let score of scores">
               <tbody *ngIf ="score.sco_scoreType === 'claim'">
                 <tr>       
-                  <th> Costs </th>
-                  <th> Amount </th>
+                  <th> Estimates </th>
+                  <th> Amount($) </th>
                 </tr>              
                 <tr>
                   <td>Repair (A)</td>
