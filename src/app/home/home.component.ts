@@ -326,9 +326,12 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  nextPage(){
-    this.step++;
+    nextPage() {
+    if (this.step == 10) this.step = 9;
+    else
+      this.step++;
   }
+
   toggleMenu(){
     this.listMenu = !this.listMenu;
   }
