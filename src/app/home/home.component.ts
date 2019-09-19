@@ -323,8 +323,6 @@ export class HomeComponent implements OnInit {
   }
 
     nextPage() {
-    if (this.step == 10) this.step = 9;
-    else
       this.step++;
   }
 
