@@ -314,11 +314,7 @@ export class HomeComponent implements OnInit {
       alert("Some error occurred while processing")
     });
   }
-  open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title',centered: true}).result.then((result) => {
-    }, (reason) => {
-    });
-  }
+  
 
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title',centered: true}).result.then((result) => {
