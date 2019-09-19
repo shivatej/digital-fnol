@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit {
   responseData : any;
   imageData:any;
   createdDate : any;
-  modelDOB:string;
+  modelDOB:any;
   time:any;
   lastName:string;
   firstName:string;
@@ -64,7 +64,7 @@ export class HomeComponent implements OnInit {
   // email:string;
   fullName:string;
   phoneNum:string;
-  Email:string;
+  thirdPartyEmail:string;
   cardesc:string;
   carImageDesc:string;
   url:object = {};
@@ -107,6 +107,7 @@ export class HomeComponent implements OnInit {
   displayPropTime : any;
   finalJson:object = {};
   vehicle: any;
+  currentVehilceLocation: string = "Home";
   
   @ViewChild('search')
   public searchElementRef: ElementRef;
@@ -134,9 +135,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.carsDropDown = [
-      "Toyota Camry 2018-782WER",
-      "Chevrolet Colorado 2018-782WER",
-      "Honda Civic 2016-FWV76"
+      "2018 Toyota Camry",
+      "2018 Chevrolet Colorado",
+      "2016 Honda Civic"
     ];
     this.dropdown_adressList = [
       "261 South Helen, TN 37122",
@@ -304,8 +305,19 @@ export class HomeComponent implements OnInit {
    }
 
   finalJsonServiceCall() {
-    this.sharedServiceService.finalJson(this.finalJson).then((data:any) =>{
-    }, (err) => {});
+    this.sharedServiceService.finalJson(this.finalJson).then((data: any) => {
+      if (typeof data == "object") {
+        this.claimNumber = data.pv.claimNumber;
+        this.nextPage();
+      }
+    }, (err) => {
+      alert("Some error occurred while processing")
+    });
+  }
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title',centered: true}).result.then((result) => {
+    }, (reason) => {
+    });
   }
 
   open(content) {
@@ -588,7 +600,6 @@ export class HomeComponent implements OnInit {
 
   finalSubmit() {
     this.claimNumber = Math.floor(100000 + Math.random() * 900000)
-    this.nextPage();
     this.prepareFinalJson();
     this.finalJsonServiceCall();
   }
@@ -624,46 +635,38 @@ export class HomeComponent implements OnInit {
 }*/
 
 prepareFinalJson() {
-    this.finalJson = {
-    "Role": "Driver",
+  this.finalJson = {
+    "Role": "PolicyHolder",
     "policyNumber": this.policyNumber,
     "firstName": this.firstName,
     "lastName": this.lastName,
-    // "dob": this.modelDOB? this.modelDOB.month + "/" + this.modelDOB.day + "/" + this.modelDOB.year : "",
+    "dob": typeof this.modelDOB == "undefined" ? "" : this.modelDOB.month + "/" + this.modelDOB.day + "/" + this.modelDOB.year,
     "incident": {
       "vehicle": this.vehicle,
       "incidentDetails": {
         "incidentType": "Collision with another vehicle",
         "description": this.incidentDesc,
         "Injuries": "No",
-        // "incidentDate": this.model? this.model.month + "/" + this.model.day + "/" + this.model.year : "",
+        "incidentDate": typeof this.model == "undefined" ? "" : this.model.month + "/" + this.model.day + "/" + this.model.year,
         "incidentTime": this.displayTime,
         "incidentLocation": this.address,
-        "presentVehicleLocation": "Home",
+        "presentVehicleLocation": this.currentVehilceLocation,
         "phoneNumber": this.phoneNumber,
         "email": this.email,
-        "vehicleImage": {
-          "image_name": "vehicleImage.jpeg",
-          "img_data":  this.imageChkSum
-        },
+        "vehicleImage": "drive.google.com/780spl",
         "otherPartyDetails": {
           "damageDescription": this.cardesc,
           "fullName": this.fullName,
           "phoneNumer": this.phoneNum,
-          "vehicleImage": {
-            "image_name": "ggg.jpeg",
-            "img_data":  this.imageChkSum
-          }
+          "vehicleImage": "drive.google.com/780spl",
+          "email": this.thirdPartyEmail
         },
-        "PoliceReport": {
-          "image_name": "",
-          "img_data": this.imageChkSum
-        }
-      },
-      "claim": {
-        "ReferenceNo": this.claimNumber,
-        "Channel": "Self-service"
+        "PoliceReport": "drive.google.com/youoiwe",
       }
+    },
+    "claim": {
+      "ReferenceNo": this.claimNumber,
+      "Channel": "Self-service"
     }
   }
 }
