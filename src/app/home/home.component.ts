@@ -61,7 +61,7 @@ export class HomeComponent implements OnInit {
   incidentDesc:string;
   zipCode:string;
   phoneNumber:string;
-  // email:string;
+  email:string;
   fullName:string;
   phoneNum:string;
   thirdPartyEmail:string;
