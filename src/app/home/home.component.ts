@@ -386,7 +386,7 @@ export class HomeComponent implements OnInit {
 
   checkForPolicyNum() {
     if(this.policyNumber.length == 0){
-      this .policyNumber ='877643001';
+      this .policyNumber ='3976789075';
       this.noPolicyNumber = true;
     }
     this.nextPage();
