@@ -40,8 +40,8 @@
           <br>
           <div class="col-3">
             <mat-form-field hideRequiredMarker appearance="legacy">
-                <input matInput placeholder="Zip Code" [(ngModel)]="zipcode" name="zipcode" id="inputdefault" type ="text" (ngModelChange)="checkForDetails()" [attr.disabled]="disableField" [formControl]="email" required>
-                <!--<mat-error *ngIf="email.invalid" align="end">{{getErrorMessage()}}</mat-error> -->
+                <input  matInput placeholder="Zip Code" [(ngModel)]="zipcode" name="zipcode" id="inputdefault" type ="text" [attr.disabled]="disableField" [formControl]="email" required>
+                <mat-error *ngIf="email.invalid" align="end">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
           </div>
           <br>
@@ -428,8 +428,9 @@
             </mat-form-field>       
              <br>
              <mat-form-field hideRequiredMarker appearance="legacy">
-             <input placeholder="Email" id="inputdefault" type="text" (ngModelChange)="checkAccidentDetails()" [(ngModel)]="email" required>
-             <!--<mat-error *ngIf="email.invalid" align="end">{{getErrorMessage()}}</mat-error>-->
+             <!-- <input matInput placeholder="Email" id="inputdefault" type="text" (ngModelChange)="checkAccidentDetails()" [(ngModel)]="email" required> -->
+             <input matInput placeholder="Email" id="inputdefault" type="text" (ngModelChange)="checkAccidentDetails()" [formControl]="primaryEmail"  required>
+             <mat-error *ngIf="email.invalid" align="end">{{getErrorMessage()}}</mat-error>
             </mat-form-field>    
           </div>
           <br>
