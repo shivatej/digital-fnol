@@ -300,8 +300,7 @@ export class HomeComponent implements OnInit {
     this.sharedServiceService.finalJson(this.finalJson).then((data: any) => {
       if (typeof data == "object") {
         this.claimNumber = data.pv.claimNumber;
-        this.nextPage();
-      }
+       }
     }, (err) => {
       alert("Some error occurred while processing")
     });
@@ -591,6 +590,7 @@ export class HomeComponent implements OnInit {
     this.claimNumber = Math.floor(100000 + Math.random() * 900000)
     this.prepareFinalJson();
     this.finalJsonServiceCall();
+    this.nextPage();
   }
 
   openTime(type) {
