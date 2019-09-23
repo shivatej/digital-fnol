@@ -428,8 +428,8 @@
             </mat-form-field>       
              <br>
              <mat-form-field hideRequiredMarker appearance="legacy">
-             <input matInput placeholder="Email" id="inputdefault" type="text" (ngModelChange)="checkAccidentDetails()" [formControl]="email" required>
-             <mat-error *ngIf="email.invalid" align="end">{{getErrorMessage()}}</mat-error>
+             <input placeholder="Email" id="inputdefault" type="text" (ngModelChange)="checkAccidentDetails()" [(ngModel)]="email" required>
+             <!--<mat-error *ngIf="email.invalid" align="end">{{getErrorMessage()}}</mat-error>-->
             </mat-form-field>    
           </div>
           <br>
