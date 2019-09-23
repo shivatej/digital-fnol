@@ -20,14 +20,6 @@ declare var google: any;
 })
 export class HomeComponent implements OnInit {
 
-  
-
-  getErrorMessage() {
-    return this.email.hasError('required') ? 'You must enter a value' :
-        this.email.hasError('email') ? 'Not a valid input' :
-            '';
-  }
-
   private imageSrc: string = '';
   isPolicyButton:boolean = false;
   radio:boolean = false;
