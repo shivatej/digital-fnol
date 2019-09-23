@@ -20,7 +20,7 @@ declare var google: any;
 })
 export class HomeComponent implements OnInit {
 
-  email = new FormControl('', [Validators.required, Validators.email]);
+  
 
   getErrorMessage() {
     return this.email.hasError('required') ? 'You must enter a value' :
