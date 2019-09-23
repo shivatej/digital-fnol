@@ -117,6 +117,7 @@ export class SharedServiceService {
 
 
   finalJson(reqData) {
+    console.log(reqData);
     const username = 'iccfnol1';
     const password = 'appian@2';
     let authorizationData = 'Basic ' + btoa(username + ':' + password);
