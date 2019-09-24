@@ -20,6 +20,21 @@ declare var google: any;
 })
 export class HomeComponent implements OnInit {
 
+  email = new FormControl('', [Validators.required, Validators.email]);	
+  primaryEmail = new FormControl('', [Validators.required, Validators.email]);	
+
+  getErrorMessage() {	
+    return this.email.hasError('required') ? 'You must enter a value' :	
+      this.email.hasError('email') ? 'Not a valid input' :	
+        '';	
+  }	
+
+  getPrimaryEmailErrorMessage() {	
+    return this.primaryEmail.hasError('required') ? 'You must enter a value' :	
+      this.primaryEmail.hasError('email') ? 'Not a valid input' :	
+        '';	
+  }
+  
   private imageSrc: string = '';
   isPolicyButton:boolean = false;
   radio:boolean = false;
