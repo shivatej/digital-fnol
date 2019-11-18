@@ -18,6 +18,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDateCustomParserFormatter } from "./shared/date-formatter.service";
 import { RouterModule, Routes } from '@angular/router';
 import { PolicyComponent } from './policy/policy.component';
+import {  MatProgressSpinnerModule} from '@angular/material';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 const appRoutes: Routes = [
   {path: 'home', component: AppComponent},
@@ -45,6 +47,8 @@ const appRoutes: Routes = [
     NgbModalModule,
     AgmCoreModule,
     AmazingTimePickerModule,
+    MatProgressSpinnerModule,
+    Ng4LoadingSpinnerModule.forRoot() ,
     NgbModule,
     RouterModule.forRoot(appRoutes),
     AgmCoreModule.forRoot({

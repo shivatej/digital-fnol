@@ -161,7 +161,7 @@
     text-align:center; 
     border-bottom: 2px solid #6e7684; 
     line-height:0.1em; 
-    margin: 30px 0 48px; 
+    margin: 20px 0 30px; 
 }
 
 .optional_text_2 { 
@@ -179,6 +179,9 @@
 .image_height_upload
 {
     height: 20em;
+}
+.uploadImg {
+    margin-left:75px;
 }
 
 .image_height_upload_extra

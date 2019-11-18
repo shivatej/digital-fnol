@@ -8,9 +8,8 @@
   <div class="container-body">
     <ng-container *ngIf="step===1">
       <div class="container-pg">
-        <div><span>Looking for the best insurance plan for you?</span></div>
-        <div class="home_pg_header"><span>Let's get started</span></div>
-        <br>
+        <div align="center"><span>Looking the best insurance plan for you?</span></div>
+        <div class="home_pg_header" align="center"><span>Let's get started</span></div>
         <br>
         <div class="box-sha">
           <div class="row text-center">
@@ -36,7 +35,7 @@
               <span>Family </span>
             </div>
           </div>
-          <br>
+          
           <br>
           <div class="col-3">
             <mat-form-field hideRequiredMarker appearance="legacy">
@@ -47,9 +46,10 @@
           <br>
           <button type="button" class="btn btn-default btn-block round-default ng-star-inserted">Get a Quote</button>
         </div>
-        <br>
+        
         <div class="optional_text"><span>or</span></div>
-        <div>
+        
+        <div style="padding-top:0px">
           <button type="button" class="btn btn-primary btn-block" (click)=" nextPage()">Initiate a Claim</button>
           <button type="button" class="btn btn-default btn-block round-default">Manage a Claim</button>
         </div>
@@ -375,7 +375,7 @@
           <span>Tell us what happened</span>
         </div>
         <br>
-        <br>
+        
         <div>
           <div><b>Where is the vehicle currently located?</b></div>
           <br>
@@ -525,15 +525,24 @@
           <div class="optional_text_2"><span>or</span></div>
         </div>
         <br>
-    
-        <div class="image_div image_height_upload" (click)="fileToUpload.click()">
-          <!-- <i class="material-icons" (click)="fileToUpload.click()">
-            add
-          </i> -->
-          <!-- <span>Upload/Capture Image</span> -->
-        </div>
         
-        <input #fileToUpload type="file" style="display:none;" accept="image/*" (change)="handleInputChange($event)"> 
+        <div class="image_div image_height_upload" (click)="fileToUpload.click()">
+            <!-- <i class="material-icons" (click)="fileToUpload.click()">
+              add
+            </i> -->
+            <!-- <span>Upload/Capture Image</span> -->
+          </div>
+        <!-- <div *ngIf="userSelectReport=='3rd party'"  class=" image_height_upload" >
+          <img class="uploadImg" height="50%" width="50%" [src]="imageurl" (click)="ScanImage(fileToUpload)" align="middle">
+        </div>
+        <div *ngIf="userSelectReport !='3rd party'"  class=" image_height_upload" >
+          <img class="uploadImg" height="50%" width="50%" [src]="imageurl"  (click)="ScanImage(fileToUpload)" align="middle">
+        </div> -->
+        <!-- <input *ngIf="userSelectReport =='3rd party'" #fileToUpload type="file" style="display:none;" accept="image/*" (change)="handleInputChange($event)"> -->
+        <!-- <input *ngIf="userSelectReport =='3rd party'" #fileToUpload type="file" style="display:none;" accept="image/*" (change)="handleChange($event.target.files)"> -->
+          
+        
+        <input  #fileToUpload type="file" style="display:none;" accept="image/*" (change)="handleInputChange($event)"> 
         <br>
         <button type="button" class="btn btn-primary btn-block" (click)="nextPage()">Continue</button>
       </div>
@@ -547,28 +556,48 @@
           <span *ngIf="userSelectReport=='police report'">Police Report</span>
         </div>
         <span class="help_text" *ngIf="userSelectReport=='car Image'">Please upload/capture images showing damages to your vehicle</span> 
-        <br>
+        
         <span class="help_text" *ngIf="userSelectReport=='police report'">Please upload police report, if available</span>
-        <span class="help_text" *ngIf="userSelectReport=='3rd party'">Please upload/capture images of damages to the other party</span>
+        <div class="help_text" *ngIf="userSelectReport=='3rd party'">
+            <ng4-loading-spinner  *ngIf = "showSpinner2" > </ng4-loading-spinner>
+            <form  class="app-form">
+                <mat-form-field class="full-width form-group">
+                  <input matInput placeholder="Business Name" [(ngModel)]="businessName" name="BusinessName" id="BusinessName" type ="text">
+                </mat-form-field>
+                <mat-form-field class="full-width form-group">
+                  <input matInput placeholder="Owner Name" [(ngModel)]="ownerName" name="ownerName" id="ownerName" type ="text">
+                </mat-form-field>
+                 <mat-form-field class="full-width form-group">
+                  <input matInput placeholder="Address" [(ngModel)]="thirdPartyAddress" name="address" id="address" type ="text">
+                </mat-form-field>
+                <mat-form-field class="full-width form-group">
+                  <input matInput placeholder="City" [(ngModel)]="city" name="city" id="city" type ="text">
+                </mat-form-field>
+                <mat-form-field class="full-width form-group">
+                  <input matInput placeholder="State" [(ngModel)]="state" name="state" id="state" type ="text">
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                <input matInput  [(ngModel)]="telephone" placeholder="Telephone" type="text" name="telephone" id="telephone">
+                  <!-- <mat-error *ngIf="telephoneControl.hasError('pattern')">Please enter a valid Telephone number!</mat-error> -->
+              </mat-form-field>
+              </form>
+          </div>
         <br>
-        <div class="row">
+        <div *ngIf="userSelectReport!='3rd party'" class="row">
           <div class="col-6">
             <img *ngIf="userSelectReport=='car Image'"[src]="(url['carImage'] && url['carImage']['result']) ? imageData : '../../assets/not_available.jpg'" height="100%" width="100%">
-            <img *ngIf="userSelectReport=='3rd party'" [src]="(url['3rdParty'] && url['3rdParty']['result']) ? imageData : '../../assets/not_available.jpg'" height="100%" width="100%">
+            <!-- <img *ngIf="userSelectReport=='3rd party'" [src]="(url['3rdParty'] && url['3rdParty']['result']) ? imageData : '../../assets/not_available.jpg'" height="100%" width="100%"> -->
             <img *ngIf="userSelectReport=='police report'"[src]="(url['policeReport'] && url['policeReport']['result']) ? imageData : '../../assets/not_available.jpg'" height="100%" width="100%">
           </div>
           <div class="col-6 image_div image_height_upload_extra" *ngIf = "!secondImage" (click)="fileToUpload.click()">
-            <!-- <i class="material-icons" (click)="fileToUpload.click()">
-            add
-          </i>
-          <span>Upload/Capture Image</span> -->
+           
         </div>
         <input #fileToUpload type="file" style="display:none;" accept="image/*" (change)="secondImgInputChanges($event)"> 
         <br>
         </div>
         <div class="col-6 second_image_upload_extra"  *ngIf = "secondImage">
             <img *ngIf="userSelectReport=='car Image'"[src]="(secondImgUrl['carImage'] && secondImgUrl['carImage']['result']) ? secondImageData : '../../assets/not_available.jpg'" height="100%" width="100%">
-            <img *ngIf="userSelectReport=='3rd party'" [src]="(secondImgUrl['3rdParty'] && secondImgUrl['3rdParty']['result']) ? secondImageData : '../../assets/not_available.jpg'" height="100%" width="100%">
+            <!-- <img *ngIf="userSelectReport=='3rd party'" [src]="(secondImgUrl['3rdParty'] && secondImgUrl['3rdParty']['result']) ? secondImageData : '../../assets/not_available.jpg'" height="100%" width="100%"> -->
             <img *ngIf="userSelectReport=='police report'"[src]="(secondImgUrl['policeReport'] && secondImgUrl['policeReport']['result']) ? secondImageData : '../../assets/not_available.jpg'" height="100%" width="100%">
         </div>
         <br>
@@ -599,6 +628,7 @@
       <br>
       <br>
       <br>
+      <ng4-loading-spinner  *ngIf = "showSpinner" > </ng4-loading-spinner>
         <div class="container-pg">
           <div class="text-center">
             <span class="pg-head-last">
@@ -617,9 +647,11 @@
             </div>
             <br>
             <div class="sub-num">
-              <span *ngIf="propertyClaim">{{claimNumber}}</span>
-              <span *ngIf="!propertyClaim">{{claimNumber}}</span>
-            </div>
+              <!-- <mat-spinner *ngIf = "showSpinner" ></mat-spinner> -->
+              
+              <!-- <span *ngIf="!showSpinner">{{claimNumber}}</span> -->
+              <span *ngIf="!showSpinner">{{claimNumber}}</span>
+              </div> 
           <br>
           <br>
           <br>

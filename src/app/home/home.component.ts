@@ -11,6 +11,8 @@ import { AmazingTimePickerService } from 'amazing-time-picker';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { of } from 'rxjs';
 import { Validators } from '@angular/forms';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { CommonServiceService } from '../services/commonservice.service';
 declare var google: any;
 
 @Component({
@@ -34,8 +36,14 @@ export class HomeComponent implements OnInit {
       this.primaryEmail.hasError('email') ? 'Not a valid input' :
         '';
   }
-
-
+  businessName:string;
+  
+  ownerName:string;
+  thirdPartyAddress:string;
+  city:string;
+  state: string;
+  telephone:number;
+  imageurl : string = "../../assets/CameraPic_small.png";
   private imageSrc: string = '';
   isPolicyButton: boolean = false;
   //primaryEmail : string;
@@ -117,13 +125,23 @@ export class HomeComponent implements OnInit {
   finalJson: object = {};
   vehicle: any;
   currentVehilceLocation: string = "Home";
+  showSpinner :any =  false
+  showSpinner2:any = false
+  selectedFile:File;
+  resCardreaderApi : object = {};
+  TaskId: string;
+  resultUrls:any;
+  jsonResponse: object={};
+  addressOnCard:any;
+  companyNameOnCard:any;
+
 
   @ViewChild('search')
   public searchElementRef: ElementRef;
 
 
-  constructor(private sharedServiceService: SharedServiceService, private modalService: NgbModal, private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone, private router: Router, private formBuilder: FormBuilder, private atp: AmazingTimePickerService) {
+  constructor(private CommonServiceService: CommonServiceService, private sharedServiceService: SharedServiceService, private modalService: NgbModal, private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone, private router: Router, private formBuilder: FormBuilder, private spinnerService: Ng4LoadingSpinnerService, private atp: AmazingTimePickerService) {
     this.form = this.formBuilder.group({
       buildingdamages: new FormArray([]),
       contentdamages: new FormArray([]),
@@ -158,10 +176,27 @@ export class HomeComponent implements OnInit {
     this.secondImage = true;
     this.handleInputChange(e);
   }
+  ScanImage(fileToUpload) {
+     fileToUpload.click()
+    }
+
+  handleChange(file:FileList){
+    this.selectedFile = null
+    this.selectedFile = file.item(0);
+    var reader = new FileReader();
+    reader.onload = (event:any)=> {
+      this.imageurl = event.target.result;
+      //console.log("hellooooo--------"+this.imageurl)
+    }
+    reader.readAsDataURL(this.selectedFile)
+    //this.pg1Next = true; 
+  }
 
   handleInputChange(e) {
     //const file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
     const file = e.target.files[0];
+    this.selectedFile = file;
+    console.log("selected file ->",this.selectedFile)
     const reader = new FileReader();
     let pattern = /image-*/;
     if (!file.type.match(pattern)) {
@@ -179,6 +214,92 @@ export class HomeComponent implements OnInit {
     reader.readAsBinaryString(file);
     //reader.onload = this._handleReaderLoaded.bind(this);
     //reader.readAsDataURL(file);
+    this.scanImage()
+  }
+
+  scanImage() {
+    this.spinnerService.show();
+    this.CommonServiceService.scanCard(this.selectedFile,  this.imageChkSum).then((data: any) => {
+      console.log("succ of Card reader API->", data);
+      
+      this.resCardreaderApi = data;
+      this.setDataofAPI(this.resCardreaderApi)
+   // this.spinnerService.show();
+    this.showSpinner2 = true;
+    // setTimeout(()=>{
+    //   this.showSpinner2 = false;
+    // }, 9000) 
+       });
+  }
+  setDataofAPI(resCardreaderApi){
+    const data = resCardreaderApi
+    this.TaskId = data.taskId
+     console.log("Test of Set Data-->"+ this.TaskId)
+     setTimeout(()=>{
+       console.log("wait"), 9000
+     })
+     this.FirstGetRequest()
+  }
+
+  FirstGetRequest(){
+    this.CommonServiceService.GetresultUrls(this.TaskId).then(async (data:any)=>{
+      //console.log("success of First Get request", data)
+      this.resultUrls = data.resultUrls[0];
+      // console.log(this.resultUrls)
+      const proxyurl = "https://cors-anywhere.herokuapp.com/"; 
+      const response = await fetch(proxyurl+this.resultUrls);
+    const xmlString = await response.text();
+    var XmlNode = new DOMParser().parseFromString(xmlString, 'text/xml');
+    this.jsonResponse = this.xmlToJson(XmlNode);
+    console.log("Response of xml ",this.jsonResponse)
+     this.setDataforXmlResponse(this.jsonResponse)
+     this.uploadCard(this.addressOnCard, this.companyNameOnCard);
+    })
+  }
+
+  setDataforXmlResponse(xmltojsonResponse){
+    const Data = xmltojsonResponse
+    //console.log(Data.document.businessCard.field) 
+    const length = Data.document.businessCard.field.length
+    for(let i of Data.document.businessCard.field ){
+      // console.log(i);
+      if(i["@attributes"].type== "Company"){
+        this.companyNameOnCard = i.value
+        console.log(i.value)
+      }
+      if(i["@attributes"].type== "Address"){
+        this.addressOnCard = i.value
+        console.log(i.value)
+      }
+     }
+  }
+
+  uploadCard(addressOnCard,companyNameOnCard) {
+    this.CommonServiceService.CardDetails(addressOnCard, companyNameOnCard).then((data: any) => {
+    this.responseData = data;
+    this.spinnerService.hide()
+    this.setData(this.responseData);
+    console.log("success..--->>>>>>>>", this.responseData);
+    }, (err) => {  });
+  }
+
+  setData(responseData) {
+    //this.pg2Next = true;
+    const data = responseData.results[0]
+    const address = data.address.split(',')
+    this.businessName = data.businessName;
+    this.thirdPartyAddress = address[0];
+    this.telephone = data.telephoneNumber;
+    this.city = data.city;
+    this.state = data.state;
+    if(data.owner.firstName != "")
+    {
+      this.ownerName = data.owner.firstName + " "+ data.owner.lastName
+    }
+    else{
+      this.ownerName = "Does not have Owner"
+    }
+    
   }
 
   getCheckSumValue(data) {
@@ -319,6 +440,7 @@ export class HomeComponent implements OnInit {
     this.sharedServiceService.finalJson(this.finalJson).then((data: any) => {
       if (typeof data == "object") {
         this.claimNumber = data.pv.claimNumber;
+        this.spinnerService.hide()
       }
     }, (err) => {
       alert("Some error occurred while processing")
@@ -606,9 +728,18 @@ export class HomeComponent implements OnInit {
   }
 
   finalSubmit() {
-    this.claimNumber = Math.floor(100000 + Math.random() * 900000)
+    //this.claimNumber = Math.floor(100000 + Math.random() * 900000);
+    this.spinnerService.show();
+    this.showSpinner = true;
+    setTimeout(()=>{
+      this.showSpinner = false;
+    }, 5000)    
     this.prepareFinalJson();
     this.finalJsonServiceCall();
+    if(this.claimNumber == null){
+      this.claimNumber = Math.floor(100000 + Math.random() * 900000);
+    }
+    
     this.nextPage();
   }
 
@@ -641,6 +772,54 @@ export class HomeComponent implements OnInit {
   
     return validator;
   }*/
+
+  // xml  response to JSON
+ xmlToJson(xml) {
+  // Create the return object
+  var obj = {};
+
+  if (xml.nodeType == 1) {
+    // element
+    // do attributes
+    if (xml.attributes.length > 0) {
+      obj["@attributes"] = {};
+      for (var j = 0; j < xml.attributes.length; j++) {
+        var attribute = xml.attributes.item(j);
+        obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
+      }
+    }
+  } else if (xml.nodeType == 3) {
+    // text
+    obj = xml.nodeValue;
+  }
+
+  // do children
+  // If all text nodes inside, get concatenated text from them.
+  var textNodes = [].slice.call(xml.childNodes).filter(function(node) {
+    return node.nodeType === 3;
+  });
+  if (xml.hasChildNodes() && xml.childNodes.length === textNodes.length) {
+    obj = [].slice.call(xml.childNodes).reduce(function(text, node) {
+      return text + node.nodeValue;
+    }, "");
+  } else if (xml.hasChildNodes()) {
+    for (var i = 0; i < xml.childNodes.length; i++) {
+      var item = xml.childNodes.item(i);
+      var nodeName = item.nodeName;
+      if (typeof obj[nodeName] == "undefined") {
+        obj[nodeName] = this.xmlToJson(item);
+      } else {
+        if (typeof obj[nodeName].push == "undefined") {
+          var old = obj[nodeName];
+          obj[nodeName] = [];
+          obj[nodeName].push(old);
+        }
+        obj[nodeName].push(this.xmlToJson(item));
+      }
+    }
+  }
+  return obj;
+}
 
   prepareFinalJson() {
     this.finalJson = {

@@ -43,6 +43,7 @@ export class SharedServiceService {
     let options = { headers: headers };
 
     // let url = ConfigConstants.clientUrl + 'oshot/oauth/post';
+    const proxyurl = "https://cors-anywhere.herokuapp.com/"; 
     let url = 'https://fnol-project-app.herokuapp.com/upload?url=oshot/oauth/post';
     let reqData = {
       "vehicles": {
@@ -60,7 +61,7 @@ export class SharedServiceService {
     };
 
     return new Promise((resolve, reject) => {
-      this.http.post(url, reqData).subscribe((response: any) => {
+      this.http.post(proxyurl+url, reqData).subscribe((response: any) => {
         console.log("Test....", response);
         // console.log("Test....", response.headers.get('x-csrf-token'));
         setTimeout(() => {
@@ -79,7 +80,7 @@ export class SharedServiceService {
     // const authorizedHeaders: HttpHeaders = this.createAuthorizationHeaders();
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     // return this.http.post(`url`, uploadDocbody);
-      // const proxyurl = "https://cors-anywhere.herokuapp.com/"; 
+      const proxyurl = "https://cors-anywhere.herokuapp.com/"; 
     let url = 'https://fnol-project-app.herokuapp.com/upload?url=oshot/post';
     let reqData = {
       "vehicles": {
@@ -103,7 +104,8 @@ export class SharedServiceService {
 
     return new Promise((resolve, reject) => {
       //this.http.post(url, reqData).subscribe((response: any) => {
-      this.http.post(url, reqData).subscribe((response: any) => {
+      const proxyurl = "https://cors-anywhere.herokuapp.com/"; 
+      this.http.post(proxyurl+url, reqData).subscribe((response: any) => {
         console.log("Test....", response);
 
         resolve(response);
@@ -130,10 +132,10 @@ export class SharedServiceService {
     };
 
     let url = 'https://capgemini-indiademo.appiancloud.com/suite/webapi/FavI_Q';
-    //const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
     return new Promise((resolve, reject) => {
       //this.http.post(url, reqData).subscribe((response: any) => {
-      this.http.post(url, reqData,headerOptions).subscribe((response: any) => {
+      this.http.post(proxyurl+url, reqData,headerOptions).subscribe((response: any) => {
         console.log("Test....", response);
 
         resolve(response);
