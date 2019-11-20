@@ -1,25 +1,62 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import {FormsModule, ReactiveFormsModule,FormControl} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { PolicyComponent } from './policy/policy.component';
 import { HomeComponent } from './home/home.component';
-import { FormsModule } from '@angular/forms';
+// import {DemoMaterialModule} from './material-module';
+import { MatFormFieldModule, MatInputModule} from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NgbModalModule, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { FooterComponent } from './footer/footer.component';
+import { AgmCoreModule } from '@agm/core';
+import { AmazingTimePickerModule } from 'amazing-time-picker';
+import { NgbDateParserFormatter } from "@ng-bootstrap/ng-bootstrap";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateCustomParserFormatter } from "./shared/date-formatter.service";
+import { RouterModule, Routes } from '@angular/router';
+import { PolicyComponent } from './policy/policy.component';
+import {  MatProgressSpinnerModule} from '@angular/material';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+
+const appRoutes: Routes = [
+  {path: 'home', component: AppComponent},
+  {path: '', component: AppComponent, pathMatch: 'full'},
+  {path: '**', redirectTo: '/home', pathMatch: 'full'} 
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    PolicyComponent,
-    HomeComponent
+    HomeComponent,
+    FooterComponent,
+    PolicyComponent
   ],
   imports: [
-    BrowserModule ,
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    NgbModalModule,
+    AgmCoreModule,
+    AmazingTimePickerModule,
+    MatProgressSpinnerModule,
+    Ng4LoadingSpinnerModule.forRoot() ,
     NgbModule,
-    FormsModule
+    RouterModule.forRoot(appRoutes),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDZ5rIF_as0p3eJW08nKkQE2c0EFdmpG1w',
+      libraries: ['geometry', 'places']
+    }),
   ],
-  providers: [],
+  providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter } ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
