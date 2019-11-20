@@ -1,9 +1,52 @@
-.bg-dark
-{
-    background-color:#0081FF !important;
-    color: white !important;
+.header_blue {
+  background: linear-gradient(135deg, #172a74, #21a9af);
 }
 
 a {
     color: white !important;
 }
+.navbar-center
+{
+  position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+  font-size:2rem;
+}
+
+
+@media(max-width: 767px) and (min-width: 504px){
+    .navbar-brand{
+        max-width: calc(40% - 55px);
+        max-height: calc(40% - 55px);
+    }
+
+    .navbar-center{
+        position: absolute;
+        left: 50%;
+        transform: translatex(-50%);
+        font-size:2rem;
+    }
+}
+@media(min-width: 360px) and (max-width:472px) {
+    .navbar-brand{
+        max-width: calc(40% - 55px);
+        max-height: calc(40% - 55px);
+    }
+    .navbar-center{
+        position: absolute;
+        left: 50%;
+        transform: translatex(-45%);
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 320px)   {
+   .navbar-center {
+        font-size: 1.5rem;
+    }
+
+    .navbar-brand {
+        visibility: hidden;
+    }
+}
+ 
